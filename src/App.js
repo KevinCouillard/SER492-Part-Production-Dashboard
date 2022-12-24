@@ -1,23 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import Axios from "axios";
 
 function App() {
+  const url = "http://localhost:3001";
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isManager, setIsManager] = useState("");
+  const [userList, setUserList] = useState([]);
+
+  const addUser = () => {
+    Axios.post(url + "/user", {
+      email: email,
+      password: password,
+      isManager: isManager,
+    }).then(() => {
+      setUserList([
+        ...userList,
+        {
+          email: email,
+          password: password,
+          isManager: isManager,
+        },
+      ]);
+    });
+  };
+
+  const getUsers = () => {
+    Axios.get(url + "/user").then((response) => {
+      setUserList(response.data);
+    });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="user">
+        <div className="email">
+          <label>Email: </label>
+          <input
+            type="text"
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+        </div>
+        <div className="password">
+          <label>Password: </label>
+          <input
+            type="text"
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+        </div>
+        <div className="isManager">
+          <label>IsManager: </label>
+          <input
+            type="text"
+            onChange={(event) => {
+              setIsManager(event.target.value);
+            }}
+          />
+        </div>
+        <button onClick={(addUser, getUsers)}>Add User</button>
+      </div>
+
+      {userList.map((val, key) => {
+        return (
+          <div className="user-display">
+            <h3>Email: {val.email}</h3>
+            <h3>Password: {val.password}</h3>
+            <h3>IsManager: {val.isManager}</h3>
+            <br />
+          </div>
+        );
+      })}
     </div>
   );
 }
