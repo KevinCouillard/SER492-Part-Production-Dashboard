@@ -1,81 +1,25 @@
 import "./App.css";
-import { useState } from "react";
-import Axios from "axios";
+
+import Home from "./routes/Home";
+import Users from "./routes/Users";
+import Products from "./routes/Products";
+import Safety from "./routes/Safety";
+import Tracking from "./routes/Tracking";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  const url = "http://localhost:3001";
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isManager, setIsManager] = useState("");
-  const [userList, setUserList] = useState([]);
-
-  const addUser = () => {
-    Axios.post(url + "/user", {
-      email: email,
-      password: password,
-      isManager: isManager,
-    }).then(() => {
-      setUserList([
-        ...userList,
-        {
-          email: email,
-          password: password,
-          isManager: isManager,
-        },
-      ]);
-    });
-  };
-
-  const getUsers = () => {
-    Axios.get(url + "/user").then((response) => {
-      setUserList(response.data);
-    });
-  };
-
   return (
-    <div className="App">
-      <div className="user">
-        <div className="email">
-          <label>Email: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-        </div>
-        <div className="password">
-          <label>Password: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-        </div>
-        <div className="isManager">
-          <label>IsManager: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setIsManager(event.target.value);
-            }}
-          />
-        </div>
-        <button onClick={(addUser, getUsers)}>Add User</button>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/safety" element={<Safety />} />
+          <Route path="/tracking" element={<Tracking />} />
+        </Routes>
       </div>
-
-      {userList.map((val, key) => {
-        return (
-          <div className="user-display">
-            <h3>Email: {val.email}</h3>
-            <h3>Password: {val.password}</h3>
-            <h3>IsManager: {val.isManager}</h3>
-            <br />
-          </div>
-        );
-      })}
-    </div>
+    </Router>
   );
 }
 
