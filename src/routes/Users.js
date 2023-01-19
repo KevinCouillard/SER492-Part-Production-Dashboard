@@ -8,6 +8,14 @@ function Users() {
   const [isManager, setIsManager] = useState("");
   const [userList, setUserList] = useState([]);
 
+  const getUsers = () => {
+    Axios.get(url + "/user")
+      .then((response) => {
+        setUserList(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const addUser = () => {
     Axios.post(url + "/user", {
       email: email,
@@ -23,10 +31,12 @@ function Users() {
       .catch((err) => console.log(err));
   };
 
-  const getUsers = () => {
-    Axios.get(url + "/user")
+  const deleteUsers = (id) => {
+    Axios.delete(url + "/user/" + id)
       .then((response) => {
-        setUserList(response.data);
+        const newUserList = userList.filter((item) => item.id !== id);
+        setUserList(newUserList);
+        getUsers();
       })
       .catch((err) => console.log(err));
   };
@@ -68,6 +78,9 @@ function Users() {
             <h3>Email: {val.email}</h3>
             <h3>Password: {val.password}</h3>
             <h3>IsManager: {val.isManager}</h3>
+            <button onClick={() => deleteUsers(val.user_id)}>
+              Delete User
+            </button>
             <br />
           </div>
         );
