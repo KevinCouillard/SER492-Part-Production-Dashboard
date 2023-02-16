@@ -1,0 +1,11 @@
+.filterBar {
+    display: grid;
+    justify-content: center;
+}
+.dayInput {
+    display: inline-block;
+    /* margin-top: 60px; */
+}
+.spacer {
+    height: 20px;
+}

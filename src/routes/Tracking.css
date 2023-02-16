@@ -11,6 +11,10 @@
     width: 100%;
 }
 
+.addBtn {
+    margin-left: 20px;
+}
+
 .partNum{
     display: inline-flex;
     justify-content: center;

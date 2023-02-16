@@ -31,7 +31,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
         </div>
         <div className="sidebar_link ">
           <i className="fa fa-archive"></i>
-          <a href="/tracking">Previous Tracking</a>
+          <a href="/Ptracking">Previous Tracking</a>
         </div>
         <h2>Quality</h2>
         <div className="sidebar_link ">

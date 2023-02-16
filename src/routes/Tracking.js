@@ -49,10 +49,24 @@ const Tracking = () => {
   const [dTimeCode, setDTimeCode] = useState("");
   const [comment, setComment] = useState("");
   const [trackingList, setTrackingList] = useState([]);
+  const [workOrder, setWorkOrder] = useState("");
 
   const [scrapList, setScrapList] = useState([ { scrap: "" }, { scrap: "" }, { scrap: "" } ]);
 
   const addTracking = () => {
+    setArea("");
+    setShift("");
+    setWorkOrder("");
+    setSelection("");
+    setTarget("");
+    setCTarget("");
+    setCActual("");
+    setGood("");
+    setBad("");
+    setBadCode("");
+    setDownTime("");
+    setDTimeCode("");
+    setComment("");
     Axios.post(url + "/tracking", {
       operator: operator,
       area: area,
@@ -114,6 +128,7 @@ const Tracking = () => {
             onChange={(event) => {
               setArea(event.target.value);
             }}
+            value={area}
           />
           <TextField
             id="outlined-basic"
@@ -122,6 +137,7 @@ const Tracking = () => {
             onChange={(event) => {
               setShift(event.target.value);
             }}
+            value={shift}
           />
         </div>
 
@@ -148,8 +164,9 @@ const Tracking = () => {
             label="Work Order"
             variant="outlined"
             onChange={(event) => {
-              setShift(event.target.value);
+              setWorkOrder(event.target.value);
             }}
+            value={workOrder}
           />
           </LocalizationProvider>
           <label>Part Number: </label>
@@ -165,6 +182,7 @@ const Tracking = () => {
             onChange={(event) => {
               setTarget(event.target.value);
             }}
+            value={target}
           />
         </div>
         <div>
@@ -175,6 +193,7 @@ const Tracking = () => {
             onChange={(event) => {
               setCTarget(event.target.value);
             }}
+            value={cTarget}
           />
           <TextField
             id="outlined-basic"
@@ -183,6 +202,7 @@ const Tracking = () => {
             onChange={(event) => {
               setCActual(event.target.value);
             }}
+            value={cActual}
           />
           <TextField
             id="outlined-basic"
@@ -191,6 +211,7 @@ const Tracking = () => {
             onChange={(event) => {
               setGood(event.target.value);
             }}
+            value={good}
           />
           </div>
           <div className="scrapForm">
@@ -203,6 +224,7 @@ const Tracking = () => {
                 onChange={(event) => {
                   setBad(event.target.value);
                 }}
+                // value={bad}
               />
               <TextField
                 id="outlined-basic"
@@ -211,6 +233,7 @@ const Tracking = () => {
                 onChange={(event) => {
                   setBadCode(event.target.value);
                 }}
+                // value={badCode}
               />
               </div>
             ))}
@@ -226,6 +249,7 @@ const Tracking = () => {
             onChange={(event) => {
               setDownTime(event.target.value);
             }}
+            value={downTime}
           />
           <TextField
             id="outlined-basic"
@@ -234,6 +258,7 @@ const Tracking = () => {
             onChange={(event) => {
               setDTimeCode(event.target.value);
             }}
+            value={dTimeCode}
           />
 
           <TextField
@@ -243,25 +268,28 @@ const Tracking = () => {
             onChange={(event) => {
               setComment(event.target.value);
             }}
+            value={comment}
           />
         </div>
-        <Button onClick={getTracking} variant="contained">
+        {/* <Button onClick={getTracking} variant="contained">
           Get
-        </Button>
-        <Button
-          onClick={addTracking}
-          variant="contained"
-          endIcon={<SendIcon />}
-        >
-          Add
-        </Button>
+        </Button> */}
+        <div className="addBtn">
+          <Button
+            onClick={addTracking}
+            class="btn btn-outline-success"
+            endIcon={<SendIcon />}
+          >
+            Add
+          </Button>
+        </div>
       </Paper>
 
       {trackingList.map((val, key) => {
         return (
           <div className="tracking-display">
             <br />
-            <Paper className="test" elevation={4}>
+            <Paper elevation={4}>
               <h3>operator: {val.operator}</h3>
               <h3>area: {val.area}</h3>
               <h3>shift: {val.shift}</h3>

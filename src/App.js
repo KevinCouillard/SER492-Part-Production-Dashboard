@@ -5,6 +5,7 @@ import Users from "./routes/Users";
 import Products from "./routes/Products";
 import Safety from "./routes/Safety";
 import Tracking from "./routes/Tracking";
+import Ptracking from "./routes/Ptracking";
 import Sidebar from "./components/sidebar/Sidebar";
 import Navbar from "./components/navbar/Navbar";
 import { useState } from "react";
@@ -42,7 +43,7 @@ const App = () => {
               <Route path="/products" element={<Products />} />
               <Route path="/safety" element={<Safety />} />
               <Route path="/tracking" element={<Tracking />} />
-              <Route path="/previousTracking" element={<previousTracking />} />
+              <Route path="/Ptracking" element={<Ptracking />} />
               <Route path="/quality" element={<Quality />} />
             </Routes>
           </Col>
