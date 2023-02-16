@@ -5,6 +5,8 @@
   padding: 20px;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  width: 100%;
+  height: 100%;
 }
 .sidebar_title {
   display: flex;
@@ -14,8 +16,11 @@
   margin-bottom: 30px;
 }
 .sidebar_img {
-  display: flex;
-  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  margin: 10px;
+  width: 100%;
+  height: 100%;
 }
 .sidebar_title > div > img {
   width: 75px;
@@ -70,10 +75,6 @@
   color: #e65061;
   font-weight: 700;
   text-transform: uppercase;
-}
-.sidebar_logout > i {
-  margin-right: 10px;
-  font-size: 18px;
 }
 .sidebar-responsive {
   display: inline !important;

@@ -14,6 +14,12 @@ import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import Paper from "@mui/material/Paper";
+import "./Tracking.css";
+import { Select } from "@mui/material";
+import { MenuItem } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import 'bootstrap/dist/css/bootstrap.css';
 
 const Tracking = () => {
   const [value, setValue] = React.useState(dayjs());
@@ -32,6 +38,7 @@ const Tracking = () => {
   const [shift, setShift] = useState("");
   const [date_tracked, setDate_tracked] = useState("");
   const [time_tracked, setTime_tracked] = useState("");
+  const [selection,setSelection]=useState("");
   const [target, setTarget] = useState("");
   const [cTarget, setCTarget] = useState("");
   const [cActual, setCActual] = useState("");
@@ -42,6 +49,8 @@ const Tracking = () => {
   const [dTimeCode, setDTimeCode] = useState("");
   const [comment, setComment] = useState("");
   const [trackingList, setTrackingList] = useState([]);
+
+  const [scrapList, setScrapList] = useState([ { scrap: "" }, { scrap: "" }, { scrap: "" } ]);
 
   const addTracking = () => {
     Axios.post(url + "/tracking", {
@@ -69,6 +78,14 @@ const Tracking = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleSelect=(e)=>{
+    setSelection(e.target.value)
+  };
+
+  const newScrap=()=>{
+    setScrapList([...scrapList, { scrap: "" }]);
+  };
+
   const getTracking = () => {
     Axios.get(url + "/tracking")
       .then((response) => {
@@ -76,9 +93,9 @@ const Tracking = () => {
       })
       .catch((err) => console.log(err));
   };
-
   return (
-    <Box
+    <Box 
+      className="screen"
       component="form"
       sx={{
         // p: 2,
@@ -88,16 +105,8 @@ const Tracking = () => {
       noValidate
       autoComplete="off"
     >
-      <Paper elevation={3}>
+      <Paper className="trackingForm" elevation={3}>
         <div>
-          <TextField
-            id="outlined-basic"
-            label="Operator"
-            variant="outlined"
-            onChange={(event) => {
-              setOperator(event.target.value);
-            }}
-          />
           <TextField
             id="outlined-basic"
             label="Area"
@@ -134,7 +143,21 @@ const Tracking = () => {
               onChange={handleChangeTime}
               renderInput={(params) => <TextField {...params} />}
             />
+          <TextField
+            id="outlined-basic"
+            label="Work Order"
+            variant="outlined"
+            onChange={(event) => {
+              setShift(event.target.value);
+            }}
+          />
           </LocalizationProvider>
+          <label>Part Number: </label>
+          <Select className="partNum" id="dropdown" value={selection} placeholder="test" onChange={handleSelect}>
+            <MenuItem value="Test 1">Test1</MenuItem>
+            <MenuItem value="Test 2">Test2</MenuItem>
+            <MenuItem value="Test 3">Test3</MenuItem>
+          </Select>
           <TextField
             id="outlined-basic"
             label="Target"
@@ -147,7 +170,7 @@ const Tracking = () => {
         <div>
           <TextField
             id="outlined-basic"
-            label="CTarget"
+            label="Cummulative Target"
             variant="outlined"
             onChange={(event) => {
               setCTarget(event.target.value);
@@ -155,7 +178,7 @@ const Tracking = () => {
           />
           <TextField
             id="outlined-basic"
-            label="CActual"
+            label="Cummulative Actual"
             variant="outlined"
             onChange={(event) => {
               setCActual(event.target.value);
@@ -169,22 +192,33 @@ const Tracking = () => {
               setGood(event.target.value);
             }}
           />
-          <TextField
-            id="outlined-basic"
-            label="Bad"
-            variant="outlined"
-            onChange={(event) => {
-              setBad(event.target.value);
-            }}
-          />
-          <TextField
-            id="outlined-basic"
-            label="Bad Code"
-            variant="outlined"
-            onChange={(event) => {
-              setBadCode(event.target.value);
-            }}
-          />
+          </div>
+          <div className="scrapForm">
+            {scrapList.map((index) => (
+              <div key={index}>
+              <TextField
+                id="outlined-basic"
+                label="Scrap"
+                variant="outlined"
+                onChange={(event) => {
+                  setBad(event.target.value);
+                }}
+              />
+              <TextField
+                id="outlined-basic"
+                label="Reason Code"
+                variant="outlined"
+                onChange={(event) => {
+                  setBadCode(event.target.value);
+                }}
+              />
+              </div>
+            ))}
+            <div className="plusBtn">
+              <button class="btn btn-light" onClick={newScrap}><FontAwesomeIcon icon={faPlus} className="plusIcon" />Add Reason Code</button>
+            </div>
+          </div>
+          <div>
           <TextField
             id="outlined-basic"
             label="Down Time"
@@ -227,7 +261,7 @@ const Tracking = () => {
         return (
           <div className="tracking-display">
             <br />
-            <Paper elevation={4}>
+            <Paper className="test" elevation={4}>
               <h3>operator: {val.operator}</h3>
               <h3>area: {val.area}</h3>
               <h3>shift: {val.shift}</h3>

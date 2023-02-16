@@ -1,0 +1,14 @@
+const { Box } = require("@mui/system");
+
+
+const previousTracking = () => {
+
+
+    return (
+        <Box>
+            <label>Previous Tracking</label>
+        </Box>
+    );
+};
+
+export default previousTracking;

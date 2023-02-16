@@ -46,6 +46,10 @@
   box-shadow: 2px 2px 5px #d9d9d9, -2px -2px 5px #ffffff;
   padding: 7px;
 }
+.navbar_logout > i {
+  margin-right: 10px;
+  font-size: 18px;
+}
 @media only screen and (max-width: 978px) {
   .nav_icon {
     display: inline;

@@ -5,11 +5,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
     <div className={sidebarOpen ? "sidebar-responsive" : ""} id="sidebar">
       <div className="sidebar_title">
         <div className="sidebar_img">
-          <img
-            src="../media/11639648873djrwwcz5vluynavhjouvmbbv0p9u7fipechmtssjljvj35gweu4py1426hsw439wihwktmoudkgdxv59tdfnsdpmjooskdfmervu.png"
-            alt="logo"
-          />
-          <h1>Parker</h1>
+          <img className="logo" width={100} height={100} src={require('../../ParkerLogo.png')} alt="Part Production Dashboard" />
         </div>
         <i
           className="fa fa-times"
@@ -47,16 +43,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
           <i className="fa fa-question"></i>
           <a href="/safety">Safety</a>
         </div>
-        <h2>USERS</h2>
-        <div className="sidebar_link ">
-          <i className="fa fa-sign-out"></i>
-          <a href="/users">Users</a>
-        </div>
 
-        <div className="sidebar_logout">
-          <i className="fa fa-power-off"></i>
-          <a href="/">Log Out</a>
-        </div>
       </div>
     </div>
   );

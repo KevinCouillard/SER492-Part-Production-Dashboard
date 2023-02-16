@@ -8,26 +8,18 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
         <i className="fa fa-bars"></i>
       </div>
       <div className="navbar_left">
-        {/* <a href="/">Subscribers</a>
-        <a href="/">Videos</a>
-        <a className="active_link" href="/">
-          Admin
-        </a> */}
+        <img
+            src="../media/11639648873djrwwcz5vluynavhjouvmbbv0p9u7fipechmtssjljvj35gweu4py1426hsw439wihwktmoudkgdxv59tdfnsdpmjooskdfmervu.png"
+            width={50}
+            height={50}
+            alt="logo"
+          />
       </div>
       <div className="navbar_right">
-        <a href="/">
-          <i className="fa fa-search"></i>
-        </a>
-        <a href="/">
-          <i className="fa fa-clock-o"></i>
-        </a>
-        <a href="/">
-          <img
-            width="30"
-            src="../media/11639648873djrwwcz5vluynavhjouvmbbv0p9u7fipechmtssjljvj35gweu4py1426hsw439wihwktmoudkgdxv59tdfnsdpmjooskdfmervu.png"
-            alt="avatar"
-          />
-        </a>
+      <div className="navbar_logout">
+          <i className="fa fa-power-off"></i>
+          <a href="/">Log Out</a>
+        </div>
       </div>
     </div>
   );
