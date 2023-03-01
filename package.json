@@ -17,9 +17,12 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "cdbreact": "^1.5.4",
+    "chart.js": "^4.2.1",
     "dayjs": "^1.11.7",
+    "faker": "5.5.3",
     "moment": "^2.29.4",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.6.2",
@@ -49,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0"
   }
 }

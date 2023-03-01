@@ -1,6 +1,6 @@
 import "./App.css";
 
-import Home from "./routes/Home";
+import Dashboard from "./routes/Dashboard";
 import Users from "./routes/Users";
 import Products from "./routes/Products";
 import Safety from "./routes/Safety";
@@ -11,9 +11,9 @@ import Navbar from "./components/navbar/Navbar";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Quality from "./routes/Quality";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -38,7 +38,7 @@ const App = () => {
           </Col>
           <Col className="screen">
             <Routes>
-              <Route path="/home" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/users" element={<Users />} />
               <Route path="/products" element={<Products />} />
               <Route path="/safety" element={<Safety />} />
@@ -48,7 +48,6 @@ const App = () => {
             </Routes>
           </Col>
         </Row>
-
       </Container>
       {/* <div className="container">
         <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
