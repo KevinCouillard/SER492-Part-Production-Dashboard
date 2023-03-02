@@ -52,9 +52,9 @@ const Tracking = () => {
   const [workOrder, setWorkOrder] = useState("");
 
   // const [scrapList, setScrapList] = useState([
-  //   { scrap: "" },
-  //   { scrap: "" },
-  //   { scrap: "" },
+  //   {},
+  //   {},
+  //   {},
   // ]);
 
   const addTracking = () => {

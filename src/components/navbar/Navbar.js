@@ -8,12 +8,12 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
         <i className="fa fa-bars"></i>
       </div>
       <div className="navbar_left">
-        <img
+        {/* <img
             src="../media/11639648873djrwwcz5vluynavhjouvmbbv0p9u7fipechmtssjljvj35gweu4py1426hsw439wihwktmoudkgdxv59tdfnsdpmjooskdfmervu.png"
             width={50}
             height={50}
             alt="logo"
-          />
+          /> */}
       </div>
       <div className="navbar_right">
       <div className="navbar_logout">
