@@ -1,16 +1,15 @@
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-  } from 'chart.js';
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { Bar } from "react-chartjs-2";
 import Axios from "axios";
 import { useState } from "react";
-
 
 ChartJS.register(
   CategoryScale,
@@ -26,7 +25,7 @@ export const options = {
   plugins: {
     title: {
       display: true,
-      text: 'C-Ring Forming - Average Downtime By Shift',
+      text: "C-Ring Forming - Average Downtime By Shift",
     },
   },
   responsive: true,
@@ -43,40 +42,38 @@ export const options = {
   },
 };
 
-const labels = ['C1', 'C2', 'C3', 'C4', 'Mean'];
+const labels = ["C1", "C2", "C3", "C4", "Mean"];
 
 export const data = {
   labels,
   datasets: [
     {
-        label:"Percent of scrap",
-      data: [0.75, 0.8, 1.0, 0.7,0.81 ],
-      backgroundColor: 'rgb(255, 99, 132)',
-     
+      label: "Percent of scrap",
+      data: [0.75, 0.8, 1.0, 0.7, 0.81],
+      backgroundColor: "rgb(255, 99, 132)",
     },
   ],
 };
 
 export function AverageScrap() {
-    const [trackingList, setTrackingList] = useState([]);
-    const url = "http://localhost:4000";
-  
-    const getTracking = () => {
-      Axios.get(url + "/tracking")
-        .then((response) => {
-          setTrackingList(response.data);
-        })
-        .catch((err) => console.log(err));
-    };
-    const target = trackingList.map((x) => x.target);
-  
-    target.forEach((value) => {
-      targetSum += value;
-    });
-    console.log(targetSum);
-    getTracking();
-    return <Bar data={data} />;
-  }
-  
-  export default AverageScrap;
-  
+  const [trackingList, setTrackingList] = useState([]);
+  const url = "http://localhost:4000";
+
+  const getTracking = () => {
+    Axios.get(url + "/tracking")
+      .then((response) => {
+        setTrackingList(response.data);
+      }, [])
+      .catch((err) => console.log(err));
+  };
+  const target = trackingList.map((x) => x.target);
+
+  target.forEach((value) => {
+    targetSum += value;
+  });
+  console.log(targetSum);
+  getTracking();
+  return <Bar data={data} />;
+}
+
+export default AverageScrap;

@@ -10,13 +10,12 @@ const Dashboard = () => {
     <div>
       <h1>Dashboard</h1>
       <PieChart />
-      <FinishedProduct/>
-      <TargetAndActual/>
-      <AverageScrap/>
-      <AverageDowntime/>
-      <GoodVsScrap/>
+      {/* <FinishedProduct/> */}
+      {/* <TargetAndActual/> */}
+      {/* <AverageScrap/> */}
+      {/* <AverageDowntime/> */}
+      <GoodVsScrap />
     </div>
-    
   );
 };
 

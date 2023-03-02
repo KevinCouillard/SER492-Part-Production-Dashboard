@@ -16,10 +16,10 @@ import SendIcon from "@mui/icons-material/Send";
 import Paper from "@mui/material/Paper";
 import "./Tracking.css";
 import { Select } from "@mui/material";
-import { MenuItem } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import 'bootstrap/dist/css/bootstrap.css';
+import { MenuItem } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import "bootstrap/dist/css/bootstrap.css";
 
 const Tracking = () => {
   const [value, setValue] = React.useState(dayjs());
@@ -38,7 +38,7 @@ const Tracking = () => {
   const [shift, setShift] = useState("");
   const [date_tracked, setDate_tracked] = useState("");
   const [time_tracked, setTime_tracked] = useState("");
-  const [selection,setSelection]=useState("");
+  const [selection, setSelection] = useState("");
   const [target, setTarget] = useState("");
   const [cTarget, setCTarget] = useState("");
   const [cActual, setCActual] = useState("");
@@ -51,22 +51,26 @@ const Tracking = () => {
   const [trackingList, setTrackingList] = useState([]);
   const [workOrder, setWorkOrder] = useState("");
 
-  const [scrapList, setScrapList] = useState([ { scrap: "" }, { scrap: "" }, { scrap: "" } ]);
+  // const [scrapList, setScrapList] = useState([
+  //   { scrap: "" },
+  //   { scrap: "" },
+  //   { scrap: "" },
+  // ]);
 
   const addTracking = () => {
-    setArea("");
-    setShift("");
-    setWorkOrder("");
-    setSelection("");
-    setTarget("");
-    setCTarget("");
-    setCActual("");
-    setGood("");
-    setBad("");
-    setBadCode("");
-    setDownTime("");
-    setDTimeCode("");
-    setComment("");
+    // setArea("");
+    // setShift("");
+    // setWorkOrder("");
+    // setSelection("");
+    // setTarget("");
+    // setCTarget("");
+    // setCActual("");
+    // setGood("");
+    // setBad("");
+    // setBadCode("");
+    // setDownTime("");
+    // setDTimeCode("");
+    // setComment("");
     Axios.post(url + "/tracking", {
       operator: operator,
       area: area,
@@ -92,23 +96,16 @@ const Tracking = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleSelect=(e)=>{
-    setSelection(e.target.value)
+  const handleSelect = (e) => {
+    setSelection(e.target.value);
   };
 
-  const newScrap=()=>{
-    setScrapList([...scrapList, { scrap: "" }]);
-  };
+  // const newScrap = () => {
+  //   setScrapList([...scrapList, { scrap: "" }]);
+  // };
 
-  const getTracking = () => {
-    Axios.get(url + "/tracking")
-      .then((response) => {
-        setTrackingList(response.data);
-      })
-      .catch((err) => console.log(err));
-  };
   return (
-    <Box 
+    <Box
       className="screen"
       component="form"
       sx={{
@@ -159,18 +156,24 @@ const Tracking = () => {
               onChange={handleChangeTime}
               renderInput={(params) => <TextField {...params} />}
             />
-          <TextField
-            id="outlined-basic"
-            label="Work Order"
-            variant="outlined"
-            onChange={(event) => {
-              setWorkOrder(event.target.value);
-            }}
-            value={workOrder}
-          />
+            <TextField
+              id="outlined-basic"
+              label="Work Order"
+              variant="outlined"
+              onChange={(event) => {
+                setWorkOrder(event.target.value);
+              }}
+              value={workOrder}
+            />
           </LocalizationProvider>
           <label>Part Number: </label>
-          <Select className="partNum" id="dropdown" value={selection} placeholder="test" onChange={handleSelect}>
+          <Select
+            className="partNum"
+            id="dropdown"
+            value={selection}
+            placeholder="test"
+            onChange={handleSelect}
+          >
             <MenuItem value="Test 1">Test1</MenuItem>
             <MenuItem value="Test 2">Test2</MenuItem>
             <MenuItem value="Test 3">Test3</MenuItem>
@@ -213,35 +216,33 @@ const Tracking = () => {
             }}
             value={good}
           />
+        </div>
+        <div className="scrapForm">
+          <TextField
+            id="outlined-basic"
+            label="Bad"
+            variant="outlined"
+            onChange={(event) => {
+              setBad(event.target.value);
+            }}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Bad Code"
+            variant="outlined"
+            onChange={(event) => {
+              setBadCode(event.target.value);
+            }}
+          />
+
+          <div className="plusBtn">
+            <button className="btn btn-light">
+              <FontAwesomeIcon icon={faPlus} className="plusIcon" />
+              Add Reason Code
+            </button>
           </div>
-          <div className="scrapForm">
-            {scrapList.map((index) => (
-              <div key={index}>
-              <TextField
-                id="outlined-basic"
-                label="Scrap"
-                variant="outlined"
-                onChange={(event) => {
-                  setBad(event.target.value);
-                }}
-                // value={bad}
-              />
-              <TextField
-                id="outlined-basic"
-                label="Reason Code"
-                variant="outlined"
-                onChange={(event) => {
-                  setBadCode(event.target.value);
-                }}
-                // value={badCode}
-              />
-              </div>
-            ))}
-            <div className="plusBtn">
-              <button class="btn btn-light" onClick={newScrap}><FontAwesomeIcon icon={faPlus} className="plusIcon" />Add Reason Code</button>
-            </div>
-          </div>
-          <div>
+        </div>
+        <div>
           <TextField
             id="outlined-basic"
             label="Down Time"
@@ -277,7 +278,7 @@ const Tracking = () => {
         <div className="addBtn">
           <Button
             onClick={addTracking}
-            class="btn btn-outline-success"
+            className="btn btn-outline-success"
             endIcon={<SendIcon />}
           >
             Add
@@ -314,36 +315,3 @@ const Tracking = () => {
 };
 
 export default Tracking;
-
-{
-  /* <LocalizationProvider dateAdapter={AdapterDayjs}>
-<Stack spacing={3}>
-  <DesktopDatePicker
-    label="Date desktop"
-    inputFormat="MM/DD/YYYY"
-    value={value}
-    onChange={handleChange}
-    renderInput={(params) => <TextField {...params} />}
-  />
-  <MobileDatePicker
-    label="Date mobile"
-    inputFormat="MM/DD/YYYY"
-    value={value}
-    onChange={handleChange}
-    renderInput={(params) => <TextField {...params} />}
-  />
-  <TimePicker
-    label="Time"
-    value={value}
-    onChange={handleChange}
-    renderInput={(params) => <TextField {...params} />}
-  />
-  <DateTimePicker
-    label="Date&Time picker"
-    value={value}
-    onChange={handleChange}
-    renderInput={(params) => <TextField {...params} />}
-  />
-</Stack>
-</LocalizationProvider> */
-}
