@@ -54,42 +54,83 @@ const Tracking = () => {
   const [scrapList, setScrapList] = useState([ {}, {}, {} ]);
 
   const addTracking = () => {
-    setArea("");
-    setShift("");
-    setWorkOrder("");
-    setSelection("");
-    setTarget("");
-    setCTarget("");
-    setCActual("");
-    setGood("");
-    setBad("");
-    setBadCode("");
-    setDownTime("");
-    setDTimeCode("");
-    setComment("");
-    Axios.post(url + "/tracking", {
-      operator: operator,
-      area: area,
-      shift: shift,
-      date_tracked: date_tracked,
-      time_tracked: time_tracked,
-      target: target,
-      cTarget: cTarget,
-      cActual: cActual,
-      good: good,
-      bad: bad,
-      badCode: badCode,
-      downTime: downTime,
-      dTimeCode: dTimeCode,
-      comment: comment,
-      headers: {
-        "content-type": "application/json",
+    if (area == "0" || shift == "0" || selection == "0" || target == "0" || cTarget == "0" || 
+    cActual == "0" || good == "0" || bad == "0" || badCode == "" || downTime == "0" || dTimeCode == "") {
+        alert("Must fill all required inputs");
+    } else {
+      setArea("");
+      setShift("");
+      setWorkOrder("");
+      setSelection("");
+      setTarget("");
+      setCTarget("");
+      setCActual("");
+      setGood("");
+      setBad("");
+      setBadCode("");
+      setDownTime("");
+      setDTimeCode("");
+      setComment("");
+      Axios.post(url + "/tracking", {
+        operator: operator,
+        area: area,
+        shift: shift,
+        date_tracked: date_tracked,
+        time_tracked: time_tracked,
+        target: target,
+        cTarget: cTarget,
+        cActual: cActual,
+        good: good,
+        bad: bad,
+        badCode: badCode,
+        downTime: downTime,
+        dTimeCode: dTimeCode,
+        comment: comment,
+        headers: {
+          "content-type": "application/json",
       },
     })
       .then(function (response) {
         console.log(response);
       })
       .catch((err) => console.log(err));
+    }
+    // setArea("");
+    // setShift("");
+    // setWorkOrder("");
+    // setSelection("");
+    // setTarget("");
+    // setCTarget("");
+    // setCActual("");
+    // setGood("");
+    // setBad("");
+    // setBadCode("");
+    // setDownTime("");
+    // setDTimeCode("");
+    // setComment("");
+    // Axios.post(url + "/tracking", {
+    //   operator: operator,
+    //   area: area,
+    //   shift: shift,
+    //   date_tracked: date_tracked,
+    //   time_tracked: time_tracked,
+    //   target: target,
+    //   cTarget: cTarget,
+    //   cActual: cActual,
+    //   good: good,
+    //   bad: bad,
+    //   badCode: badCode,
+    //   downTime: downTime,
+    //   dTimeCode: dTimeCode,
+    //   comment: comment,
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    // })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   const handleSelect=(e)=>{
@@ -265,6 +306,10 @@ const Tracking = () => {
                 onChange={(event) => {
                   setBad(event.target.value);
                 }}
+                // helperText={!bad
+                //   ?"Scrap number is required":""
+                // }
+                // error={!bad}
                 // value={bad}
               />
               <TextField
@@ -274,6 +319,10 @@ const Tracking = () => {
                 onChange={(event) => {
                   setBadCode(event.target.value);
                 }}
+                // helperText={!badCode
+                //   ?"Cummulative Actual is required":""
+                // }
+                // error={!badCode}
                 // value={badCode}
               />
               </div>

@@ -1,12 +1,13 @@
 .trackingForm{
-    width: 100%;
-    height: 100%;
+    width: fill;
+    height: fill;
     justify-content: center;
 }
 
 .screen{
-    justify-content: center;
+    justify-content: flex-start;
     display: inline-flex;
+    align-items: center;
     height: 100%;
     width: 100%;
 }

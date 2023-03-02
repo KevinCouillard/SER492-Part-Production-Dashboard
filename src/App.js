@@ -28,15 +28,15 @@ const App = () => {
     <Router>
       <Container fluid className="screenContainer">
         <Row className="navContainer">
-          <Col className="navBar">
+          {/* <Col className="navBar"> */}
             <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-          </Col>
+          {/* </Col> */}
         </Row>
         <Row className="mainContainer">
-          <Col xs={2} className="sideBar">
+          <Col sm={2} className="sideBar">
             <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
           </Col>
-          <Col className="screen">
+          <Col sm={10} className="screen">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/users" element={<Users />} />
