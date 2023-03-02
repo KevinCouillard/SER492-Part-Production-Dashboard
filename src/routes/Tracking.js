@@ -62,19 +62,19 @@ const Tracking = () => {
     cActual == "0" || good == "0" || bad == "0" || badCode == "" || downTime == "0" || dTimeCode == "") {
         alert("Must fill all required inputs");
     } else {
-      setArea("");
-      setShift("");
-      setWorkOrder("");
-      setSelection("");
-      setTarget("");
-      setCTarget("");
-      setCActual("");
-      setGood("");
-      setBad("");
-      setBadCode("");
-      setDownTime("");
-      setDTimeCode("");
-      setComment("");
+      // setArea("");
+      // setShift("");
+      // setWorkOrder("");
+      // setSelection("");
+      // setTarget("");
+      // setCTarget("");
+      // setCActual("");
+      // setGood("");
+      // setBad("");
+      // setBadCode("");
+      // setDownTime("");
+      // setDTimeCode("");
+      // setComment("");
       Axios.post(url + "/tracking", {
         operator: operator,
         area: area,
@@ -123,24 +123,36 @@ const Tracking = () => {
     >
       <Paper className="trackingForm" elevation={3}>
         <div>
-          <TextField
-            id="outlined-basic"
-            label="Area"
-            variant="outlined"
-            onChange={(event) => {
+        <label style={{margin : 15}}>Area: </label>
+          <Select className="partNum" id="dropdown" value={area} error={!area} placeholder="Area 1" onChange={(event) => {
               setArea(event.target.value);
-            }}
-            value={area}
-          />
-          <TextField
-            id="outlined-basic"
-            label="Shift"
-            variant="outlined"
-            onChange={(event) => {
+            }}>
+            <MenuItem value="Area 1">Area 1</MenuItem>
+            <MenuItem value="Area 2">Area 2</MenuItem>
+            <MenuItem value="Area 3">Area 3</MenuItem>
+            <MenuItem value="Area 4">Area 4</MenuItem>
+            <MenuItem value="Area 5">Area 5</MenuItem>
+            <MenuItem value="Area 6">Area 6</MenuItem>
+            <MenuItem value="Area 7">Area 7</MenuItem>
+            <MenuItem value="Area 8">Area 8</MenuItem>
+            <MenuItem value="Area 9">Area 9</MenuItem>
+            <MenuItem value="Area 10">Area 10</MenuItem>
+          </Select>
+          <label style={{margin : 15}}>Shift: </label>
+          <Select className="partNum" id="dropdown" value={shift} error={!shift} placeholder="8:00-9:00" onChange={(event) => {
               setShift(event.target.value);
-            }}
-            value={shift}
-          />
+            }}>
+            <MenuItem value="7:00-8:00 A.M.">7:00-8:00 A.M.</MenuItem>
+            <MenuItem value="8:00-9:00 A.M.">8:00-9:00 A.M.</MenuItem>
+            <MenuItem value="9:00-10:00 A.M.">9:00-10:00 A.M.</MenuItem>
+            <MenuItem value="10:00-11:00 A.M.">10:00-11:00 A.M.</MenuItem>
+            <MenuItem value="11:00-12:00 A.M.">11:00-12:00 A.M.</MenuItem>
+            <MenuItem value="12:00-1:00 P.M.">12:00-1:00 P.M.</MenuItem>
+            <MenuItem value="1:00-2:00 P.M.">1:00-2:00 P.M.</MenuItem>
+            <MenuItem value="12:00-1:00 P.M.">2:00-3:00 P.M.</MenuItem>
+            <MenuItem value="1:00-2:00 P.M.">3:00-4:00 P.M.</MenuItem>
+            <MenuItem value="12:00-1:00 P.M.">4:00-5:00 P.M.</MenuItem>
+          </Select>
         </div>
 
         <div>
@@ -169,6 +181,10 @@ const Tracking = () => {
                 setWorkOrder(event.target.value);
               }}
               value={workOrder}
+              helperText={!workOrder
+                ?"Work Order is required":""
+              }
+              error={!workOrder}
             />
           </LocalizationProvider>
           <label>Part Number: </label>
@@ -178,6 +194,7 @@ const Tracking = () => {
             value={selection}
             placeholder="test"
             onChange={handleSelect}
+            error={!selection}
           >
             <MenuItem value="Test 1">Test1</MenuItem>
             <MenuItem value="Test 2">Test2</MenuItem>
@@ -191,6 +208,10 @@ const Tracking = () => {
               setTarget(event.target.value);
             }}
             value={target}
+            helperText={!target
+              ?"Target is required":""
+            }
+            error={!target}
           />
         </div>
         <div>
@@ -202,6 +223,10 @@ const Tracking = () => {
               setCTarget(event.target.value);
             }}
             value={cTarget}
+            helperText={!cTarget
+              ?"Cummalative Target is required":""
+            }
+            error={!cTarget}
           />
           <TextField
             id="outlined-basic"
@@ -211,6 +236,10 @@ const Tracking = () => {
               setCActual(event.target.value);
             }}
             value={cActual}
+            helperText={!cActual
+              ?"Cummulative Actual is required":""
+            }
+            error={!cActual}
           />
           <TextField
             id="outlined-basic"
@@ -220,6 +249,10 @@ const Tracking = () => {
               setGood(event.target.value);
             }}
             value={good}
+            helperText={!good
+              ?"Good Target is required":""
+            }
+            error={!good}
           />
           </div>
           <div className="scrapForm">
@@ -232,11 +265,11 @@ const Tracking = () => {
                 onChange={(event) => {
                   setBad(event.target.value);
                 }}
-                // helperText={!bad
-                //   ?"Scrap number is required":""
-                // }
-                // error={!bad}
-                // value={bad}
+                helperText={!bad
+                  ?"Scrap number is required":""
+                }
+                error={!bad}
+                value={bad}
               />
               <TextField
                 id="outlined-basic"
@@ -245,11 +278,11 @@ const Tracking = () => {
                 onChange={(event) => {
                   setBadCode(event.target.value);
                 }}
-                // helperText={!badCode
-                //   ?"Cummulative Actual is required":""
-                // }
-                // error={!badCode}
-                // value={badCode}
+                helperText={!badCode
+                  ?"Cummulative Actual is required":""
+                }
+                error={!badCode}
+                value={badCode}
               />
               </div>
             ))}
@@ -266,6 +299,10 @@ const Tracking = () => {
               setDownTime(event.target.value);
             }}
             value={downTime}
+            helperText={!downTime
+              ?"Down Time is required":""
+            }
+            error={!downTime}
           />
           <TextField
             id="outlined-basic"
@@ -275,6 +312,10 @@ const Tracking = () => {
               setDTimeCode(event.target.value);
             }}
             value={dTimeCode}
+            helperText={!dTimeCode
+              ?"Down Time Code is required":""
+            }
+            error={!dTimeCode}
           />
 
           <TextField
@@ -291,7 +332,7 @@ const Tracking = () => {
         <div className="addBtn">
           <Button
             onClick={addTracking}
-            className="btn btn-outline-success"
+            class="btn btn-outline-success"
             endIcon={<SendIcon />}
           >
             Add
