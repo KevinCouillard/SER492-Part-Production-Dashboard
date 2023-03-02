@@ -1,4 +1,7 @@
 import React from "react";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import PieChart from "../components/charts/PieChart.js";
 import FinishedProduct from "../components/charts/FinishedProduct.js";
 import TargetAndActual from "../components/charts/TargetAndActual.js";
@@ -9,12 +12,20 @@ const Dashboard = () => {
   return (
     <div>
       <h1>Dashboard</h1>
-      <PieChart />
-      <FinishedProduct/>
-      <TargetAndActual/>
-      <AverageScrap/>
-      <AverageDowntime/>
-      <GoodVsScrap/>
+      <Container fluid>
+      <Row>
+        <Col><h6>Finished vs Rework vs Scrap Products</h6> <PieChart /></Col>
+        <Col><h6>Number of Finished Products</h6><FinishedProduct/>
+        </Col>
+        <Col> <h6>Target vs Actual Products</h6><TargetAndActual/></Col>
+      </Row>
+      <Row>
+        <Col> <h6>Average Amount of Scrap by Cell</h6><AverageScrap/></Col>
+        <Col><h6>Average Amount of Downtime by Cell</h6><AverageDowntime/></Col>
+        <Col> <h6>Good vs Scrap Product</h6><GoodVsScrap/></Col>
+      </Row>
+        
+      </Container>
     </div>
     
   );
