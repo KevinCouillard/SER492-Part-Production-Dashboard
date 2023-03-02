@@ -62,19 +62,19 @@ const Tracking = () => {
     cActual == "0" || good == "0" || bad == "0" || badCode == "" || downTime == "0" || dTimeCode == "") {
         alert("Must fill all required inputs");
     } else {
-      // setArea("");
-      // setShift("");
-      // setWorkOrder("");
-      // setSelection("");
-      // setTarget("");
-      // setCTarget("");
-      // setCActual("");
-      // setGood("");
-      // setBad("");
-      // setBadCode("");
-      // setDownTime("");
-      // setDTimeCode("");
-      // setComment("");
+      setArea("");
+      setShift("");
+      setWorkOrder("");
+      setSelection("");
+      setTarget("");
+      setCTarget("");
+      setCActual("");
+      setGood("");
+      setBad("");
+      setBadCode("");
+      setDownTime("");
+      setDTimeCode("");
+      setComment("");
       Axios.post(url + "/tracking", {
         operator: operator,
         area: area,

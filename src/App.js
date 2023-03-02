@@ -36,7 +36,7 @@ const App = () => {
           <Col sm={2} className="sideBar">
             <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
           </Col>
-          <Col sm={10} className="screen">
+          <Col className="screen">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/users" element={<Users />} />
