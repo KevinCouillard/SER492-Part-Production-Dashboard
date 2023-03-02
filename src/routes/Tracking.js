@@ -51,7 +51,7 @@ const Tracking = () => {
   const [trackingList, setTrackingList] = useState([]);
   const [workOrder, setWorkOrder] = useState("");
 
-  const [scrapList, setScrapList] = useState([ { scrap: "" }, { scrap: "" }, { scrap: "" } ]);
+  const [scrapList, setScrapList] = useState([ {}, {}, {} ]);
 
   const addTracking = () => {
     setArea("");
@@ -97,7 +97,7 @@ const Tracking = () => {
   };
 
   const newScrap=()=>{
-    setScrapList([...scrapList, { scrap: "" }]);
+    setScrapList([ ... scrapList, { }]);
   };
 
   const getTracking = () => {
@@ -121,7 +121,7 @@ const Tracking = () => {
     >
       <Paper className="trackingForm" elevation={3}>
         <div>
-          <TextField
+          {/* <TextField
             id="outlined-basic"
             label="Area"
             variant="outlined"
@@ -129,16 +129,37 @@ const Tracking = () => {
               setArea(event.target.value);
             }}
             value={area}
-          />
-          <TextField
-            id="outlined-basic"
-            label="Shift"
-            variant="outlined"
-            onChange={(event) => {
+          /> */}
+          <label style={{margin : 15}}>Area: </label>
+          <Select className="partNum" id="dropdown" value={area} placeholder="Area 1" onChange={(event) => {
+              setArea(event.target.value);
+            }}>
+            <MenuItem value="Area 1">Area 1</MenuItem>
+            <MenuItem value="Area 2">Area 2</MenuItem>
+            <MenuItem value="Area 3">Area 3</MenuItem>
+            <MenuItem value="Area 4">Area 4</MenuItem>
+            <MenuItem value="Area 5">Area 5</MenuItem>
+            <MenuItem value="Area 6">Area 6</MenuItem>
+            <MenuItem value="Area 7">Area 7</MenuItem>
+            <MenuItem value="Area 8">Area 8</MenuItem>
+            <MenuItem value="Area 9">Area 9</MenuItem>
+            <MenuItem value="Area 10">Area 10</MenuItem>
+          </Select>
+          <label style={{margin : 15}}>Shift: </label>
+          <Select className="partNum" id="dropdown" value={shift} placeholder="8:00-9:00" onChange={(event) => {
               setShift(event.target.value);
-            }}
-            value={shift}
-          />
+            }}>
+            <MenuItem value="7:00-8:00 A.M.">7:00-8:00 A.M.</MenuItem>
+            <MenuItem value="8:00-9:00 A.M.">8:00-9:00 A.M.</MenuItem>
+            <MenuItem value="9:00-10:00 A.M.">9:00-10:00 A.M.</MenuItem>
+            <MenuItem value="10:00-11:00 A.M.">10:00-11:00 A.M.</MenuItem>
+            <MenuItem value="11:00-12:00 A.M.">11:00-12:00 A.M.</MenuItem>
+            <MenuItem value="12:00-1:00 P.M.">12:00-1:00 P.M.</MenuItem>
+            <MenuItem value="1:00-2:00 P.M.">1:00-2:00 P.M.</MenuItem>
+            <MenuItem value="12:00-1:00 P.M.">2:00-3:00 P.M.</MenuItem>
+            <MenuItem value="1:00-2:00 P.M.">3:00-4:00 P.M.</MenuItem>
+            <MenuItem value="12:00-1:00 P.M.">4:00-5:00 P.M.</MenuItem>
+          </Select>
         </div>
 
         <div>

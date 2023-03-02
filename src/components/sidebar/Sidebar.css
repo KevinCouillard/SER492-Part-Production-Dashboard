@@ -1,4 +1,4 @@
-#sidebar {
+/* #sidebar {
   background: #020509;
   grid-area: sidebar;
   overflow-y: auto;
@@ -7,7 +7,12 @@
   transition: all 0.5s;
   width: 100%;
   height: 100%;
+} */
+
+#sideBar {
+  background-color: black;
 }
+
 .sidebar_title {
   display: flex;
   justify-content: space-between;
@@ -89,4 +94,17 @@
   .sidebar_title > i {
     display: inline;
   }
+}
+
+.logo {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 35px;
+  margin-left: 45px;
+  margin-bottom: 20px;
+  max-height: 15vh;
+  max-width: 10vw;
+  min-height: 10vh;
+  min-width: 5vw;
 }
