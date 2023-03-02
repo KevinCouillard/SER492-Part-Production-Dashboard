@@ -29,7 +29,7 @@ const App = () => {
       <Container fluid className="screenContainer">
         <Row className="navContainer">
           {/* <Col className="navBar"> */}
-            <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+          <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
           {/* </Col> */}
         </Row>
         <Row className="mainContainer">
@@ -38,7 +38,7 @@ const App = () => {
           </Col>
           <Col className="screen">
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/users" element={<Users />} />
               <Route path="/products" element={<Products />} />
               <Route path="/safety" element={<Safety />} />
