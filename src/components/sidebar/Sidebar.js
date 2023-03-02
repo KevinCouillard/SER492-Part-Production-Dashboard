@@ -184,7 +184,7 @@ class Sidebar extends React.Component {
               <NavItem eventKey="Tracking" href="/tracking">
                 <NavIcon>
                   <i
-                    className="fa fa-fw fa-home"
+                    className="fa fa-fw fa-wrench"
                     style={{ fontSize: "1.75em" }}
                   />
                 </NavIcon>
@@ -195,7 +195,7 @@ class Sidebar extends React.Component {
               <NavItem eventKey="Previous Tracking">
                 <NavIcon>
                   <i
-                    className="fa fa-fw fa-line-chart"
+                    className="fa fa-fw fa-archive"
                     style={{ fontSize: "1.75em" }}
                   />
                 </NavIcon>
@@ -206,7 +206,7 @@ class Sidebar extends React.Component {
               <NavItem eventKey="Quality" href="/quality">
                 <NavIcon>
                   <i
-                    className="fa fa-fw fa-home"
+                    className="fa fa-fw fa-question"
                     style={{ fontSize: "1.75em" }}
                   />
                 </NavIcon>
@@ -217,7 +217,7 @@ class Sidebar extends React.Component {
               <NavItem eventKey="Safety" href="/safety">
                 <NavIcon>
                   <i
-                    className="fa fa-fw fa-line-chart"
+                    className="fa fa-fw fa-handshake-o"
                     style={{ fontSize: "1.75em" }}
                   />
                 </NavIcon>
