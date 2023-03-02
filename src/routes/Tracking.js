@@ -287,9 +287,7 @@ const Tracking = () => {
             value={comment}
           />
         </div>
-        {/* <Button onClick={getTracking} variant="contained">
-          Get
-        </Button> */}
+
         <div className="addBtn">
           <Button
             onClick={addTracking}
