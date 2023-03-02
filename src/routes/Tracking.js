@@ -51,26 +51,7 @@ const Tracking = () => {
   const [trackingList, setTrackingList] = useState([]);
   const [workOrder, setWorkOrder] = useState("");
 
-  // const [scrapList, setScrapList] = useState([
-  //   {},
-  //   {},
-  //   {},
-  // ]);
-
   const addTracking = () => {
-    // setArea("");
-    // setShift("");
-    // setWorkOrder("");
-    // setSelection("");
-    // setTarget("");
-    // setCTarget("");
-    // setCActual("");
-    // setGood("");
-    // setBad("");
-    // setBadCode("");
-    // setDownTime("");
-    // setDTimeCode("");
-    // setComment("");
     Axios.post(url + "/tracking", {
       operator: operator,
       area: area,
@@ -99,10 +80,6 @@ const Tracking = () => {
   const handleSelect = (e) => {
     setSelection(e.target.value);
   };
-
-  // const newScrap = () => {
-  //   setScrapList([...scrapList, { scrap: "" }]);
-  // };
 
   return (
     <Box
@@ -272,9 +249,7 @@ const Tracking = () => {
             value={comment}
           />
         </div>
-        {/* <Button onClick={getTracking} variant="contained">
-          Get
-        </Button> */}
+
         <div className="addBtn">
           <Button
             onClick={addTracking}
