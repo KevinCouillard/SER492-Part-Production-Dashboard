@@ -57,9 +57,6 @@ const Ptracking = () => {
     <Container className="filterBar" fluid>
       <Row className="m-2"></Row>
       <Row>
-        <Col></Col>
-        <Col></Col>
-        <Col></Col>
         <Col>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
