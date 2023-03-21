@@ -2,9 +2,31 @@ import React from "react";
 import { useState } from "react";
 import Axios from "axios";
 import Box from "@mui/material/Box";
+import dayjs from "dayjs";
+import Paper from "@mui/material/Paper";
+import { Select } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 
 const Safety = () => {
+  const [value, setValue] = React.useState(dayjs());
+
+  const handleChangeDate = (newValue) => {
+    setIncident_date(newValue);
+    setValue(newValue);
+  };
+  const handleEscDate = (newValue) => {
+    setTargetDate(newValue);
+    setValue(newValue);
+  };
+  const handleResDate = (newValue) => {
+    setResolveDate(newValue);
+    setValue(newValue);
+  };
   const url = "http://localhost:4000";
   const [type, setType] = useState("");
   const [area, setArea] = useState("");
@@ -49,7 +71,37 @@ const Safety = () => {
   };
 
   return (
-    <div className="safety" id="container">
+    <Paper className="safety" elevation={3}>
+      <div>
+      <label style={{margin : 15}}>Area: </label>
+      
+          <Select className="partNum" id="dropdown" value={area} error={!area} placeholder="Area 1" onChange={(event) => {
+              setArea(event.target.value);
+            }}>
+            <MenuItem value="Area 1">Area 1</MenuItem>
+            <MenuItem value="Area 2">Area 2</MenuItem>
+            <MenuItem value="Area 3">Area 3</MenuItem>
+            <MenuItem value="Area 4">Area 4</MenuItem>
+            <MenuItem value="Area 5">Area 5</MenuItem>
+            <MenuItem value="Area 6">Area 6</MenuItem>
+            <MenuItem value="Area 7">Area 7</MenuItem>
+            <MenuItem value="Area 8">Area 8</MenuItem>
+            <MenuItem value="Area 9">Area 9</MenuItem>
+            <MenuItem value="Area 10">Area 10</MenuItem>
+          </Select>
+          </div>
+          <div>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DesktopDatePicker
+              label="Incident Date"
+              inputFormat="MM/DD/YYYY"
+              value={value}
+              onChange={handleChangeDate}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          </div>
+    <div>
       <div id="main">
         <TextField
           id="outlined-basic"
@@ -60,7 +112,7 @@ const Safety = () => {
           }}
         />
 
-        <div className="area">
+       {/*  <div className="area">
           <label>Area: </label>
           <input
             type="text"
@@ -68,8 +120,8 @@ const Safety = () => {
               setArea(event.target.value);
             }}
           />
-        </div>
-        <div className="incident_date">
+        </div> */}
+       {/*  <div className="incident_date">
           <label>incident_date: </label>
           <input
             type="text"
@@ -77,9 +129,9 @@ const Safety = () => {
               setIncident_date(event.target.value);
             }}
           />
-        </div>
+        </div> */}
         <div className="process">
-          <label>process: </label>
+          <label>Process: </label>
           <input
             type="text"
             onChange={(event) => {
@@ -88,7 +140,7 @@ const Safety = () => {
           />
         </div>
         <div className="originName">
-          <label>originName: </label>
+          <label>Originator Name: </label>
           <input
             type="text"
             onChange={(event) => {
@@ -97,7 +149,7 @@ const Safety = () => {
           />
         </div>
         <div className="approveName">
-          <label>approveName: </label>
+          <label>Approved By: </label>
           <input
             type="text"
             onChange={(event) => {
@@ -106,7 +158,7 @@ const Safety = () => {
           />
         </div>
         <div className="description">
-          <label>description: </label>
+          <label>Description of Incident: </label>
           <input
             type="text"
             onChange={(event) => {
@@ -115,7 +167,7 @@ const Safety = () => {
           />
         </div>
         <div className="escalationName">
-          <label>escalationName: </label>
+          <label>Escalation Name:: </label>
           <input
             type="text"
             onChange={(event) => {
@@ -124,22 +176,40 @@ const Safety = () => {
           />
         </div>
         <div className="targetDate">
-          <label>targetDate: </label>
+        {/*   <label>targetDate: </label>
           <input
             type="text"
             onChange={(event) => {
               setTargetDate(event.target.value);
             }}
-          />
+          /> */}
+           <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DesktopDatePicker
+              label="Resolve By"
+              inputFormat="MM/DD/YYYY"
+              value={value}
+              onChange={handleEscDate}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
         </div>
         <div className="resolveDate">
-          <label>resolveDate: </label>
+         {/*  <label>resolveDate: </label>
           <input
             type="text"
             onChange={(event) => {
               setResolveDate(event.target.value);
             }}
-          />
+          /> */}
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DesktopDatePicker
+              label="Date Resolved"
+              inputFormat="MM/DD/YYYY"
+              value={value}
+              onChange={handleResDate}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
         </div>
         <button onClick={getSafety}>Get Safety Report</button>
         <button onClick={addSafety}>Add Safety Report</button>
@@ -164,6 +234,7 @@ const Safety = () => {
         })}
       </div>
     </div>
+    </Paper>
   );
 };
 
