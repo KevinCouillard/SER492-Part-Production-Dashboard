@@ -61,3 +61,8 @@
     display: none;
   }
 }
+
+#title {
+  color: Orange;
+  font-size: medium;
+}

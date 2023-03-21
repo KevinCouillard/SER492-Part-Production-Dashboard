@@ -71,7 +71,7 @@ import SideNav, {
   NavIcon,
   NavText,
 } from "@trendmicro/react-sidenav";
-import { fontStyle, width } from "@mui/system";
+import { fontStyle } from "@mui/system";
 
 // const sideBar = () => {
 //     const navigate = useNavigate();

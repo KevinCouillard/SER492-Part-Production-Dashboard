@@ -1,6 +1,6 @@
 .trackingForm{
-    width: fill;
-    height: fill;
+    width: stretch;
+    height: stretch;
     justify-content: center;
 }
 
