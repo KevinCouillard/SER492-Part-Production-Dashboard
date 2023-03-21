@@ -59,33 +59,33 @@ import { test } from "../../App";
 
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import { NavLink } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.css';
-import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import "bootstrap/dist/css/bootstrap.css";
+import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import ClickOutside from "./ClickOutside";
 import { useNavigate } from "react-router-dom";
-import { LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from "react-router-bootstrap";
 
 import SideNav, {
   Toggle,
   NavItem,
   NavIcon,
-  NavText
+  NavText,
 } from "@trendmicro/react-sidenav";
 import { fontStyle, width } from "@mui/system";
 
 // const sideBar = () => {
 //     const navigate = useNavigate();
-  //   const handleSelect = (selected) => {
-  //   navigate("/" + selected);
-  // }; 
+//   const handleSelect = (selected) => {
+//   navigate("/" + selected);
+// };
 // }
 // sideBar;
-      
+
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isVisible: true
+      isVisible: true,
     };
   }
 
@@ -98,7 +98,7 @@ class Sidebar extends React.Component {
       //     onClick={() => {
       //       this.setState({ isVisible: !this.state.isVisible });
       //     }}
-          
+
       //   />
       //   <SideNav.Nav defaultSelected="Dashboard">
       //     <NavItem eventKey="Dashboard" to="/home">
@@ -161,59 +161,77 @@ class Sidebar extends React.Component {
         >
         <SideNav.Toggle />
           <SideNav.Nav defaultSelected="Dashboard">
-             <img 
-               className="logo"
-               width={100}
-               height={100}
-               src={require("../../ParkerLogo.png")}
-               alt="Part Production Dashboard"
+            <img
+              className="logo"
+              width={100}
+              height={100}
+              src={require("../../ParkerLogo.png")}
+              alt="Part Production Dashboard"
             />
-            <LinkContainer to="/dashboard" activeClassName="active">
+            <LinkContainer to="/" activeClassName="active">
               <NavItem eventKey="Dashboard">
-              <NavIcon>
-                <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
-              </NavIcon>
-              <NavText style={ {color : 'orange'} }>Dashboard</NavText>
+                <NavIcon>
+                  <i
+                    className="fa fa-fw fa-home"
+                    style={{ fontSize: "1.75em" }}
+                  />
+                </NavIcon>
+                <NavText style={{ color: "orange" }}>Dashboard</NavText>
               </NavItem>
             </LinkContainer>
             <LinkContainer to="/products">
               <NavItem eventKey="Add Product" href="/products">
                 <NavIcon>
-                  <i className="fa fa-fw fa-line-chart" style={{ fontSize: "1.75em" }} />
+                  <i
+                    className="fa fa-fw fa-line-chart"
+                    style={{ fontSize: "1.75em" }}
+                  />
                 </NavIcon>
-                <NavText style={ {color : 'orange'} }>Add Product</NavText>
+                <NavText style={{ color: "orange" }}>Add Product</NavText>
               </NavItem>
             </LinkContainer>
             <LinkContainer to="/tracking">
               <NavItem eventKey="Tracking" href="/tracking">
                 <NavIcon>
-                  <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
+                  <i
+                    className="fa fa-fw fa-wrench"
+                    style={{ fontSize: "1.75em" }}
+                  />
                 </NavIcon>
-                <NavText style={ {color : 'orange'} }>Tracking</NavText>
+                <NavText style={{ color: "orange" }}>Tracking</NavText>
               </NavItem>
             </LinkContainer>
             <LinkContainer to="/Ptracking">
               <NavItem eventKey="Previous Tracking">
                 <NavIcon>
-                  <i className="fa fa-fw fa-line-chart" style={{ fontSize: "1.75em" }} />
+                  <i
+                    className="fa fa-fw fa-archive"
+                    style={{ fontSize: "1.75em" }}
+                  />
                 </NavIcon>
-                <NavText style={ {color : 'orange'} }>Previous Tracking</NavText>
+                <NavText style={{ color: "orange" }}>Previous Tracking</NavText>
               </NavItem>
             </LinkContainer>
             <LinkContainer to="/quality">
               <NavItem eventKey="Quality" href="/quality">
                 <NavIcon>
-                  <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
+                  <i
+                    className="fa fa-fw fa-question"
+                    style={{ fontSize: "1.75em" }}
+                  />
                 </NavIcon>
-                <NavText style={ {color : 'orange'} }>Quality</NavText>
+                <NavText style={{ color: "orange" }}>Quality</NavText>
               </NavItem>
             </LinkContainer>
             <LinkContainer to="/safety">
               <NavItem eventKey="Safety" href="/safety">
                 <NavIcon>
-                  <i className="fa fa-fw fa-line-chart" style={{ fontSize: "1.75em" }} />
+                  <i
+                    className="fa fa-fw fa-handshake-o"
+                    style={{ fontSize: "1.75em" }}
+                  />
                 </NavIcon>
-                <NavText style={ {color : 'orange'} }>Safety</NavText>
+                <NavText style={{ color: "orange" }}>Safety</NavText>
               </NavItem>
             </LinkContainer>
           </SideNav.Nav>
