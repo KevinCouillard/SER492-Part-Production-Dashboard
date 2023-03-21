@@ -8,3 +8,23 @@ h1{
 h6{
     text-align: center;
 }
+
+.filterCols {
+    margin: 15px;
+}
+
+#dropdown {
+    size: fit-content;
+}
+
+#toggleBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+#filterRow {
+    /* justify-content: center;
+    align-items: center; */
+}

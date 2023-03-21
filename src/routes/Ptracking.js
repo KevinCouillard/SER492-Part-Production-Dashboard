@@ -54,106 +54,109 @@ const Ptracking = () => {
   };
 
   return (
-    <Container className="filterBar" fluid>
-      <Row className="m-2"></Row>
-      <Row>
-        <Col></Col>
-        <Col></Col>
-        <Col></Col>
-        <Col>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DesktopDatePicker
-              label="Date"
-              inputFormat="MM/DD/YYYY"
-              className="dayInput"
-              value={value}
-              onChange={handleChangeDate}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-        </Col>
-        <Col>
-          <label>Month: </label>
-          <Select value={selectionMonth} onChange={handleSelectMonth}>
-            <MenuItem value="January">January</MenuItem>
-            <MenuItem value="Febuary">Febuary</MenuItem>
-            <MenuItem value="March">March</MenuItem>
-            <MenuItem value="April">April</MenuItem>
-            <MenuItem value="May">May</MenuItem>
-            <MenuItem value="June">June</MenuItem>
-            <MenuItem value="July">July</MenuItem>
-            <MenuItem value="August">August</MenuItem>
-            <MenuItem value="September">September</MenuItem>
-            <MenuItem value="October">October</MenuItem>
-            <MenuItem value="November">November</MenuItem>
-            <MenuItem value="December">December</MenuItem>
-          </Select>
-        </Col>
-        <Col>
-          <label>Shift: </label>
-          <Select value={selectionShift} onChange={handleSelectShift}>
-            <MenuItem value="8:00-9:00">8:00-9:00</MenuItem>
-            <MenuItem value="9:00-10:00">9:00-10:00</MenuItem>
-            <MenuItem value="10:00-11:00">10:00-11:00</MenuItem>
-            <MenuItem value="11:00-12:00">11:00-12:00</MenuItem>
-            <MenuItem value="12:00-1:00">12:00-1:00</MenuItem>
-            <MenuItem value="1:00-2:00">1:00-2:00</MenuItem>
-            <MenuItem value="2:00-3:00">2:00-3:00</MenuItem>
-            <MenuItem value="3:00-4:00">3:00-4:00</MenuItem>
-          </Select>
-        </Col>
-        <Col>
-          <label>Operator: </label>
-          <Select value={selectionOperator} onChange={handleSelectOperator}>
-            <MenuItem value="Matt">Matt</MenuItem>
-            <MenuItem value="Jeff">Jeff</MenuItem>
-            <MenuItem value="James">James</MenuItem>
-          </Select>
-        </Col>
-      </Row>
-      <Row className="m-3"></Row>
-      <Row>
-        <Col>
-          {trackingList.map((val, index) => (
-            <Card key={index}>
-              <Card.Header>
-                Date: {val.date_tracked} &nbsp; &nbsp; &nbsp; &nbsp; Area:{" "}
-                {val.area} &nbsp; &nbsp; &nbsp; &nbsp; Shift: {val.shift} &nbsp;
-                &nbsp; &nbsp; &nbsp; Operator: {val.operator} &nbsp; &nbsp;
-                &nbsp; &nbsp; Time: {val.time_tracked}
-              </Card.Header>
-              <Card.Body>
-                <Card.Title></Card.Title>
-                <Card.Text>
-                  Target: {val.target} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Good Parts:{" "}
-                  {val.good} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; Comment: {val.comment}
-                </Card.Text>
-                <br></br>
-                <Card.Text>
-                  Cummulative Target: {val.cTarget} &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scrap: {val.bad}{" "}
-                  &nbsp; &nbsp; Reason Code: {val.badCode}
-                </Card.Text>
-                <br></br>
-                <Card.Text>
-                  Cummulative Actual Pieces: {val.cActual} &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; Down Time: {val.downTime} &nbsp; &nbsp;
-                  Down Time Code: {val.dTimeCode}
-                </Card.Text>
-                <a href="/tracking" class="stretched-link"></a>
-              </Card.Body>
-            </Card>
-          ))}
-          ;
-        </Col>
-      </Row>
+    // <Container className="filterBar" fluid>
+    //   <Row className="m-2"></Row>
+    //   <Row>
+    //     <Col></Col>
+    //     <Col></Col>
+    //     <Col></Col>
+    //     <Col>
+    //       <LocalizationProvider dateAdapter={AdapterDayjs}>
+    //         <DesktopDatePicker
+    //           label="Date"
+    //           inputFormat="MM/DD/YYYY"
+    //           className="dayInput"
+    //           value={value}
+    //           onChange={handleChangeDate}
+    //           renderInput={(params) => <TextField {...params} />}
+    //         />
+    //       </LocalizationProvider>
+    //     </Col>
+    //     <Col>
+    //       <label>Month: </label>
+    //       <Select value={selectionMonth} onChange={handleSelectMonth}>
+    //         <MenuItem value="January">January</MenuItem>
+    //         <MenuItem value="Febuary">Febuary</MenuItem>
+    //         <MenuItem value="March">March</MenuItem>
+    //         <MenuItem value="April">April</MenuItem>
+    //         <MenuItem value="May">May</MenuItem>
+    //         <MenuItem value="June">June</MenuItem>
+    //         <MenuItem value="July">July</MenuItem>
+    //         <MenuItem value="August">August</MenuItem>
+    //         <MenuItem value="September">September</MenuItem>
+    //         <MenuItem value="October">October</MenuItem>
+    //         <MenuItem value="November">November</MenuItem>
+    //         <MenuItem value="December">December</MenuItem>
+    //       </Select>
+    //     </Col>
+    //     <Col>
+    //       <label>Shift: </label>
+    //       <Select value={selectionShift} onChange={handleSelectShift}>
+    //         <MenuItem value="8:00-9:00">8:00-9:00</MenuItem>
+    //         <MenuItem value="9:00-10:00">9:00-10:00</MenuItem>
+    //         <MenuItem value="10:00-11:00">10:00-11:00</MenuItem>
+    //         <MenuItem value="11:00-12:00">11:00-12:00</MenuItem>
+    //         <MenuItem value="12:00-1:00">12:00-1:00</MenuItem>
+    //         <MenuItem value="1:00-2:00">1:00-2:00</MenuItem>
+    //         <MenuItem value="2:00-3:00">2:00-3:00</MenuItem>
+    //         <MenuItem value="3:00-4:00">3:00-4:00</MenuItem>
+    //       </Select>
+    //     </Col>
+    //     <Col>
+    //       <label>Operator: </label>
+    //       <Select value={selectionOperator} onChange={handleSelectOperator}>
+    //         <MenuItem value="Matt">Matt</MenuItem>
+    //         <MenuItem value="Jeff">Jeff</MenuItem>
+    //         <MenuItem value="James">James</MenuItem>
+    //       </Select>
+    //     </Col>
+    //   </Row>
+    //   <Row className="m-3"></Row>
+    //   <Row>
+    //     <Col>
+    //       {trackingList.map((val, index) => (
+    //         <Card key={index}>
+    //           <Card.Header>
+    //             Date: {val.date_tracked} &nbsp; &nbsp; &nbsp; &nbsp; Area:{" "}
+    //             {val.area} &nbsp; &nbsp; &nbsp; &nbsp; Shift: {val.shift} &nbsp;
+    //             &nbsp; &nbsp; &nbsp; Operator: {val.operator} &nbsp; &nbsp;
+    //             &nbsp; &nbsp; Time: {val.time_tracked}
+    //           </Card.Header>
+    //           <Card.Body>
+    //             <Card.Title></Card.Title>
+    //             <Card.Text>
+    //               Target: {val.target} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Good Parts:{" "}
+    //               {val.good} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; Comment: {val.comment}
+    //             </Card.Text>
+    //             <br></br>
+    //             <Card.Text>
+    //               Cummulative Target: {val.cTarget} &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scrap: {val.bad}{" "}
+    //               &nbsp; &nbsp; Reason Code: {val.badCode}
+    //             </Card.Text>
+    //             <br></br>
+    //             <Card.Text>
+    //               Cummulative Actual Pieces: {val.cActual} &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; Down Time: {val.downTime} &nbsp; &nbsp;
+    //               Down Time Code: {val.dTimeCode}
+    //             </Card.Text>
+    //             <a href="/tracking" class="stretched-link"></a>
+    //           </Card.Body>
+    //         </Card>
+    //       ))}
+    //       ;
+    //     </Col>
+    //   </Row>
+    // </Container>
+    <Container id="test">
+        <h1>Test</h1>
     </Container>
   );
 };

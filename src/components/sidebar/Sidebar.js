@@ -1,5 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
+import { test } from "../../App";
 // const Sidebar = ({ sidebarOpen, closeSidebar }) => {
 //   return (
 //     <div className={sidebarOpen ? "sidebar-responsive" : ""} id="sidebar">
@@ -70,7 +71,7 @@ import SideNav, {
   NavIcon,
   NavText
 } from "@trendmicro/react-sidenav";
-import { fontStyle } from "@mui/system";
+import { fontStyle, width } from "@mui/system";
 
 // const sideBar = () => {
 //     const navigate = useNavigate();
@@ -87,6 +88,8 @@ class Sidebar extends React.Component {
       isVisible: true
     };
   }
+
+  
 
   render() {
     return (
@@ -139,17 +142,24 @@ class Sidebar extends React.Component {
 
       <ClickOutside
         onClickOutside={() => {
+            document.getElementById("sidebar").style.width = '174px'
             this.setState({ expanded: false });
         }}
 >
         <SideNav 
+            className="test"
             id="sideBar"
             expanded={this.state.expanded}
             onToggle={(expanded) => {
                 this.setState({ expanded });
+                if (this.state.expanded == false) {
+                  document.getElementById("sidebar").style.width = '240px'
+                } else {
+                  document.getElementById("sidebar").style.width = '174px'
+                }
             }}
         >
-        <SideNav.Toggle/>
+        <SideNav.Toggle />
           <SideNav.Nav defaultSelected="Dashboard">
              <img 
                className="logo"

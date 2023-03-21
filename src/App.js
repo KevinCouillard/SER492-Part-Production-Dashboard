@@ -17,27 +17,31 @@ import Col from "react-bootstrap/Col";
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sideWidth, setSideWidth] = useState();
 
   const openSidebar = () => {
+    setSideWidth("240px");
     setSidebarOpen(true);
   };
   const closeSidebar = () => {
+    setSideWidth("174px");
     setSidebarOpen(false);
   };
+
   return (
     <Router>
       <Container fluid className="screenContainer">
         <Row className="navContainer">
-          {/* <Col className="navBar"> */}
+          <Col className="navBar">
             <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-          {/* </Col> */}
+          </Col>
         </Row>
         <Row className="mainContainer">
-          <Col sm={2} className="sideBar">
+          <Col md={2} id="sidebar" className="sideBar" style={{width: '174px'}}>
             <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
           </Col>
-          <Col className="screen">
-            <Routes>
+          <Col md={10} className="screen">
+            <Routes id="Test">
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/users" element={<Users />} />
               <Route path="/products" element={<Products />} />
@@ -65,5 +69,13 @@ const App = () => {
     </Router>
   );
 };
+
+export function test() {
+  document.getElementById("sidebar").style.width = '200px';
+}
+
+export function test2() {
+  document.getElementById("sidebar").style.width = '240px'
+}
 
 export default App;

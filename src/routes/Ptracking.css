@@ -1,6 +1,6 @@
 .filterBar {
     display: grid;
-    justify-content: center;
+    justify-content: top;
 }
 .dayInput {
     display: inline-block;
@@ -8,4 +8,9 @@
 }
 .spacer {
     height: 20px;
+}
+
+#test {
+    height: 100px;
+    width: 100px;
 }
