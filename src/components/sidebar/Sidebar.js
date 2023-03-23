@@ -234,6 +234,17 @@ class Sidebar extends React.Component {
                 <NavText style={{ color: "orange" }}>Safety</NavText>
               </NavItem>
             </LinkContainer>
+            <LinkContainer to="/pSafety">
+              <NavItem eventKey="pSafety" href="/pSafety">
+                <NavIcon>
+                  <i
+                    className="fa fa-fw fa-archive"
+                    style={{ fontSize: "1.75em" }}
+                  />
+                </NavIcon>
+                <NavText style={{ color: "orange" }}>Previous Safety</NavText>
+              </NavItem>
+            </LinkContainer>
           </SideNav.Nav>
         </SideNav>
       </ClickOutside>

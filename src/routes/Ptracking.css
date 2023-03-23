@@ -1,6 +1,8 @@
 .filterBar {
     display: grid;
     justify-content: top;
+    width: 100%;
+    height: 100%;
 }
 .dayInput {
     display: inline-block;
@@ -13,4 +15,38 @@
 #test {
     height: 100px;
     width: 100px;
+}
+
+#filter {
+    align-items: top;
+    justify-content: top;
+    padding-top: 20px;
+}
+
+#cardsCol {
+   padding-top: 20px;
+    
+}
+
+#editModal {
+    height: fit-content !important;
+    width: fit-content !important;
+}
+
+#modalContainer {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+#modalCols {
+    width: 16.6% !important;
+    height: 100%;
+    padding: 30px;
+    margin: 20px;
+}
+
+#modalRows {
+    width: 100%;
+    height: 40%;
 }

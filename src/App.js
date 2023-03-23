@@ -7,6 +7,7 @@ import Safety from "./routes/Safety";
 import Tracking from "./routes/Tracking";
 import Ptracking from "./routes/Ptracking";
 import Sidebar from "./components/sidebar/Sidebar";
+import Psafety from "./routes/Psafety";
 import Navbar from "./components/navbar/Navbar";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -20,11 +21,9 @@ const App = () => {
   const [sideWidth, setSideWidth] = useState();
 
   const openSidebar = () => {
-    setSideWidth("240px");
     setSidebarOpen(true);
   };
   const closeSidebar = () => {
-    setSideWidth("174px");
     setSidebarOpen(false);
   };
 
@@ -49,6 +48,7 @@ const App = () => {
               <Route path="/tracking" element={<Tracking />} />
               <Route path="/Ptracking" element={<Ptracking />} />
               <Route path="/quality" element={<Quality />} />
+              <Route path="/Psafety" element={<Psafety />} />
             </Routes>
           </Col>
         </Row>
@@ -69,13 +69,5 @@ const App = () => {
     </Router>
   );
 };
-
-export function test() {
-  document.getElementById("sidebar").style.width = '200px';
-}
-
-export function test2() {
-  document.getElementById("sidebar").style.width = '240px'
-}
 
 export default App;
