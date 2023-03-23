@@ -15,11 +15,12 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import Paper from "@mui/material/Paper";
 import "./Tracking.css";
-import { Select } from "@mui/material";
+import { FormControl, Select } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.css";
+import swal from 'sweetalert';
 
 const Tracking = () => {
   const [value, setValue] = React.useState(dayjs());
@@ -53,28 +54,22 @@ const Tracking = () => {
 
   const [scrapList, setScrapList] = useState([
     {},
-    // {},
-    // {},
   ]);
 
   const addTracking = () => {
     if (area == "0" || shift == "0" || selection == "0" || target == "0" || cTarget == "0" || 
     cActual == "0" || good == "0" || bad == "0" || badCode == "" || downTime == "0" || dTimeCode == "") {
-        alert("Must fill all required inputs");
+        swal({
+          title: "Error!",
+          text: "Fill out all required inputs!",
+          icon: "error",
+        });
     } else {
-      // setArea("");
-      // setShift("");
-      // setWorkOrder("");
-      // setSelection("");
-      // setTarget("");
-      // setCTarget("");
-      // setCActual("");
-      // setGood("");
-      // setBad("");
-      // setBadCode("");
-      // setDownTime("");
-      // setDTimeCode("");
-      // setComment("");
+      swal({
+        title: "Good Job!",
+        text: "Tracking form was submitted!",
+        icon: "success",
+      });
       Axios.post(url + "/tracking", {
         operator: operator,
         area: area,
@@ -114,8 +109,6 @@ const Tracking = () => {
       className="screen"
       component="form"
       sx={{
-        // p: 2,
-        // border: "1px solid black",
         "& .MuiTextField-root": { m: 3, width: "25ch" },
       }}
       noValidate
@@ -175,6 +168,7 @@ const Tracking = () => {
             />
             <TextField
               id="outlined-basic"
+              required
               label="Work Order"
               variant="outlined"
               onChange={(event) => {
@@ -191,6 +185,7 @@ const Tracking = () => {
           <Select
             className="partNum"
             id="dropdown"
+            required
             value={selection}
             placeholder="test"
             onChange={handleSelect}
@@ -200,8 +195,11 @@ const Tracking = () => {
             <MenuItem value="Test 2">Test2</MenuItem>
             <MenuItem value="Test 3">Test3</MenuItem>
           </Select>
-          <TextField
+        </div>
+        <div>
+        <TextField
             id="outlined-basic"
+            required
             label="Target"
             variant="outlined"
             onChange={(event) => {
@@ -213,10 +211,9 @@ const Tracking = () => {
             }
             error={!target}
           />
-        </div>
-        <div>
           <TextField
             id="outlined-basic"
+            required
             label="Cummulative Target"
             variant="outlined"
             onChange={(event) => {
@@ -231,6 +228,7 @@ const Tracking = () => {
           <TextField
             id="outlined-basic"
             label="Cummulative Actual"
+            required
             variant="outlined"
             onChange={(event) => {
               setCActual(event.target.value);
@@ -244,6 +242,7 @@ const Tracking = () => {
           <TextField
             id="outlined-basic"
             label="Good"
+            required
             variant="outlined"
             onChange={(event) => {
               setGood(event.target.value);
@@ -265,10 +264,6 @@ const Tracking = () => {
                 onChange={(event) => {
                   setBad(event.target.value);
                 }}
-                helperText={!bad
-                  ?"Scrap number is required":""
-                }
-                error={!bad}
                 value={bad}
               />
               <TextField
@@ -278,10 +273,6 @@ const Tracking = () => {
                 onChange={(event) => {
                   setBadCode(event.target.value);
                 }}
-                helperText={!badCode
-                  ?"Cummulative Actual is required":""
-                }
-                error={!badCode}
                 value={badCode}
               />
               </div>
@@ -299,10 +290,6 @@ const Tracking = () => {
               setDownTime(event.target.value);
             }}
             value={downTime}
-            helperText={!downTime
-              ?"Down Time is required":""
-            }
-            error={!downTime}
           />
           <TextField
             id="outlined-basic"
@@ -312,14 +299,12 @@ const Tracking = () => {
               setDTimeCode(event.target.value);
             }}
             value={dTimeCode}
-            helperText={!dTimeCode
-              ?"Down Time Code is required":""
-            }
-            error={!dTimeCode}
           />
-
+        </div>
+        <div>
           <TextField
-            id="outlined-basic"
+            className="comment"
+            id="fullWidth"
             label="Comment"
             variant="outlined"
             onChange={(event) => {
@@ -333,9 +318,8 @@ const Tracking = () => {
           <Button
             onClick={addTracking}
             class="btn btn-outline-success"
-            endIcon={<SendIcon />}
           >
-            Add
+            Submit
           </Button>
         </div>
       </Paper>
