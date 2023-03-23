@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import "./Safety.css";
+import Form from 'react-bootstrap/Form';
 import Axios from "axios";
 import Box from "@mui/material/Box";
 import dayjs from "dayjs";
@@ -11,6 +13,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 
 const Safety = () => {
   const [value, setValue] = React.useState(dayjs());
@@ -72,10 +76,11 @@ const Safety = () => {
 
   return (
     <Paper className="safety" elevation={3}>
+      <h2>Safety Report</h2>
       <div>
       <label style={{margin : 15}}>Area: </label>
       
-          <Select className="partNum" id="dropdown" value={area} error={!area} placeholder="Area 1" onChange={(event) => {
+          <Select className="areaNum" id="dropdown" value={area} error={!area} placeholder="Area 1" onChange={(event) => {
               setArea(event.target.value);
             }}>
             <MenuItem value="Area 1">Area 1</MenuItem>
@@ -89,8 +94,7 @@ const Safety = () => {
             <MenuItem value="Area 9">Area 9</MenuItem>
             <MenuItem value="Area 10">Area 10</MenuItem>
           </Select>
-          </div>
-          <div>
+          
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
               label="Incident Date"
@@ -103,86 +107,97 @@ const Safety = () => {
           </div>
     <div>
       <div id="main">
+         <Form>
+      {['radio'].map((type) => (
+        <div key={`inline-${type}`} className="mb-3" onChange={(event) => {
+          setArea(event.target.value);
+        }}>
+          <Form.Check
+            inline
+            label="NR1: First Aid"
+            name="group1"
+            type={type}
+            id={`inline-${type}-1`}
+          />
+          <Form.Check
+            inline
+            label="NR2: Near Miss Accident"
+            name="group1"
+            type={type}
+            id={`inline-${type}-2`}
+          />
+          <Form.Check
+            inline
+            label="NR3: Unsafe Situation"
+            name="group1"
+            type={type}
+            id={`inline-${type}-3`}
+          />
+        
+        </div>
+      ))}
+    </Form>
+  
+         <TextField
+             id="outlined-basic"
+             label="Process"
+             variant="outlined"
+             onChange={(event) => {
+               setProcess(event.target.value);
+             }}
+             margin="dense"
+           />
+          <div>
         <TextField
           id="outlined-basic"
-          label="Type"
+          label="Originator Name"
           variant="outlined"
           onChange={(event) => {
-            setType(event.target.value);
+            setOriginName(event.target.value);
           }}
+          margin="dense"
         />
+         </div>
 
-       {/*  <div className="area">
-          <label>Area: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setArea(event.target.value);
-            }}
-          />
-        </div> */}
-       {/*  <div className="incident_date">
-          <label>incident_date: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setIncident_date(event.target.value);
-            }}
-          />
-        </div> */}
-        <div className="process">
-          <label>Process: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setProcess(event.target.value);
-            }}
-          />
-        </div>
-        <div className="originName">
-          <label>Originator Name: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setOriginName(event.target.value);
-            }}
-          />
-        </div>
-        <div className="approveName">
-          <label>Approved By: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setApproveName(event.target.value);
-            }}
-          />
-        </div>
-        <div className="description">
-          <label>Description of Incident: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setDescription(event.target.value);
-            }}
-          />
-        </div>
-        <div className="escalationName">
-          <label>Escalation Name:: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setEscalationName(event.target.value);
-            }}
-          />
-        </div>
+         <div>
+        <TextField
+          id="outlined-basic"
+          label="Approved By"
+          variant="outlined"
+          onChange={(event) => {
+            setApproveName(event.target.value);
+          }}
+          margin="dense"
+        />
+         </div>
+        
+         <div>
+        <TextField
+          id="outlined-basic"
+          label="Description of Incident"
+          variant="outlined"
+          onChange={(event) => {
+            setDescription(event.target.value);
+          }}
+          margin="dense"
+        />
+         </div>
+
+         <div>
+        <TextField
+          id="outlined-basic"
+          label="Escalation Name"
+          variant="outlined"
+          onChange={(event) => {
+            setEscalationName(event.target.value);
+          }}
+          margin="dense"
+        />
+         </div>
+
+
+        
         <div className="targetDate">
-        {/*   <label>targetDate: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setTargetDate(event.target.value);
-            }}
-          /> */}
            <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
               label="Resolve By"
@@ -190,17 +205,11 @@ const Safety = () => {
               value={value}
               onChange={handleEscDate}
               renderInput={(params) => <TextField {...params} />}
+              margin="dense"
             />
           </LocalizationProvider>
         </div>
         <div className="resolveDate">
-         {/*  <label>resolveDate: </label>
-          <input
-            type="text"
-            onChange={(event) => {
-              setResolveDate(event.target.value);
-            }}
-          /> */}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
               label="Date Resolved"
@@ -208,11 +217,20 @@ const Safety = () => {
               value={value}
               onChange={handleResDate}
               renderInput={(params) => <TextField {...params} />}
+              margin="dense"
             />
           </LocalizationProvider>
         </div>
-        <button onClick={getSafety}>Get Safety Report</button>
-        <button onClick={addSafety}>Add Safety Report</button>
+       {/* <button onClick={getSafety}>Get Safety Report</button> */}
+        <div className="submitBtn">
+          <Button
+            onClick={addSafety}
+            class="btn btn-outline-success"
+            endIcon={<SendIcon />}
+          >
+            Submit
+          </Button>
+        </div>
       </div>
       <div id="main">
         {safetyList.map((val, key) => {

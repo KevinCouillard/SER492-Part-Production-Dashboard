@@ -1,0 +1,17 @@
+.safety{
+    width: fill;
+    height: fill;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.areaNum{
+    display: inline-flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    margin-right: 20px;
+    height: 50px;
+    background-color: lightgrey;
+}
+.outlined-basic{
+    padding: 20px;
+}

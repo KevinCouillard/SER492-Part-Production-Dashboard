@@ -1,6 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import Axios from "axios";
+import Form from 'react-bootstrap/Form';
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 
 const Products = () => {
   const url = "http://localhost:4000";
@@ -34,38 +38,55 @@ const Products = () => {
 
   return (
     <div className="products">
-      <div className="productName">
-        <label> Product Name:</label>
-        <input
-          type="text"
-          onChange={(event) => {
-            setProduct_Name(event.target.value);
-          }}
-        />
-      </div>
+      <h2>Add Products</h2>
+    <Form>
+    <div>
+    <TextField
+      id="outlined-basic"
+      label="Product Name"
+      variant="outlined"
+      onChange={(event) => {
+        setProduct_Name(event.target.value);
+      }}
+      margin="dense"
+    />
+     </div>
+    
+     <div>
+    <TextField
+      id="outlined-basic"
+      label="Product Family"
+      variant="outlined"
+      onChange={(event) => {
+        setFamily(event.target.value);
+      }}
+      margin="dense"
+    />
+     </div>
 
-      <div className="productFamily">
-        <label> Product Family:</label>
-        <input
-          type="text"
-          onChange={(event) => {
-            setFamily(event.target.value);
-          }}
-        />
-      </div>
+     <div>
+    <TextField
+      id="outlined-basic"
+      label="Product Code"
+      variant="outlined"
+      onChange={(event) => {
+        setCode(event.target.value);
+      }}
+      margin="dense"
+    />
+     </div>
 
-      <div className="productCode">
-        <label> Product Code:</label>
-        <input
-          type="text"
-          onChange={(event) => {
-            setCode(event.target.value);
-          }}
-        />
-      </div>
+     <div className="addbtn">
+          <Button
+            onClick={addProducts}
+            class="btn btn-outline-success"
+            endIcon={<SendIcon />}
+          >
+            Add Product
+          </Button>
+        </div>
 
-      <button onClick={getProducts}>Get Products</button>
-      <button onClick={addProducts}>Add Products</button>
+      {/* <button onClick={getProducts}>Get Products</button> */}
 
       {productList.map((val, key) => {
         return (
@@ -77,7 +98,9 @@ const Products = () => {
           </div>
         );
       })}
+      </Form>
     </div>
+    
   );
 };
 
