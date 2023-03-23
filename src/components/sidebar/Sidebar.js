@@ -89,8 +89,6 @@ class Sidebar extends React.Component {
     };
   }
 
-  
-
   render() {
     return (
       // <SideNav expanded={this.state.isVisible}>
@@ -142,24 +140,24 @@ class Sidebar extends React.Component {
 
       <ClickOutside
         onClickOutside={() => {
-            document.getElementById("sidebar").style.width = '174px'
-            this.setState({ expanded: false });
+          document.getElementById("sidebar").style.width = "174px";
+          this.setState({ expanded: false });
         }}
->
-        <SideNav 
-            className="test"
-            id="sideBar"
-            expanded={this.state.expanded}
-            onToggle={(expanded) => {
-                this.setState({ expanded });
-                if (this.state.expanded == false) {
-                  document.getElementById("sidebar").style.width = '240px'
-                } else {
-                  document.getElementById("sidebar").style.width = '174px'
-                }
-            }}
+      >
+        <SideNav
+          className="test"
+          id="sideBar"
+          expanded={this.state.expanded}
+          onToggle={(expanded) => {
+            this.setState({ expanded });
+            if (this.state.expanded == false) {
+              document.getElementById("sidebar").style.width = "240px";
+            } else {
+              document.getElementById("sidebar").style.width = "174px";
+            }
+          }}
         >
-        <SideNav.Toggle />
+          <SideNav.Toggle />
           <SideNav.Nav defaultSelected="Dashboard">
             <img
               className="logo"
@@ -168,7 +166,7 @@ class Sidebar extends React.Component {
               src={require("../../ParkerLogo.png")}
               alt="Part Production Dashboard"
             />
-            <LinkContainer to="/" activeClassName="active">
+            <LinkContainer to="/dashboard" activeClassName="active">
               <NavItem eventKey="Dashboard">
                 <NavIcon>
                   <i

@@ -1,27 +1,27 @@
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
-.col.graphs{
-    margin: 3vh;
+.col.graphs {
+  margin: 3vh;
 }
 
-h6{
-    text-align: center;
+h6 {
+  text-align: center;
 }
 
 .filterCols {
-    margin: 15px;
+  margin: 5px;
 }
 
 #dropdown {
-    size: fit-content;
+  size: fit-content;
 }
 
 #toggleBtn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
 }
 
 /* #filterRow {
