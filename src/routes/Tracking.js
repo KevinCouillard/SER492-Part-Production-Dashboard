@@ -198,6 +198,7 @@ const Tracking = () => {
         </div>
         <div>
         <TextField
+            type="number"
             id="outlined-basic"
             required
             label="Target"
@@ -212,6 +213,7 @@ const Tracking = () => {
             error={!target}
           />
           <TextField
+            type="number"
             id="outlined-basic"
             required
             label="Cummulative Target"
@@ -226,6 +228,7 @@ const Tracking = () => {
             error={!cTarget}
           />
           <TextField
+            type="number"
             id="outlined-basic"
             label="Cummulative Actual"
             required
@@ -240,6 +243,7 @@ const Tracking = () => {
             error={!cActual}
           />
           <TextField
+            type="number"
             id="outlined-basic"
             label="Good"
             required
@@ -258,6 +262,7 @@ const Tracking = () => {
             {scrapList.map((index) => (
               <div key={index}>
               <TextField
+                type="number"
                 id="outlined-basic"
                 label="Scrap"
                 variant="outlined"
@@ -283,6 +288,7 @@ const Tracking = () => {
           </div>
           <div>
           <TextField
+            type="number"
             id="outlined-basic"
             label="Down Time"
             variant="outlined"
