@@ -54,7 +54,6 @@ const App = () => {
               <Route path="/safety" element={<Safety />} />
               <Route path="/tracking" element={<Tracking />} />
               <Route path="/Ptracking" element={<Ptracking />} />
-              <Route path="/quality" element={<Quality />} />
               <Route path="/Psafety" element={<Psafety />} />
             </Routes>
           </Col>
