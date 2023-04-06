@@ -3,6 +3,9 @@ import { useState } from "react";
 import "./Safety.css";
 import Form from 'react-bootstrap/Form';
 import Axios from "axios";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Box from "@mui/material/Box";
 import dayjs from "dayjs";
 import Paper from "@mui/material/Paper";
@@ -15,6 +18,8 @@ import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
+import SaveAsIcon from '@mui/icons-material/SaveAs';
+import { spacing } from "@mui/system";
 
 const Safety = () => {
   const [value, setValue] = React.useState(dayjs());
@@ -75,6 +80,7 @@ const Safety = () => {
   };
 
   return (
+    
     <Paper className="safety" elevation={3}>
       <h2>Safety Report</h2>
       <div>
@@ -137,8 +143,9 @@ const Safety = () => {
         </div>
       ))}
     </Form>
-  
-         <TextField
+    <Row xs={2} md={4} lg={6}>
+      <Col>
+         <TextField style={{ minHeight: '75px'}}
              id="outlined-basic"
              label="Process"
              variant="outlined"
@@ -147,6 +154,8 @@ const Safety = () => {
              }}
              margin="dense"
            />
+          </Col>
+          <Col>
           <div>
         <TextField
           id="outlined-basic"
@@ -157,22 +166,14 @@ const Safety = () => {
           }}
           margin="dense"
         />
-         </div>
-
-         <div>
-        <TextField
-          id="outlined-basic"
-          label="Approved By"
-          variant="outlined"
-          onChange={(event) => {
-            setApproveName(event.target.value);
-          }}
-          margin="dense"
-        />
-         </div>
+        </div>
+        </Col>
+         
+        </Row>
+         
         
          <div>
-        <TextField
+        <TextField style={{ minWidth: '600px', minHeight:'75px'}}
           id="outlined-basic"
           label="Description of Incident"
           variant="outlined"
@@ -180,36 +181,40 @@ const Safety = () => {
             setDescription(event.target.value);
           }}
           margin="dense"
+          
         />
          </div>
-
-         <div>
-        <TextField
+         <Row xs={2} md={4} lg={6}>
+          <Col>
+         <div >
+        <TextField style={{ minHeight: '75px'}}
           id="outlined-basic"
           label="Escalation Name"
           variant="outlined"
           onChange={(event) => {
             setEscalationName(event.target.value);
           }}
-          margin="dense"
+          
         />
          </div>
-
-
-        
-        <div className="targetDate">
+         </Col>
+        <Col>
+        <div className="targetDate" style={{ minHeight: '50px'}}>
            <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
               label="Resolve By"
               inputFormat="MM/DD/YYYY"
+              margin="dense"
               value={value}
               onChange={handleEscDate}
               renderInput={(params) => <TextField {...params} />}
-              margin="dense"
+              
             />
           </LocalizationProvider>
         </div>
-        <div className="resolveDate">
+        </Col>
+        </Row>
+       {/*  <div className="resolveDate">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
               label="Date Resolved"
@@ -220,9 +225,20 @@ const Safety = () => {
               margin="dense"
             />
           </LocalizationProvider>
+        </div> */}
+       
+       <Row xs={2} md={4} lg={6}>
+       <Col><div className="saveBtn">
+          <Button
+            onClick={addSafety}
+            class="btn btn-outline-primary"
+            endIcon={<SaveAsIcon />}
+          >
+            Save
+          </Button>
         </div>
-       {/* <button onClick={getSafety}>Get Safety Report</button> */}
-        <div className="submitBtn">
+        </Col>
+        <Col><div className="submitBtn">
           <Button
             onClick={addSafety}
             class="btn btn-outline-success"
@@ -231,6 +247,8 @@ const Safety = () => {
             Submit
           </Button>
         </div>
+        </Col>
+        </Row>
       </div>
       <div id="main">
         {safetyList.map((val, key) => {
@@ -253,6 +271,7 @@ const Safety = () => {
       </div>
     </div>
     </Paper>
+   
   );
 };
 

@@ -2,7 +2,16 @@
     width: fill;
     height: fill;
     justify-content: center;
-    margin-bottom: 20px;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+.screen{
+    justify-content: flex-start;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 .areaNum{
     display: inline-flex;
@@ -11,7 +20,4 @@
     margin-right: 20px;
     height: 50px;
     background-color: lightgrey;
-}
-.outlined-basic{
-    padding: 20px;
 }
