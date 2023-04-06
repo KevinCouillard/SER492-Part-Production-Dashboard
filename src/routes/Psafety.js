@@ -5,6 +5,7 @@ import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { MDBInput } from 'mdb-react-ui-kit';
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
@@ -14,7 +15,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Axios from "axios";
 import ListGroup from "react-bootstrap/ListGroup";
-import "./Ptracking.css";
+import "./pSafety.css";
 import Modal from 'react-bootstrap/Modal';
 
 
@@ -55,9 +56,25 @@ const Psafety = () => {
   const editSafety = (e) => {
     setSCardIndex(e.currentTarget.title);
     setSCardValue(e.currentTarget.value);
-    console.log(safetyCardIndex);
-    console.log(safetyCardValue);
+    setType(safetyList[safetyCardIndex].type);
+    setArea(safetyList[safetyCardIndex].area);
+    setIncident_date(safetyList[safetyCardIndex].incident_date);
+    setProcess(safetyList[safetyCardIndex].process);
+    setOriginName(safetyList[safetyCardIndex].originName);
+    setApproveName(safetyList[safetyCardIndex].approveName);
+    setDescription(safetyList[safetyCardIndex].description);
+    setEscalationName(safetyList[safetyCardIndex].escalationName);
+    setTargetDate(safetyList[safetyCardIndex].targetDate);
+    setResolveDate(safetyList[safetyCardIndex].resolveDate);
     setModalShow(true);
+  };
+
+  const handleChangeTDate = (newValue) => {
+    setTargetDate(newValue);
+  };
+
+  const handleChangeRDate = (newValue) => {
+    setResolveDate(newValue);
   };
 
   const handleSelectType = (e) => {
@@ -84,42 +101,103 @@ const Psafety = () => {
         <Modal.Body className="show-grid">
           <Container id="modalContainer">
             <Row id="modalRows">
-              <Col id="modalCols" xl={3}>
+              <Col id="modalCols" xl={2}>
+                {/* {"Type: "} */}
+                {/* <MDBInput value={type} id='typeText' type='text' onChange={(event) => {
+                    setType(event.target.value);
+                }}/> */}
                 Type: {safetyList[safetyCardIndex].type}
               </Col>
-              <Col id="modalCols" xl={3}>
-                Area: {safetyList[safetyCardIndex].area}
+              <Col id="modalCols" xl={2}>
+                {"Area: "}
+                <Select className="basic-single" id="dropdown" value={area} onChange={(event) => {
+                    setArea(event.target.value);
+                }}>
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={6}>6</MenuItem>
+                  <MenuItem value={7}>7</MenuItem>
+                  <MenuItem value={8}>8</MenuItem>
+                  <MenuItem value={9}>9</MenuItem>
+                  <MenuItem value={10}>10</MenuItem>
+                </Select>
               </Col>
-              <Col id="modalCols" xl={3}>
-                Process: {safetyList[safetyCardIndex].process}
+              <Col id="modalCols" xl={2}>
+                {"Process: "}
+                <MDBInput value={process} id='typeText' type='text' onChange={(event) => {
+                  setProcess(event.target.value);
+                }}/>
+                {/* Process: {safetyList[safetyCardIndex].process} */}
               </Col>
-              <Col id="modalCols" xl={3}>
-                Origin Name: {safetyList[safetyCardIndex].originName}
+            </Row>
+
+            <Row>
+              <Col id="modalCols" xl={2}>
+                {"Origin Name: "}
+                <MDBInput value={originName} id='typeText' type='text' onChange={(event) => {
+                  setOriginName(event.target.value);
+                }}/>
+                {/* Origin Name: {safetyList[safetyCardIndex].originName} */}
               </Col>
-              <Col id="modalCols" xl={3}>
-                Approve Name: {safetyList[safetyCardIndex].approveName}
+              <Col id="modalCols" xl={2}>
+                {"Approve Name: "}
+                <MDBInput value={approveName} id='typeText' type='text' onChange={(event) => {
+                  setApproveName(event.target.value);
+                }}/>
+                {/* Approve Name: {safetyList[safetyCardIndex].approveName} */}
+              </Col>
+              <Col id="modalCols" xl={2}>
+                {"Description: "}
+                <MDBInput value={description} id='typeText' type='text' onChange={(event) => {
+                  setDescription(event.target.value);
+                }}/>
+                {/* Description: {safetyList[safetyCardIndex].description} */}
               </Col>
             </Row>
   
             <Row id="modalRows">
-              <Col id="modalCols" xl={3}>
-                Description: {safetyList[safetyCardIndex].description}
+              <Col id="modalCols" xl={2}>
+                {"Escalation Name: "}
+                <MDBInput value={escalationName} id='typeText' type='text' onChange={(event) => {
+                  setEscalationName(event.target.value);
+                }}/>
+                {/* Escalation Name: {safetyList[safetyCardIndex].escalationName} */}
               </Col>
-              <Col id="modalCols" xl={3}>
-                Escalation Name: {safetyList[safetyCardIndex].escalationName}
+              <Col id="modalCols" xl={2}>
+                {"Target Date: "}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DesktopDatePicker
+                    label="Date Tracked"
+                    inputFormat="MM/DD/YYYY"
+                    value={targetDate}
+                    onChange={handleChangeTDate}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+                {/* Target Date: {safetyList[safetyCardIndex].targetDate} */}
               </Col>
-              <Col id="modalCols" xl={3}>
-                Target Date: {safetyList[safetyCardIndex].targetDate}
-              </Col>
-              <Col id="modalCols" xl={3}>
-                Resolve Date: {safetyList[safetyCardIndex].resolveDate}
+              <Col id="modalCols" xl={2}>
+                {"Resolve Date: "}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DesktopDatePicker
+                    label="Date Tracked"
+                    inputFormat="MM/DD/YYYY"
+                    value={resolveDate}
+                    onChange={handleChangeRDate}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+                {/* Resolve Date: {safetyList[safetyCardIndex].resolveDate} */}
               </Col>
             </Row>
           </Container>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={ () => {
-            Axios.post(url + "/safety", {
+            Axios.put(url + "/safety/" + safetyList[safetyCardIndex].case_id, {
                 type: type,
                 area: area,
                 incident_date: incident_date,
@@ -215,7 +293,7 @@ const Psafety = () => {
                 <Card.Text>
                   Resolve Date: {val.resolveDate}
                 </Card.Text>
-                <MydModalWithGrid title={index} value={val} show={modalShow} onHide={() => setModalShow(false)} />
+                <MydModalWithGrid id="editModal" title={index} value={val} show={modalShow} onHide={() => setModalShow(false)} />
               </Card.Body>
             </Card>
           ))}

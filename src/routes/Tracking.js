@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Axios from "axios";
 import Box from "@mui/material/Box";
@@ -56,6 +56,39 @@ const Tracking = () => {
     {},
   ]);
 
+  const [scrapListHtml, setscrapListHtml] = useState(<div></div>);
+
+  useEffect(() => {
+    loadScrapList(scrapList)
+  }, [scrapList]);
+
+  const loadScrapList = (scrapList) => {
+    setscrapListHtml(
+      scrapList.map((index) => (
+        <div key={index}>
+        <TextField
+          id="outlined-basic"
+          label="Scrap"
+          variant="outlined"
+          onChange={(event) => {
+            setBad(event.target.value);
+          }}
+          value={bad}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Reason Code"
+          variant="outlined"
+          onChange={(event) => {
+            setBadCode(event.target.value);
+          }}
+          value={badCode}
+        />
+        </div>
+      ))
+    );
+  }
+
   const addTracking = () => {
     if (area == "0" || shift == "0" || selection == "0" || target == "0" || cTarget == "0" || 
     cActual == "0" || good == "0" || bad == "0" || badCode == "" || downTime == "0" || dTimeCode == "") {
@@ -100,7 +133,8 @@ const Tracking = () => {
     setSelection(e.target.value);
   };
 
-  const newScrap = () => {
+  const newScrap = () => { 
+    console.log(scrapList)
     setScrapList([...scrapList, { scrap: "" }]);
   };
 
@@ -254,8 +288,9 @@ const Tracking = () => {
             error={!good}
           />
           </div>
+          {scrapListHtml}
           <div className="scrapForm">
-            {scrapList.map((index) => (
+            {/* {scrapList.map((index) => (
               <div key={index}>
               <TextField
                 id="outlined-basic"
@@ -276,7 +311,7 @@ const Tracking = () => {
                 value={badCode}
               />
               </div>
-            ))}
+            ))} */}
             <div className="plusBtn">
               <button class="btn btn-light" onClick={newScrap}><FontAwesomeIcon icon={faPlus} className="plusIcon" />Add Reason Code</button>
             </div>

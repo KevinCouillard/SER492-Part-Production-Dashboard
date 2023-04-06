@@ -5,6 +5,7 @@ import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { MDBInput } from 'mdb-react-ui-kit';
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
@@ -16,6 +17,7 @@ import Axios from "axios";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./Ptracking.css";
 import Modal from 'react-bootstrap/Modal';
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
 
 const Ptracking = () => {
@@ -42,6 +44,8 @@ const Ptracking = () => {
   const [downTime, setDownTime] = useState("");
   const [dTimeCode, setDTimeCode] = useState("");
   const [comment, setComment] = useState("");
+  const [operator, setOperator] = useState("");
+  const [operatorText, onChangeOperatorText] = useState(operator);
 
   const url = "http://localhost:4000";
 
@@ -55,6 +59,17 @@ const Ptracking = () => {
     fetchData();
   }, []);
 
+  // const fetchTracking = async (trackingId) => {
+  //   const tracking = await Axios("http://localhost:4000/tracking/" + trackingId);
+  //   setCurrentTracking(tracking);
+  //   console.log(currentTracking.operator);
+  // }
+
+  const handleChangeTime = (newValue) => {
+    setTime_tracked(newValue);
+    setValue(newValue);
+  };
+
   const handleChangeDate = (newValue) => {
     setDate_tracked(newValue);
     setValue(newValue);
@@ -63,15 +78,38 @@ const Ptracking = () => {
   const editTracking = (e) => {
     setCardIndex(e.currentTarget.title);
     setCardValue(e.currentTarget.value);
-    setValue(trackingList[cardIndex].date_tracked);
+    setArea(trackingList[cardIndex].area);
+    setShift(trackingList[cardIndex].shift);
+    setDate_tracked(trackingList[cardIndex].date_tracked);
+    setTime_tracked(trackingList[cardIndex].time_tracked);
+    setGood(trackingList[cardIndex].good);
+    setCActual(trackingList[cardIndex].cActual);
     setTarget(trackingList[cardIndex].target);
     setCTarget(trackingList[cardIndex].cTarget);
-    console.log(trackingList[cardIndex].area);
-    setArea(trackingList[cardIndex].area);
+    setBad(trackingList[cardIndex].bad);
+    setBadCode(trackingList[cardIndex].badCode);
+    setDownTime(trackingList[cardIndex].downTime);
+    setDTimeCode(trackingList[cardIndex].dTimeCode);
+    setComment(trackingList[cardIndex].comment);
+    setOperator(trackingList[cardIndex].operator);
+    console.log(trackingList[cardIndex].date_tracked);
+    console.log(shift);
     console.log(cardIndex);
     console.log(cardValue);
+    //showModal();
     setModalShow(true);
   };
+
+  // function showModal() {
+  //   // setValue(trackingList[cardIndex].date_tracked);
+  //   // setTarget(trackingList[cardIndex].target);
+  //   // setCTarget(trackingList[cardIndex].cTarget);
+  //   // console.log(trackingList[cardIndex].date_tracked);
+  //   // setArea(trackingList[cardIndex].area);
+  //   // setShift(trackingList[cardIndex].shift);
+  //   // console.log(shift);
+  //   setModalShow(true);
+  // };
 
   const handleSelectMonth = (e) => {
     setSelectionMonth(e.target.value);
@@ -96,7 +134,7 @@ const Ptracking = () => {
               <DesktopDatePicker
                 label="Date Tracked"
                 inputFormat="MM/DD/YYYY"
-                value={value}
+                value={date_tracked}
                 onChange={handleChangeDate}
                 renderInput={(params) => <TextField {...params} />}
               />
@@ -109,113 +147,158 @@ const Ptracking = () => {
             <Row id="modalRows">
               <Col id="modalCols" xl={2}>
                 {"Area: "}
-                <Select className="partNum" id="dropdown" value={area} error={!area} onChange={(event) => {
+                {/* {setArea(trackingList[cardIndex].area)} */}
+                <Select className="basic-single" id="adropdown" value={area} onChange={(event) => {
                     setArea(event.target.value);
                 }}>
-                  <MenuItem value="Area 1">Area 1</MenuItem>
-                  <MenuItem value="Area 2">Area 2</MenuItem>
-                  <MenuItem value="Area 3">Area 3</MenuItem>
-                  <MenuItem value="Area 4">Area 4</MenuItem>
-                  <MenuItem value="Area 5">Area 5</MenuItem>
-                  <MenuItem value="Area 6">Area 6</MenuItem>
-                  <MenuItem value="Area 7">Area 7</MenuItem>
-                  <MenuItem value="Area 8">Area 8</MenuItem>
-                  <MenuItem value="Area 9">Area 9</MenuItem>
-                  <MenuItem value="Area 10">Area 10</MenuItem>
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={6}>6</MenuItem>
+                  <MenuItem value={7}>7</MenuItem>
+                  <MenuItem value={8}>8</MenuItem>
+                  <MenuItem value={9}>9</MenuItem>
+                  <MenuItem value={10}>10</MenuItem>
                 </Select>
                 {/* Area: {trackingList[cardIndex].area} */}
               </Col>
               <Col id="modalCols" xl={2}>
-                Shift: {trackingList[cardIndex].shift}
+                {"Shift: "} 
+                <Select className="basic-single" id="sdropdown" value={shift} onChange={(event) => {
+                    setShift(event.target.value);
+                }}>
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={6}>6</MenuItem>
+                  <MenuItem value={7}>7</MenuItem>
+                  <MenuItem value={8}>8</MenuItem>
+                  <MenuItem value={9}>9</MenuItem>
+                  <MenuItem value={10}>10</MenuItem>
+                </Select>
+                {/* {trackingList[cardIndex].shift} */}
               </Col>
               <Col id="modalCols" xl={2}>
-                Operator: {trackingList[cardIndex].operator}
+                {"Operator: "} 
+                <MDBInput value={operator} id='typeText' type='text' onChange={(event) => {
+                    setOperator(event.target.value);
+                }}/>
+                {/* Operator: {trackingList[cardIndex].operator} */}
               </Col>
-              <Col id="modalCols" xl={2}>
-                Time: {trackingList[cardIndex].time_tracked}
+            </Row>
+                
+            <Row>
+              <Col id="timeCol" xl={2}>
+                {"Time: "}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimePicker
+                    label="Time Tracked"
+                    value={value}
+                    onChange={handleChangeTime}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+                {/* Time: {trackingList[cardIndex].time_tracked} */}
               </Col>
               <Col id="modalCols" xl={2}>
                 {"Target: "}
-              <TextField
-                id="outlined-basic"
-                required
-                label="Target"
-                variant="outlined"
-                onChange={(event) => {
-                  setTarget(event.target.value);
-                }}
-                value={target}
-                helperText={!target
-                  ?"Target is required":""
-                }
-                error={!target}
-              />
+                <MDBInput value={target} id='typeText' type='text' onChange={(event) => {
+                    setTarget(event.target.value);
+                }}/>
                 {/* Target: {trackingList[cardIndex].target} */}
               </Col>
               <Col id="modalCols" xl={2}>
-                  {"Cummulative Target: "}
-                <TextField
-                  id="outlined-basic"
-                  required
-                  label="Cummulative Target"
-                  variant="outlined"
-                  onChange={(event) => {
+                {"Cummulative Target: "}
+                <MDBInput value={cTarget} id='typeText' type='text' onChange={(event) => {
                     setCTarget(event.target.value);
-                  }}
-                  value={cTarget}
-                  helperText={!cTarget
-                    ?"Cummalative Target is required":""
-                  }
-                  error={!cTarget}
-                />
+                }}/>
                 {/* Cummulative Target: {trackingList[cardIndex].cTarget} */}
+              </Col>
+            </Row>
+
+            <Row>
+              <Col id="modalCols" xl={2}>
+                {"Cummulative Actual: "}
+                <MDBInput value={cActual} id='typeText' type='text' onChange={(event) => {
+                    setCActual(event.target.value);
+                }}/>
+                {/* Cummulative Actual Pieces: {trackingList[cardIndex].cActual} */}
+              </Col>
+              <Col id="modalCols" xl={2}>
+                {"Good: "}
+                <MDBInput value={good} id='typeText' type='text' onChange={(event) => {
+                    setGood(event.target.value);
+                }}/>
+                {/* Good Parts: {trackingList[cardIndex].good} */}
+              </Col>
+              <Col id="modalCols" xl={2}>
+                {"Bad: "}
+                <MDBInput value={bad} id='typeText' type='text' onChange={(event) => {
+                    setBad(event.target.value);
+                }}/>
+                {/* Scrap: {trackingList[cardIndex].bad} */}
               </Col>
             </Row>
   
             <Row id="modalRows">
               <Col id="modalCols" xl={2}>
-                Cummulative Actual Pieces: {trackingList[cardIndex].cActual}
+                {"Bad Code: "}
+                <MDBInput value={badCode} id='typeText' type='text' onChange={(event) => {
+                    setBadCode(event.target.value);
+                }}/>
+                {/* Scrap Reason Code: {trackingList[cardIndex].badCode} */}
               </Col>
               <Col id="modalCols" xl={2}>
-                Good Parts: {trackingList[cardIndex].good}
+                {"Down Time: "}
+                <MDBInput value={downTime} id='typeText' type='text' onChange={(event) => {
+                    setDownTime(event.target.value);
+                }}/>
+                {/* Down Time: {trackingList[cardIndex].downTime} */}
               </Col>
               <Col id="modalCols" xl={2}>
-                Scrap: {trackingList[cardIndex].bad}
+                {"Down Time Code: "}
+                <MDBInput value={dTimeCode} id='typeText' type='text' onChange={(event) => {
+                    setDTimeCode(event.target.value);
+                }}/>
+                {/* Down Time Code: {trackingList[cardIndex].dTimeCode} */}
               </Col>
-              <Col id="modalCols" xl={2}>
-                Scrap Reason Code: {trackingList[cardIndex].badCode}
-              </Col>
-              <Col id="modalCols" xl={2}>
-                Down Time: {trackingList[cardIndex].downTime}
-              </Col>
-              <Col id="modalCols" xl={2}>
-                Down Time Code: {trackingList[cardIndex].dTimeCode}
-              </Col>
-            </Row>
-            <Row id="modalRows">
               <Col id="modalCols">
-                Comment: {trackingList[cardIndex].comment}
+                {"Comment: "}
+                <MDBInput value={comment} id='typeText' type='text' onChange={(event) => {
+                    setComment(event.target.value);
+                }}/>
+                {/* Comment: {trackingList[cardIndex].comment} */}
               </Col>
             </Row>
+            {/* <Row id="modalRows">
+              
+            </Row> */}
           </Container>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={ () => {
-            Axios.put(url + "/tracking", {
-              operator: trackingList[cardIndex].operator,
-              area: trackingList[cardIndex].area,
-              shift: trackingList[cardIndex].shift,
-              date_tracked: trackingList[cardIndex].date_tracked,
-              time_tracked: trackingList[cardIndex].time_tracked,
-              target: trackingList[cardIndex].target,
-              cTarget: trackingList[cardIndex].cTarget,
-              cActual: trackingList[cardIndex].cActual,
-              good: trackingList[cardIndex].good,
-              bad: trackingList[cardIndex].bad,
-              badCode: trackingList[cardIndex].badCode,
-              downTime: trackingList[cardIndex].downTime,
-              dTimeCode: trackingList[cardIndex].dTimeCode,
-              comment: trackingList[cardIndex].comment,
+            console.log(trackingList[cardIndex].tracking_id);
+            console.log(trackingList[cardIndex].area);
+            console.log(area);
+            Axios.put(url + "/tracking/" + trackingList[cardIndex].tracking_id, {
+              operator: operator,
+              area: area,
+              shift: shift,
+              date_tracked: date_tracked,
+              time_tracked: time_tracked,
+              target: target,
+              cTarget: cTarget,
+              cActual: cActual,
+              good: good,
+              bad: bad,
+              badCode: badCode,
+              downTime: downTime,
+              dTimeCode: dTimeCode,
+              comment: comment,
               headers: {
                 "content-type": "application/json",
               },
@@ -267,14 +350,16 @@ const Ptracking = () => {
         <Col>
           <label>Shift: </label>
           <Select value={selectionShift} onChange={handleSelectShift}>
-            <MenuItem value="8:00-9:00">8:00-9:00</MenuItem>
-            <MenuItem value="9:00-10:00">9:00-10:00</MenuItem>
-            <MenuItem value="10:00-11:00">10:00-11:00</MenuItem>
-            <MenuItem value="11:00-12:00">11:00-12:00</MenuItem>
-            <MenuItem value="12:00-1:00">12:00-1:00</MenuItem>
-            <MenuItem value="1:00-2:00">1:00-2:00</MenuItem>
-            <MenuItem value="2:00-3:00">2:00-3:00</MenuItem>
-            <MenuItem value="3:00-4:00">3:00-4:00</MenuItem>
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={6}>6</MenuItem>
+            <MenuItem value={7}>7</MenuItem>
+            <MenuItem value={8}>8</MenuItem>
+            <MenuItem value={9}>9</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
           </Select>
         </Col>
         <Col>
@@ -290,7 +375,8 @@ const Ptracking = () => {
         <Col id="cardsCol">
           {trackingList.map((val, index) => (      
             <Card id="trackingCard" key={index}>
-              <Card.Header key={index} title={index} value={val} onClick={editTracking}>
+              {/* Try using val.tracking_id in title then getting that (should fix the delay) */}
+              <Card.Header key={val.tracking_id} title={index} value={val} onClick={editTracking}>
                 Date: {val.date_tracked} &nbsp; &nbsp; &nbsp; &nbsp; Area:{" "}
                 {val.area} &nbsp; &nbsp; &nbsp; &nbsp; Shift: {val.shift} &nbsp;
                 &nbsp; &nbsp; &nbsp; Operator: {val.operator} &nbsp; &nbsp;
@@ -321,8 +407,8 @@ const Ptracking = () => {
                   &nbsp; &nbsp; &nbsp; Down Time: {val.downTime} &nbsp; &nbsp;
                   Down Time Code: {val.dTimeCode}
                 </Card.Text>
-                <MydModalWithGrid title={index} value={val} show={modalShow} onHide={() => setModalShow(false)} />
               </Card.Body>
+              <MydModalWithGrid style={{weight: '700px'}} title={index} value={val} show={modalShow} onHide={() => setModalShow(false)} />
             </Card>
           ))}
         </Col>

@@ -6,6 +6,8 @@ import Products from "./routes/Products";
 import Safety from "./routes/Safety";
 import Tracking from "./routes/Tracking";
 import Ptracking from "./routes/Ptracking";
+import Login from "./routes/Login";
+import CreateAccount from "./routes/CreateAccount";
 import Sidebar from "./components/sidebar/Sidebar";
 import Psafety from "./routes/Psafety";
 import Navbar from "./components/navbar/Navbar";
@@ -29,6 +31,11 @@ const App = () => {
 
   return (
     <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/createAccount" element={<CreateAccount />} />
+      </Routes>
+      
       <Container fluid className="screenContainer">
         <Row className="navContainer">
           <Col className="navBar">
