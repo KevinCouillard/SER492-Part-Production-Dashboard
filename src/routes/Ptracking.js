@@ -18,6 +18,8 @@ import ListGroup from "react-bootstrap/ListGroup";
 import "./Ptracking.css";
 import Modal from 'react-bootstrap/Modal';
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import Navbar from "../components/navbar/Navbar";
+import Sidebar from "../components/sidebar/Sidebar.js";
 
 
 const Ptracking = () => {
@@ -46,6 +48,16 @@ const Ptracking = () => {
   const [comment, setComment] = useState("");
   const [operator, setOperator] = useState("");
   const [operatorText, onChangeOperatorText] = useState(operator);
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sideWidth, setSideWidth] = useState();
+
+  const openSidebar = () => {
+    setSidebarOpen(true);
+  };
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
 
   const url = "http://localhost:4000";
 
@@ -316,104 +328,217 @@ const Ptracking = () => {
 
   return (
 
-    <Container className="filterBar" fluid>
-      <Row id="filter">
-        <Col>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DesktopDatePicker
-              label="Date"
-              inputFormat="MM/DD/YYYY"
-              className="dayInput"
-              value={value}
-              onChange={handleChangeDate}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-        </Col>
-        <Col>
-          <label>Month: </label>
-          <Select value={selectionMonth} onChange={handleSelectMonth}>
-            <MenuItem value="January">January</MenuItem>
-            <MenuItem value="Febuary">Febuary</MenuItem>
-            <MenuItem value="March">March</MenuItem>
-            <MenuItem value="April">April</MenuItem>
-            <MenuItem value="May">May</MenuItem>
-            <MenuItem value="June">June</MenuItem>
-            <MenuItem value="July">July</MenuItem>
-            <MenuItem value="August">August</MenuItem>
-            <MenuItem value="September">September</MenuItem>
-            <MenuItem value="October">October</MenuItem>
-            <MenuItem value="November">November</MenuItem>
-            <MenuItem value="December">December</MenuItem>
-          </Select>
-        </Col>
-        <Col>
-          <label>Shift: </label>
-          <Select value={selectionShift} onChange={handleSelectShift}>
-            <MenuItem value={1}>1</MenuItem>
-            <MenuItem value={2}>2</MenuItem>
-            <MenuItem value={3}>3</MenuItem>
-            <MenuItem value={4}>4</MenuItem>
-            <MenuItem value={5}>5</MenuItem>
-            <MenuItem value={6}>6</MenuItem>
-            <MenuItem value={7}>7</MenuItem>
-            <MenuItem value={8}>8</MenuItem>
-            <MenuItem value={9}>9</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
-          </Select>
-        </Col>
-        <Col>
-          <label>Operator: </label>
-          <Select value={selectionOperator} onChange={handleSelectOperator}>
-            <MenuItem value="Matt">Matt</MenuItem>
-            <MenuItem value="Jeff">Jeff</MenuItem>
-            <MenuItem value="James">James</MenuItem>
-          </Select>
-        </Col>
-      </Row>
-      <Row>
-        <Col id="cardsCol">
-          {trackingList.map((val, index) => (      
-            <Card id="trackingCard" key={index}>
-              {/* Try using val.tracking_id in title then getting that (should fix the delay) */}
-              <Card.Header key={val.tracking_id} title={index} value={val} onClick={editTracking}>
-                Date: {val.date_tracked} &nbsp; &nbsp; &nbsp; &nbsp; Area:{" "}
-                {val.area} &nbsp; &nbsp; &nbsp; &nbsp; Shift: {val.shift} &nbsp;
-                &nbsp; &nbsp; &nbsp; Operator: {val.operator} &nbsp; &nbsp;
-                &nbsp; &nbsp; Time: {val.time_tracked}
-              </Card.Header>
-              <Card.Body>
-                <Card.Title></Card.Title>
-                <Card.Text>
-                  Target: {val.target} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Good Parts:{" "}
-                  {val.good} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; Comment: {val.comment}
-                </Card.Text>
-                <br></br>
-                <Card.Text>
-                  Cummulative Target: {val.cTarget} &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scrap: {val.bad}{" "}
-                  &nbsp; &nbsp; Reason Code: {val.badCode}
-                </Card.Text>
-                <br></br>
-                <Card.Text>
-                  Cummulative Actual Pieces: {val.cActual} &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; Down Time: {val.downTime} &nbsp; &nbsp;
-                  Down Time Code: {val.dTimeCode}
-                </Card.Text>
-              </Card.Body>
-              <MydModalWithGrid style={{weight: '700px'}} title={index} value={val} show={modalShow} onHide={() => setModalShow(false)} />
-            </Card>
-          ))}
-        </Col>
-      </Row>
-    </Container>
+    <Container fluid className="screenContainer">
+        <Row className="navContainer">
+          <Col className="navBar">
+            <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+          </Col>
+        </Row>
+        <Row className="mainContainer">
+          <Col md={2} id="sidebar" className="sideBar" style={{width: '174px'}}>
+            <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+          </Col>
+          <Col md={8} className="screen">
+            <Container className="filterBar" fluid>
+              <Row id="filter">
+                <Col>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DesktopDatePicker
+                      label="Date"
+                      inputFormat="MM/DD/YYYY"
+                      className="dayInput"
+                      value={value}
+                      onChange={handleChangeDate}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Col>
+                <Col>
+                  <label>Month: </label>
+                  <Select value={selectionMonth} onChange={handleSelectMonth}>
+                    <MenuItem value="January">January</MenuItem>
+                    <MenuItem value="Febuary">Febuary</MenuItem>
+                    <MenuItem value="March">March</MenuItem>
+                    <MenuItem value="April">April</MenuItem>
+                    <MenuItem value="May">May</MenuItem>
+                    <MenuItem value="June">June</MenuItem>
+                    <MenuItem value="July">July</MenuItem>
+                    <MenuItem value="August">August</MenuItem>
+                    <MenuItem value="September">September</MenuItem>
+                    <MenuItem value="October">October</MenuItem>
+                    <MenuItem value="November">November</MenuItem>
+                    <MenuItem value="December">December</MenuItem>
+                  </Select>
+                </Col>
+                <Col>
+                  <label>Shift: </label>
+                  <Select value={selectionShift} onChange={handleSelectShift}>
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                    <MenuItem value={6}>6</MenuItem>
+                    <MenuItem value={7}>7</MenuItem>
+                    <MenuItem value={8}>8</MenuItem>
+                    <MenuItem value={9}>9</MenuItem>
+                    <MenuItem value={10}>10</MenuItem>
+                  </Select>
+                </Col>
+                <Col>
+                  <label>Operator: </label>
+                  <Select value={selectionOperator} onChange={handleSelectOperator}>
+                    <MenuItem value="Matt">Matt</MenuItem>
+                    <MenuItem value="Jeff">Jeff</MenuItem>
+                    <MenuItem value="James">James</MenuItem>
+                  </Select>
+                </Col>
+              </Row>
+              <Row>
+                <Col id="cardsCol">
+                  {trackingList.map((val, index) => (      
+                    <Card id="trackingCard" key={index}>
+                      {/* Try using val.tracking_id in title then getting that (should fix the delay) */}
+                      <Card.Header key={val.tracking_id} title={index} value={val} onClick={editTracking}>
+                        Date: {val.date_tracked} &nbsp; &nbsp; &nbsp; &nbsp; Area:{" "}
+                        {val.area} &nbsp; &nbsp; &nbsp; &nbsp; Shift: {val.shift} &nbsp;
+                        &nbsp; &nbsp; &nbsp; Operator: {val.operator} &nbsp; &nbsp;
+                        &nbsp; &nbsp; Time: {val.time_tracked}
+                      </Card.Header>
+                      <Card.Body>
+                        <Card.Title></Card.Title>
+                        <Card.Text>
+                          Target: {val.target} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Good Parts:{" "}
+                          {val.good} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; Comment: {val.comment}
+                        </Card.Text>
+                        <br></br>
+                        <Card.Text>
+                          Cummulative Target: {val.cTarget} &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scrap: {val.bad}{" "}
+                          &nbsp; &nbsp; Reason Code: {val.badCode}
+                        </Card.Text>
+                        <br></br>
+                        <Card.Text>
+                          Cummulative Actual Pieces: {val.cActual} &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; Down Time: {val.downTime} &nbsp; &nbsp;
+                          Down Time Code: {val.dTimeCode}
+                        </Card.Text>
+                      </Card.Body>
+                      <MydModalWithGrid style={{weight: '700px'}} title={index} value={val} show={modalShow} onHide={() => setModalShow(false)} />
+                    </Card>
+                  ))}
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+      </Container>
+
+    // <Container className="filterBar" fluid>
+    //   <Row id="filter">
+    //     <Col>
+    //       <LocalizationProvider dateAdapter={AdapterDayjs}>
+    //         <DesktopDatePicker
+    //           label="Date"
+    //           inputFormat="MM/DD/YYYY"
+    //           className="dayInput"
+    //           value={value}
+    //           onChange={handleChangeDate}
+    //           renderInput={(params) => <TextField {...params} />}
+    //         />
+    //       </LocalizationProvider>
+    //     </Col>
+    //     <Col>
+    //       <label>Month: </label>
+    //       <Select value={selectionMonth} onChange={handleSelectMonth}>
+    //         <MenuItem value="January">January</MenuItem>
+    //         <MenuItem value="Febuary">Febuary</MenuItem>
+    //         <MenuItem value="March">March</MenuItem>
+    //         <MenuItem value="April">April</MenuItem>
+    //         <MenuItem value="May">May</MenuItem>
+    //         <MenuItem value="June">June</MenuItem>
+    //         <MenuItem value="July">July</MenuItem>
+    //         <MenuItem value="August">August</MenuItem>
+    //         <MenuItem value="September">September</MenuItem>
+    //         <MenuItem value="October">October</MenuItem>
+    //         <MenuItem value="November">November</MenuItem>
+    //         <MenuItem value="December">December</MenuItem>
+    //       </Select>
+    //     </Col>
+    //     <Col>
+    //       <label>Shift: </label>
+    //       <Select value={selectionShift} onChange={handleSelectShift}>
+    //         <MenuItem value={1}>1</MenuItem>
+    //         <MenuItem value={2}>2</MenuItem>
+    //         <MenuItem value={3}>3</MenuItem>
+    //         <MenuItem value={4}>4</MenuItem>
+    //         <MenuItem value={5}>5</MenuItem>
+    //         <MenuItem value={6}>6</MenuItem>
+    //         <MenuItem value={7}>7</MenuItem>
+    //         <MenuItem value={8}>8</MenuItem>
+    //         <MenuItem value={9}>9</MenuItem>
+    //         <MenuItem value={10}>10</MenuItem>
+    //       </Select>
+    //     </Col>
+    //     <Col>
+    //       <label>Operator: </label>
+    //       <Select value={selectionOperator} onChange={handleSelectOperator}>
+    //         <MenuItem value="Matt">Matt</MenuItem>
+    //         <MenuItem value="Jeff">Jeff</MenuItem>
+    //         <MenuItem value="James">James</MenuItem>
+    //       </Select>
+    //     </Col>
+    //   </Row>
+    //   <Row>
+    //     <Col id="cardsCol">
+    //       {trackingList.map((val, index) => (      
+    //         <Card id="trackingCard" key={index}>
+    //           {/* Try using val.tracking_id in title then getting that (should fix the delay) */}
+    //           <Card.Header key={val.tracking_id} title={index} value={val} onClick={editTracking}>
+    //             Date: {val.date_tracked} &nbsp; &nbsp; &nbsp; &nbsp; Area:{" "}
+    //             {val.area} &nbsp; &nbsp; &nbsp; &nbsp; Shift: {val.shift} &nbsp;
+    //             &nbsp; &nbsp; &nbsp; Operator: {val.operator} &nbsp; &nbsp;
+    //             &nbsp; &nbsp; Time: {val.time_tracked}
+    //           </Card.Header>
+    //           <Card.Body>
+    //             <Card.Title></Card.Title>
+    //             <Card.Text>
+    //               Target: {val.target} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Good Parts:{" "}
+    //               {val.good} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; Comment: {val.comment}
+    //             </Card.Text>
+    //             <br></br>
+    //             <Card.Text>
+    //               Cummulative Target: {val.cTarget} &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scrap: {val.bad}{" "}
+    //               &nbsp; &nbsp; Reason Code: {val.badCode}
+    //             </Card.Text>
+    //             <br></br>
+    //             <Card.Text>
+    //               Cummulative Actual Pieces: {val.cActual} &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; Down Time: {val.downTime} &nbsp; &nbsp;
+    //               Down Time Code: {val.dTimeCode}
+    //             </Card.Text>
+    //           </Card.Body>
+    //           <MydModalWithGrid style={{weight: '700px'}} title={index} value={val} show={modalShow} onHide={() => setModalShow(false)} />
+    //         </Card>
+    //       ))}
+    //     </Col>
+    //   </Row>
+    // </Container>
   );
 };
 

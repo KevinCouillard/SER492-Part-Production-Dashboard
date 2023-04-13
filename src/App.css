@@ -1,9 +1,9 @@
 /* * {
-  background-color: black;
-  color: white;
+  height: 100%;
+  width: 100%;
 } */
 
-.screenContainer {
+/* .screenContainer {
   background-color: white;
   color: black;
   width: 100vw;
@@ -48,9 +48,5 @@
   height: 100%;
   padding: 0 !important;
   margin: 0 !important;
-}
+} */
 
-#Test {
-  width: 100px;
-  height: 100px;
-}

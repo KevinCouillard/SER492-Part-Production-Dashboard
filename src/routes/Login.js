@@ -11,6 +11,7 @@ import {
   }
   from 'mdb-react-ui-kit';
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
     const [email, setEmail] = useState("");
