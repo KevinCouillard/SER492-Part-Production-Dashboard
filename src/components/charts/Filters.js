@@ -7,7 +7,7 @@ import { MenuItem } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { useState, useEffect } from "react";
-import { DateRangePicker } from "react-date-range";
+import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
@@ -21,9 +21,9 @@ const Filters = (props) => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 1000,
+    width: 400,
     bgcolor: "background.paper",
-    border: "2px solid #000",
+
     boxShadow: 24,
     p: 4,
   };
@@ -49,7 +49,8 @@ const Filters = (props) => {
       key: "selection",
     },
   ]);
-
+  const dateValue = state[0].endDate;
+  console.log(dateValue);
   return (
     <div>
       <Container fluid>
@@ -76,7 +77,8 @@ const Filters = (props) => {
             </FormControl>
           </Col>
           <Col xs={3}>
-            <Button onClick={handleOpen}>Date Range</Button>
+            <Button onClick={handleOpen}>Date Range </Button>
+
             <Modal
               open={open}
               onClose={handleClose}
@@ -84,13 +86,11 @@ const Filters = (props) => {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
-                <DateRangePicker
+                <DateRange
+                  editableDateInputs={true}
                   onChange={(item) => setState([item.selection])}
-                  showSelectionPreview={true}
                   moveRangeOnFirstSelection={false}
-                  months={2}
                   ranges={state}
-                  direction="horizontal"
                 />
               </Box>
             </Modal>

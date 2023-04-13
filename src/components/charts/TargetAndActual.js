@@ -23,9 +23,51 @@ ChartJS.register(
 );
 const TargetAndActual = () => {
   const [trackingList, setTrackingList] = useState([]);
+  const [tableList, setTableList] = useState([]);
+  const area = trackingList.map((x) => x.area);
+  const shift = trackingList.map((x) => x.shift);
+  const target = trackingList.map((x) => x.target);
+  const downTime = trackingList.map((x) => x.downTime);
   const cTarget = trackingList.map((x) => x.cTarget);
   const cActual = trackingList.map((x) => x.cActual);
+  const area1 = (value) => value.area === 1;
+  const c1 = trackingList
+    .filter(area1)
+    .map((x) => x.cTarget)
+    .reduce((a, b) => a + b, 0);
+  const c1Actual = trackingList
+    .filter(area1)
+    .map((x) => x.cActual)
+    .reduce((a, b) => a + b, 0);
 
+  const area2 = (value) => value.area === 2;
+  const c2 = trackingList
+    .filter(area2)
+    .map((x) => x.cTarget)
+    .reduce((a, b) => a + b, 0);
+  const c2Actual = trackingList
+    .filter(area2)
+    .map((x) => x.cActual)
+    .reduce((a, b) => a + b, 0);
+  const area3 = (value) => value.area === 3;
+  const c3 = trackingList
+    .filter(area3)
+    .map((x) => x.cTarget)
+    .reduce((a, b) => a + b, 0);
+  const c3Actual = trackingList
+    .filter(area3)
+    .map((x) => x.cActual)
+    .reduce((a, b) => a + b, 0);
+
+  const area4 = (value) => value.area === 4;
+  const c4 = trackingList
+    .filter(area4)
+    .map((x) => x.cTarget)
+    .reduce((a, b) => a + b, 0);
+  const c4Actual = trackingList
+    .filter(area4)
+    .map((x) => x.cActual)
+    .reduce((a, b) => a + b, 0);
   const [graphToggle, setGraphToggle] = useState("");
 
   const handleToggleClick = (value) => {
@@ -65,12 +107,24 @@ const TargetAndActual = () => {
     datasets: [
       {
         label: "Target",
-        data: [cTarget[0], cTarget[1], cTarget[2], cTarget[3], cTarget[4]],
+        data: [
+          c1,
+          c2,
+          c3,
+          c4,
+          cTarget.reduce((a, b) => a + b, 0) / cTarget.length,
+        ],
         backgroundColor: "rgb(255, 99, 132)",
       },
       {
         label: "Actual",
-        data: [cActual[0], cActual[1], cActual[2], cActual[3], cActual[4]],
+        data: [
+          c1Actual,
+          c2Actual,
+          c3Actual,
+          c4Actual,
+          cActual.reduce((a, b) => a + b, 0) / cTarget.length,
+        ],
         backgroundColor: "rgb(53, 162, 235)",
       },
     ],
@@ -96,26 +150,10 @@ const TargetAndActual = () => {
       width: 110,
       editable: true,
     },
-    {
-      field: "fullName",
-      headerName: "Full name",
-      description: "This column has a value getter and is not sortable.",
-      sortable: false,
-      width: 160,
-      valueGetter: (params: GridValueGetterParams) =>
-        `${params.row.firstName || ""} ${params.row.lastName || ""}`,
-    },
   ];
   const rows = [
-    { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-    { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-    { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+    { id: area[0], lastName: target[0], firstName: shift[0], age: downTime[0] },
+    { id: area[1], lastName: target[1], firstName: shift[1], age: downTime[1] },
   ];
   return (
     <div>
