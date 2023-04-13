@@ -114,7 +114,6 @@ const Tracking = () => {
         });
     } else {
       swal({
-        title: "Good Job!",
         text: "Tracking form was submitted!",
         icon: "success",
       });
