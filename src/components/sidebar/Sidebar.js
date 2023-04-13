@@ -1,62 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
 import { test } from "../../App";
-// const Sidebar = ({ sidebarOpen, closeSidebar }) => {
-//   return (
-//     <div className={sidebarOpen ? "sidebar-responsive" : ""} id="sidebar">
-//       <div className="sidebar_title">
-//         <div className="sidebar_img">
-//           <img
-//             className="logo"
-//             width={100}
-//             height={100}
-//             src={require("../../ParkerLogo.png")}
-//             alt="Part Production Dashboard"
-//           />
-//         </div>
-//         <i
-//           className="fa fa-times"
-//           id="sidebarIcon"
-//           onClick={() => closeSidebar()}
-//         ></i>
-//       </div>
-
-//       <div className="sidebar_menu">
-//         <div className="sidebar_link active_menu_link">
-//           <i className="fa fa-home"></i>
-//           <a href="/dashboard">Dashboard</a>
-//         </div>
-//         <h2>PRODUCTS</h2>
-//         <div className="sidebar_link ">
-//           <i className="fa fa-building-o"></i>
-//           <a href="/products">Add Product</a>
-//         </div>
-//         <h2>TRACKING</h2>
-//         <div className="sidebar_link ">
-//           <i className="fa fa-wrench"></i>
-//           <a href="/tracking">Tracking</a>
-//         </div>
-//         <div className="sidebar_link ">
-//           <i className="fa fa-archive"></i>
-//           <a href="/Ptracking">Previous Tracking</a>
-//         </div>
-//         <h2>Quality</h2>
-//         <div className="sidebar_link ">
-//           <i className="fa fa-handshake-o"></i>
-//           <a href="/quality">Quality</a>
-//         </div>
-//         <h2>SAFETY</h2>
-//         <div className="sidebar_link ">
-//           <i className="fa fa-question"></i>
-//           <a href="/safety">Safety</a>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Sidebar;
-
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
@@ -73,14 +17,6 @@ import SideNav, {
 } from "@trendmicro/react-sidenav";
 import { fontStyle } from "@mui/system";
 
-// const sideBar = () => {
-//     const navigate = useNavigate();
-//   const handleSelect = (selected) => {
-//   navigate("/" + selected);
-// };
-// }
-// sideBar;
-
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
@@ -91,53 +27,6 @@ class Sidebar extends React.Component {
 
   render() {
     return (
-      // <SideNav expanded={this.state.isVisible}>
-      //   <SideNav.Toggle
-      //     onClick={() => {
-      //       this.setState({ isVisible: !this.state.isVisible });
-      //     }}
-
-      //   />
-      //   <SideNav.Nav defaultSelected="Dashboard">
-      //     <NavItem eventKey="Dashboard" to="/home">
-      //       <NavIcon>
-      //         <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
-      //       </NavIcon>
-      //       <NavText>Dashboard</NavText>
-      //     </NavItem>
-      //     <NavItem eventKey="Add Product" href="/products">
-      //       <NavIcon>
-      //         <i className="fa fa-fw fa-line-chart" style={{ fontSize: "1.75em" }} />
-      //       </NavIcon>
-      //       <NavText>Add Product</NavText>
-      //     </NavItem>
-      //     <NavItem eventKey="Tracking" href="/tracking">
-      //       <NavIcon>
-      //         <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
-      //       </NavIcon>
-      //       <NavText>Tracking</NavText>
-      //     </NavItem>
-      //     <NavItem eventKey="Previous Tracking">
-      //       <NavIcon>
-      //         <i className="fa fa-fw fa-line-chart" style={{ fontSize: "1.75em" }} />
-      //       </NavIcon>
-      //       <NavLink to="/Ptracking">Previous Tracking</NavLink>
-      //     </NavItem>
-      //     <NavItem eventKey="Quality" href="/quality">
-      //       <NavIcon>
-      //         <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
-      //       </NavIcon>
-      //       <NavText>Quality</NavText>
-      //     </NavItem>
-      //     <NavItem eventKey="Safety" href="/safety">
-      //       <NavIcon>
-      //         <i className="fa fa-fw fa-line-chart" style={{ fontSize: "1.75em" }} />
-      //       </NavIcon>
-      //       <NavText>Safety</NavText>
-      //     </NavItem>
-      //   </SideNav.Nav>
-      // </SideNav>
-
       <ClickOutside
         onClickOutside={() => {
           document.getElementById("sidebar").style.width = "174px";
@@ -208,17 +97,6 @@ class Sidebar extends React.Component {
                   />
                 </NavIcon>
                 <NavText style={{ color: "orange" }}>Previous Tracking</NavText>
-              </NavItem>
-            </LinkContainer>
-            <LinkContainer to="/quality">
-              <NavItem eventKey="Quality" href="/quality">
-                <NavIcon>
-                  <i
-                    className="fa fa-fw fa-question"
-                    style={{ fontSize: "1.75em" }}
-                  />
-                </NavIcon>
-                <NavText style={{ color: "orange" }}>Quality</NavText>
               </NavItem>
             </LinkContainer>
             <LinkContainer to="/safety">

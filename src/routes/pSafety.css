@@ -1,0 +1,40 @@
+#editModal {
+    display: flex;
+    height: fit-content !important;
+    width: 100% !important;
+    justify-content: center;
+}
+
+#modalContainer {
+    display: inline-block;
+    width: 1500px !important;
+    height: 600px;
+    justify-content: center;
+    padding: 20px;
+}
+
+#modalCols {
+    display: inline-block;
+    /* width: 16.6% !important; */
+    /* height: 100%; */
+    padding: 40px;
+    width: 150px;
+    /* margin: 20px; */
+}
+
+#modalRows {
+    width: fit-content;
+    height: fit-content;
+    display: inline-block;
+}
+
+#dropdown {
+    display: inline-block;
+}
+
+#dateCol {
+    display: inline-block;
+    padding: 40px;
+    padding-right: 0px;
+    width: 180px !important;
+}

@@ -30,23 +30,47 @@
 
 #editModal {
     height: fit-content !important;
-    width: fit-content !important;
+    width: 100% !important;
 }
 
 #modalContainer {
     display: inline-block;
-    width: 100%;
-    height: 100%;
+    width: 800px;
+    height: 600px;
+    justify-content: center;
+    padding: 20px;
 }
 
 #modalCols {
-    width: 16.6% !important;
-    height: 100%;
-    padding: 30px;
-    margin: 20px;
+    display: inline-block;
+    /* width: 16.6% !important; */
+    /* height: 100%; */
+    padding: 40px;
+    /* margin: 20px; */
 }
 
 #modalRows {
-    width: 100%;
-    height: 40%;
+    width: fit-content;
+    height: fit-content;
+    display: inline-block;
 }
+
+#sdropdown {
+    display: inline-block;
+}
+
+#adropdown {
+    display: inline-block;
+}
+
+#typeText {
+    width: 100px !important;
+}
+
+#timeCol {
+    display: inline-block;
+    padding: 40px;
+    padding-right: 0px;
+    width: 180px !important;
+}
+
