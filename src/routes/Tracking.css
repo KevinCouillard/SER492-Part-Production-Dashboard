@@ -3,6 +3,9 @@
     height: stretch;
     justify-content: center;
 }
+h3{
+    margin: 10px;
+}
 
 .screen{
     justify-content: flex-start;
@@ -28,6 +31,7 @@
 
 .scrapForm {
     display: inline-block;
+    margin-left: 10px;
 }
 
 .plusIcon {
@@ -39,3 +43,15 @@
     margin-left: 20px;
 }
 
+.form-group{
+    width: 200px;
+    margin: 10px;
+}
+
+.alert{
+    width: 200px;
+}
+.comment-section{
+    width:300px;
+    margin: 10px;
+}
