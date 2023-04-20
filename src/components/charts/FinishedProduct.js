@@ -99,6 +99,16 @@ const FinishedProduct = () => {
     { id: area[0], lastName: target[0], firstName: shift[0], age: downTime[0] },
     { id: area[1], lastName: target[1], firstName: shift[1], age: downTime[1] },
   ];
+  const [startDate, setSDate] = useState("");
+  const sDate = (value) => {
+    setSDate(value);
+    console.log(startDate);
+  };
+  const [eDate, setEDate] = useState("");
+  const endDate = (eDate) => {
+    setEDate(eDate);
+    console.log(eDate);
+  };
   return (
     <div>
       {graphToggle === "Graphical" ? (
@@ -122,7 +132,11 @@ const FinishedProduct = () => {
         <Line data={data} options={options} />
       )}
 
-      <Filters onButtonClick={handleToggleClick} />
+      <Filters
+        onButtonClick={handleToggleClick}
+        sDate={sDate}
+        endDate={endDate}
+      />
     </div>
   );
 };

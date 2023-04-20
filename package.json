@@ -25,6 +25,7 @@
     "dayjs": "^1.11.7",
     "express-validator": "^6.15.0",
     "faker": "5.5.3",
+    "file-saver": "^2.0.5",
     "mdb-react-ui-kit": "^6.0.0",
     "mdbootstrap": "^4.20.0",
     "moment": "^2.29.4",
@@ -38,6 +39,7 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "rsuite": "^5.28.3",
+    "sheetjs-style": "^0.15.8",
     "styled-components": "^5.3.9",
     "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
