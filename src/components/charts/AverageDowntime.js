@@ -100,7 +100,9 @@ const AverageDowtime = () => {
           c4,
           downTime.reduce((a, b) => a + b, 0) / downTime.length,
         ],
-        backgroundColor: "rgb(255, 99, 132)",
+        
+        backgroundColor: "rgb(79,247, 138,0.5)",
+        
       },
     ],
   };
