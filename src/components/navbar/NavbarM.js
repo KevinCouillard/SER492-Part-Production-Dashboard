@@ -1,7 +1,7 @@
 import "./Navbar.css";
 import React from "react";
 
-const Navbar = ({ sidebarOpen, openSidebar }) => {
+const NavbarM = ({ sidebarOpen, openSidebar }) => {
   return (
     <div className="navbar">
       <div className="nav_icon" onClick={() => openSidebar()}>
@@ -11,6 +11,10 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
         <a id="title">Part Production Dashboard</a>
       </div>
       <div className="navbar_right">
+      <div className="navbar_createAccount">
+          <i className="fa fa-user-plus"></i>
+          <a href="/createAccount">Create Account</a>
+        </div>
       <div className="navbar_logout">
           <i className="fa fa-power-off"></i>
           <a href="/login">Log Out</a>
@@ -20,4 +24,4 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
   );
 };
 
-export default Navbar;
+export default NavbarM;
