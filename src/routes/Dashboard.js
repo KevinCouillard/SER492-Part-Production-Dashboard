@@ -55,32 +55,26 @@ const Dashboard = () => {
             <Container fluid id="dashboard">
               <Row>
                 <Col className="graphs" xs={4}>
-                  <h6>Finished vs Rework vs Scrap Products</h6> <PieChart />
                 </Col>
 
                 <Col className="graphs" xs={4}>
-                  <h6>Number of Finished Products</h6>
                   <FinishedProduct />
                 </Col>
                 <Col className="graphs" xs={4}>
                   {" "}
-                  <h6>Target vs Actual Products</h6>
                   <TargetAndActual />
                 </Col>
               </Row>
               <Row>
                 <Col className="graphs" xs={4}>
                   {" "}
-                  <h6>Average Amount of Scrap by Cell</h6>
                   <AverageScrap />
                 </Col>
                 <Col className="graphs" xs={4}>
-                  <h6>Average Amount of Downtime by Cell</h6>
                   <AverageDowntime />
                 </Col>
                 <Col className="graphs" xs={4}>
                   {" "}
-                  <h6>Good vs Scrap Product</h6>
                   <GoodVsScrap />
                 </Col>
               </Row>

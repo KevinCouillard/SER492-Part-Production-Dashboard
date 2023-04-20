@@ -78,7 +78,7 @@ const AverageScrap = () => {
           bad[3] / target[3],
           bad[4] / target[4],
         ],
-        backgroundColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgb(247, 79, 79,0.5)",
       },
     ],
   };

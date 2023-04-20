@@ -114,7 +114,7 @@ const TargetAndActual = () => {
           c4,
           cTarget.reduce((a, b) => a + b, 0) / cTarget.length,
         ],
-        backgroundColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgb(247,208,79,0.5)",
       },
       {
         label: "Actual",
@@ -125,7 +125,7 @@ const TargetAndActual = () => {
           c4Actual,
           cActual.reduce((a, b) => a + b, 0) / cTarget.length,
         ],
-        backgroundColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgb(158, 79, 247,0.5)",
       },
     ],
   };
