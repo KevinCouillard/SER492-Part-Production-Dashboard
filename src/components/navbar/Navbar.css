@@ -66,3 +66,15 @@
   color: Orange;
   font-size: medium;
 }
+
+.navbar_createAccount > i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.navbar_createAccount {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 18px;
+}
+

@@ -30,6 +30,7 @@ const Login = () => {
           })
             .then(function (response) {
               console.log(response);
+              navigate('/' + email + '/dashboard');
             })
             .catch((err) => console.log(err));
     };
