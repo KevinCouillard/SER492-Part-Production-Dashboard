@@ -38,3 +38,54 @@
     padding-right: 0px;
     width: 180px !important;
 }
+
+#col13{
+    display: inline-block;
+    margin-top: 5%;
+}
+
+#col14{
+    display: inline-block;
+    margin-left: 5%;
+    margin-top: 4%;
+}
+
+#col15{
+    display: inline-block;
+    margin-left: 5%;
+    margin-top: 4%;
+}
+
+#col16{
+    display: inline-block;
+    margin-top: 7%;
+}
+
+#col17{
+    display: inline-block;
+    margin-top: 7%;
+    margin-left: 5%;
+}
+
+#col18{
+    display: inline-block;
+    margin-top: 7%;
+    margin-left: 5%;
+}
+
+#col19{
+    display: inline-block;
+    margin-top: 10%;
+}
+
+#col20{
+    display: inline-block;
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
+#col21{
+    display: inline-block;
+    margin-top: 10%;
+    margin-left: 5%;
+}
