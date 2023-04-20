@@ -116,15 +116,15 @@ const Psafety = () => {
         </Modal.Header>
         <Modal.Body className="show-grid">
           <Container id="modalContainer">
-            <Row id="modalRows">
-              <Col id="modalCols" xl={2}>
+            <Row>
+              <Col id="col13" xl={2}>
                 {/* {"Type: "} */}
                 {/* <MDBInput value={type} id='typeText' type='text' onChange={(event) => {
                     setType(event.target.value);
                 }}/> */}
                 Type: {safetyList[safetyCardIndex].type}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col14" xl={2}>
                 {"Area: "}
                 <Select className="basic-single" id="dropdown" value={area} onChange={(event) => {
                     setArea(event.target.value);
@@ -141,7 +141,7 @@ const Psafety = () => {
                   <MenuItem value={10}>10</MenuItem>
                 </Select>
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col15" xl={2}>
                 {"Process: "}
                 <MDBInput value={process} id='typeText' type='text' onChange={(event) => {
                   setNewProcess(event.target.value)
@@ -152,21 +152,21 @@ const Psafety = () => {
             </Row>
 
             <Row>
-              <Col id="modalCols" xl={2}>
+              <Col id="col16" xl={2}>
                 {"Origin Name: "}
                 <MDBInput value={originName} id='typeText' type='text' onChange={(event) => {
                   setOriginName(event.target.value);
                 }}/>
                 {/* Origin Name: {safetyList[safetyCardIndex].originName} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col17" xl={2}>
                 {"Approve Name: "}
                 <MDBInput value={approveName} id='typeText' type='text' onChange={(event) => {
                   setApproveName(event.target.value);
                 }}/>
                 {/* Approve Name: {safetyList[safetyCardIndex].approveName} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col18" xl={2}>
                 {"Description: "}
                 <MDBInput value={description} id='typeText' type='text' onChange={(event) => {
                   setDescription(event.target.value);
@@ -175,15 +175,15 @@ const Psafety = () => {
               </Col>
             </Row>
   
-            <Row id="modalRows">
-              <Col id="modalCols" xl={2}>
+            <Row>
+              <Col id="col19" xl={2}>
                 {"Escalation Name: "}
                 <MDBInput value={escalationName} id='typeText' type='text' onChange={(event) => {
                   setEscalationName(event.target.value);
                 }}/>
                 {/* Escalation Name: {safetyList[safetyCardIndex].escalationName} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col20" xl={2}>
                 {"Target Date: "}
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DesktopDatePicker
@@ -196,7 +196,7 @@ const Psafety = () => {
                 </LocalizationProvider>
                 {/* Target Date: {safetyList[safetyCardIndex].targetDate} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col21" xl={2}>
                 {"Resolve Date: "}
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DesktopDatePicker

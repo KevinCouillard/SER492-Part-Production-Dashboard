@@ -7,13 +7,14 @@ import { MenuItem } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { useState, useEffect } from "react";
-import { DateRangePicker } from "react-date-range";
+import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import ExportExcel from "../ExportExcel";
 
 const Filters = (props) => {
   const style = {
@@ -21,9 +22,9 @@ const Filters = (props) => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 1000,
+    width: 400,
     bgcolor: "background.paper",
-    border: "2px solid #000",
+
     boxShadow: 24,
     p: 4,
   };
@@ -42,7 +43,8 @@ const Filters = (props) => {
       props.onButtonClick("Tabular");
     }
   };
-  const [state, setState] = useState([
+
+  const [date, setDate] = useState([
     {
       startDate: new Date(),
       endDate: addDays(new Date(), 7),
@@ -54,7 +56,7 @@ const Filters = (props) => {
     <div>
       <Container fluid>
         <Row id="filterRow">
-          <Col className="filterCols" xs={4}>
+          <Col className="filterCols" xs={3}>
             <FormControl sx={{ m: 1, minWidth: 100 }}>
               <InputLabel id="demo-simple-select-label">Product</InputLabel>
               <Select
@@ -75,8 +77,19 @@ const Filters = (props) => {
               </Select>
             </FormControl>
           </Col>
-          <Col xs={3}>
-            <Button onClick={handleOpen}>Date Range</Button>
+          <Col xs={2}>
+            {/* <Button onClick={handleOpen}>Date Range </Button> */}
+            <button
+              type="button"
+              id="toggleBtn"
+              class="btn btn-secondary"
+              data-toggle="button"
+              aria-pressed="false"
+              autocomplete="off"
+              onClick={handleOpen}
+            >
+              Date Range
+            </button>
             <Modal
               open={open}
               onClose={handleClose}
@@ -84,22 +97,20 @@ const Filters = (props) => {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
-                <DateRangePicker
-                  onChange={(item) => setState([item.selection])}
-                  showSelectionPreview={true}
+                <DateRange
+                  editableDateInputs={true}
+                  onChange={(item) => setDate([item.selection])}
                   moveRangeOnFirstSelection={false}
-                  months={2}
-                  ranges={state}
-                  direction="horizontal"
+                  ranges={date}
                 />
               </Box>
             </Modal>
           </Col>
-          <Col>
+          <Col xs={3}>
             <button
               type="button"
               id="toggleBtn"
-              class="btn btn-primary"
+              class="btn btn-secondary"
               value={graphState}
               data-toggle="button"
               aria-pressed="false"
@@ -108,6 +119,12 @@ const Filters = (props) => {
             >
               {graphState}
             </button>
+          </Col>
+          <Col xs={3}>
+            <ExportExcel
+              excelData={[{ "Frist Name": "bob" }]}
+              fileName={"Bruh"}
+            />
           </Col>
         </Row>
       </Container>

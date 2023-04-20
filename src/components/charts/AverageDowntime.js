@@ -24,8 +24,35 @@ ChartJS.register(
 
 const AverageDowtime = () => {
   const [trackingList, setTrackingList] = useState([]);
-
   const downTime = trackingList.map((x) => x.downTime);
+  const [tableList, setTableList] = useState([]);
+  const area = trackingList.map((x) => x.area);
+  const shift = trackingList.map((x) => x.shift);
+  const target = trackingList.map((x) => x.target);
+
+  const area1 = (value) => value.area === 1;
+  const c1 = trackingList
+    .filter(area1)
+    .map((x) => x.downTime)
+    .reduce((a, b) => a + b, 0);
+
+  const area2 = (value) => value.area === 2;
+  const c2 = trackingList
+    .filter(area2)
+    .map((x) => x.downTime)
+    .reduce((a, b) => a + b, 0);
+
+  const area3 = (value) => value.area === 3;
+  const c3 = trackingList
+    .filter(area3)
+    .map((x) => x.downTime)
+    .reduce((a, b) => a + b, 0);
+
+  const area4 = (value) => value.area === 4;
+  const c4 = trackingList
+    .filter(area4)
+    .map((x) => x.downTime)
+    .reduce((a, b) => a + b, 0);
 
   const [graphToggle, setGraphToggle] = useState("");
 
@@ -66,7 +93,13 @@ const AverageDowtime = () => {
     datasets: [
       {
         label: "Minutes of Downtime",
-        data: [downTime[0], downTime[1], downTime[2], downTime[3], downTime[4]],
+        data: [
+          c1,
+          c2,
+          c3,
+          c4,
+          downTime.reduce((a, b) => a + b, 0) / downTime.length,
+        ],
         backgroundColor: "rgb(255, 99, 132)",
       },
     ],
@@ -103,15 +136,8 @@ const AverageDowtime = () => {
     },
   ];
   const rows = [
-    { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-    { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-    { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+    { id: area[0], lastName: target[0], firstName: shift[0], age: downTime[0] },
+    { id: area[1], lastName: target[1], firstName: shift[1], age: downTime[1] },
   ];
   return (
     <div>
