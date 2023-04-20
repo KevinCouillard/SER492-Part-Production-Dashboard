@@ -31,20 +31,21 @@ const App = () => {
 
   return (
     // <Container id="screen">
-      <Router id="router">
-        <Routes id="Test">
-          <Route path="/login" element={<Login />} />
-          <Route path="/createAccount" element={<CreateAccount />} />
-          <Route path="/:userEmail/dashboard" element={<Dashboard />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/safety" element={<Safety />} />
-          <Route path="/tracking" element={<Tracking />} />
-          <Route path="/Ptracking" element={<Ptracking />} />
-          <Route path="/quality" element={<Quality />} />
-          <Route path="/Psafety" element={<Psafety />} />
-        </Routes>
-      </Router>
+    <Router id="router">
+      <Routes id="Test">
+        <Route path="/login" element={<Login />} />
+        <Route path="/createAccount" element={<CreateAccount />} />
+        <Route path="/:userEmail/dashboard" element={<Dashboard />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/safety" element={<Safety />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/tracking" element={<Tracking />} />
+        <Route path="/Ptracking" element={<Ptracking />} />
+        <Route path="/quality" element={<Quality />} />
+        <Route path="/Psafety" element={<Psafety />} />
+      </Routes>
+    </Router>
     // </Container>
 
     // <Router id="screen">
@@ -52,7 +53,7 @@ const App = () => {
     //     <Route path="/login" element={<Login />} />
     //     <Route path="/createAccount" element={<CreateAccount />} />
     //   </Routes>
-      
+
     //   <Container fluid className="screenContainer">
     //     <Row className="navContainer">
     //       <Col className="navBar">
@@ -78,7 +79,6 @@ const App = () => {
     //       </Col>
     //     </Row>
     //   </Container>
-
 
     //   <div className="container">
     //     <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
