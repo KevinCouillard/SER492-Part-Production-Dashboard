@@ -93,6 +93,7 @@ const Dashboard = () => {
           <Row className="mainContainer">
             <Col md={2} id="sidebar" className="sideBar" style={{width: '174px'}}>
               <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+              
             </Col>
             <Col md={8} className="screen">
               <Container fluid id="dashboard">
