@@ -156,8 +156,8 @@ const Ptracking = () => {
         </Modal.Header>
         <Modal.Body className="show-grid">
           <Container id="modalContainer">
-            <Row id="modalRows">
-              <Col id="modalCols" xl={2}>
+            <Row>
+              <Col id="col1" xl={2} style={{ }}>
                 {"Area: "}
                 {/* {setArea(trackingList[cardIndex].area)} */}
                 <Select className="basic-single" id="adropdown" value={area} onChange={(event) => {
@@ -176,7 +176,7 @@ const Ptracking = () => {
                 </Select>
                 {/* Area: {trackingList[cardIndex].area} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col2" xl={2}>
                 {"Shift: "} 
                 <Select className="basic-single" id="sdropdown" value={shift} onChange={(event) => {
                     setShift(event.target.value);
@@ -194,16 +194,13 @@ const Ptracking = () => {
                 </Select>
                 {/* {trackingList[cardIndex].shift} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col3" xl={2}>
                 {"Operator: "} 
                 <MDBInput value={operator} id='typeText' type='text' onChange={(event) => {
                     setOperator(event.target.value);
                 }}/>
                 {/* Operator: {trackingList[cardIndex].operator} */}
               </Col>
-            </Row>
-                
-            <Row>
               <Col id="timeCol" xl={2}>
                 {"Time: "}
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -216,69 +213,72 @@ const Ptracking = () => {
                 </LocalizationProvider>
                 {/* Time: {trackingList[cardIndex].time_tracked} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+            </Row>
+                
+            <Row>
+              <Col id="col4" xl={2}>
                 {"Target: "}
                 <MDBInput value={target} id='typeText' type='text' onChange={(event) => {
                     setTarget(event.target.value);
                 }}/>
                 {/* Target: {trackingList[cardIndex].target} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col5" xl={2}>
                 {"Cummulative Target: "}
                 <MDBInput value={cTarget} id='typeText' type='text' onChange={(event) => {
                     setCTarget(event.target.value);
                 }}/>
                 {/* Cummulative Target: {trackingList[cardIndex].cTarget} */}
               </Col>
-            </Row>
-
-            <Row>
-              <Col id="modalCols" xl={2}>
+              <Col id="col6" xl={2}>
                 {"Cummulative Actual: "}
                 <MDBInput value={cActual} id='typeText' type='text' onChange={(event) => {
                     setCActual(event.target.value);
                 }}/>
                 {/* Cummulative Actual Pieces: {trackingList[cardIndex].cActual} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col7" xl={2}>
                 {"Good: "}
                 <MDBInput value={good} id='typeText' type='text' onChange={(event) => {
                     setGood(event.target.value);
                 }}/>
                 {/* Good Parts: {trackingList[cardIndex].good} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+            </Row>
+
+            <Row>
+              <Col id="col8" xl={2}>
                 {"Bad: "}
                 <MDBInput value={bad} id='typeText' type='text' onChange={(event) => {
                     setBad(event.target.value);
                 }}/>
                 {/* Scrap: {trackingList[cardIndex].bad} */}
               </Col>
-            </Row>
-  
-            <Row id="modalRows">
-              <Col id="modalCols" xl={2}>
+              <Col id="col9" xl={2}>
                 {"Bad Code: "}
                 <MDBInput value={badCode} id='typeText' type='text' onChange={(event) => {
                     setBadCode(event.target.value);
                 }}/>
                 {/* Scrap Reason Code: {trackingList[cardIndex].badCode} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col10" xl={2}>
                 {"Down Time: "}
                 <MDBInput value={downTime} id='typeText' type='text' onChange={(event) => {
                     setDownTime(event.target.value);
                 }}/>
                 {/* Down Time: {trackingList[cardIndex].downTime} */}
               </Col>
-              <Col id="modalCols" xl={2}>
+              <Col id="col11" xl={2}>
                 {"Down Time Code: "}
                 <MDBInput value={dTimeCode} id='typeText' type='text' onChange={(event) => {
                     setDTimeCode(event.target.value);
                 }}/>
                 {/* Down Time Code: {trackingList[cardIndex].dTimeCode} */}
               </Col>
-              <Col id="modalCols">
+            </Row>
+  
+            <Row>
+              <Col id="col12">
                 {"Comment: "}
                 <MDBInput value={comment} id='typeText' type='text' onChange={(event) => {
                     setComment(event.target.value);

@@ -4,6 +4,12 @@
     width: 100%;
     height: 100%;
 }
+
+.modal-content{
+    width: 200%;
+
+}
+
 .dayInput {
     display: inline-block;
     /* margin-top: 60px; */
@@ -41,25 +47,76 @@
     padding: 20px;
 }
 
-#modalCols {
+#col5 {
     display: inline-block;
-    /* width: 16.6% !important; */
-    /* height: 100%; */
-    padding: 40px;
-    /* margin: 20px; */
+    margin-top: 5%;
+}
+
+#col1{
+    display: inline-block;
+    margin-top: 3%;
+}
+
+#col2{
+    display: inline-block;
+    margin-top: 3%;
+}
+
+#col3{
+    display: inline-block;
+    margin-top: 3%;
+}
+
+#col4{
+    display: inline-block;
+    margin-top: 5%;
+}
+
+#col6{
+    display: inline-block;
+    margin-top: 5%;
+    
+}
+
+#col7{
+    display: inline-block;
+    margin-top: 5%;
+    
+}
+
+#col8{
+    display: inline-block;
+    margin-top: 5%;
+    
+}
+
+#col9{
+    display: inline-block;
+    margin-top: 5%;
+    
+}
+
+#col10{
+    display: inline-block;
+    margin-top: 5%;
+    
+}
+
+#col11{
+    display: inline-block;
+    margin-top: 5%;
+    
+}
+
+#col12{
+    display: inline-block;
+    margin-top: 5%;
+    
 }
 
 #modalRows {
     width: fit-content;
     height: fit-content;
-    display: inline-block;
-}
-
-#sdropdown {
-    display: inline-block;
-}
-
-#adropdown {
     display: inline-block;
 }
 
@@ -69,8 +126,8 @@
 
 #timeCol {
     display: inline-block;
-    padding: 40px;
     padding-right: 0px;
     width: 180px !important;
+    margin-top: 3%;
 }
 
