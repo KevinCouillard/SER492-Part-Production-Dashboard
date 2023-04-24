@@ -54,7 +54,7 @@ const App = () => {
     //     <Route path="/login" element={<Login />} />
     //     <Route path="/createAccount" element={<CreateAccount />} />
     //   </Routes>
-      
+
     //   <Container fluid className="screenContainer">
     //     <Row className="navContainer">
     //       <Col className="navBar">
@@ -80,7 +80,6 @@ const App = () => {
     //       </Col>
     //     </Row>
     //   </Container>
-
 
     //   <div className="container">
     //     <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />

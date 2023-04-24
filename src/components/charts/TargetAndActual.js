@@ -57,8 +57,7 @@ const TargetAndActual = () => {
     endDate: endDate,
     key: "selection",
   };
-  // console.log(startDate.toLocaleDateString());
-  // console.log(endDate.toLocaleDateString());
+
   const handleSelect = (date) => {
     let filtered = allTrackingList.filter((tracking) => {
       let trackingDate = new Date(tracking["date_tracked"]);
@@ -86,7 +85,10 @@ const TargetAndActual = () => {
   const cTarget = trackingList.map((x) => x.cTarget);
   const cActual = trackingList.map((x) => x.cActual);
 
-  const area1 = (value) => value.area === 1;
+  const area1 = (value) =>
+    (product === "All" && value.area === 1) ||
+    (value.part_num === product && value.area === 1);
+
   const c1 = trackingList
     .filter(area1)
     .map((x) => x.cTarget)
@@ -95,8 +97,10 @@ const TargetAndActual = () => {
     .filter(area1)
     .map((x) => x.cActual)
     .reduce((a, b) => a + b, 0);
-
-  const area2 = (value) => value.area === 2;
+  console.log(product);
+  const area2 = (value) =>
+    (product === "All" && value.area === 2) ||
+    (value.part_num === product && value.area === 2);
   const c2 = trackingList
     .filter(area2)
     .map((x) => x.cTarget)
@@ -105,7 +109,9 @@ const TargetAndActual = () => {
     .filter(area2)
     .map((x) => x.cActual)
     .reduce((a, b) => a + b, 0);
-  const area3 = (value) => value.area === 3;
+  const area3 = (value) =>
+    (product === "All" && value.area === 3) ||
+    (value.part_num === product && value.area === 3);
   const c3 = trackingList
     .filter(area3)
     .map((x) => x.cTarget)
@@ -115,7 +121,9 @@ const TargetAndActual = () => {
     .map((x) => x.cActual)
     .reduce((a, b) => a + b, 0);
 
-  const area4 = (value) => value.area === 4;
+  const area4 = (value) =>
+    (product === "All" && value.area === 4) ||
+    (value.part_num === product && value.area === 4);
   const c4 = trackingList
     .filter(area4)
     .map((x) => x.cTarget)
@@ -252,9 +260,10 @@ const TargetAndActual = () => {
                 setProduct(event.target.value);
               }}
             >
+              <MenuItem value="All">All</MenuItem>
               {products.map((product) => (
-                <MenuItem value={product.product_name}>
-                  {product.product_name}
+                <MenuItem value={product.product_id}>
+                  {product.product_id}
                 </MenuItem>
               ))}
             </Select>
@@ -262,7 +271,6 @@ const TargetAndActual = () => {
         </Col>
 
         <Col xs={3}>
-          {/* <Button onClick={handleOpen}>Date Range </Button> */}
           <button
             type="button"
             id="toggleBtn"
