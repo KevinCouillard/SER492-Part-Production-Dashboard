@@ -33,9 +33,11 @@ const App = () => {
     // <Container id="screen">
       <Router id="router">
         <Routes id="Test">
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/createAccount" element={<CreateAccount />} />
           <Route path="/:userEmail/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/users" element={<Users />} />
           <Route path="/products" element={<Products />} />
           <Route path="/safety" element={<Safety />} />
