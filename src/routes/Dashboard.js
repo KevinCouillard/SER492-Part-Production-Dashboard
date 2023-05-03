@@ -98,22 +98,19 @@ const Dashboard = () => {
             </Col>
             <Col md={8} className="screen">
               <Container fluid id="dashboard">
-                <Row>
-                  {/* {/* <Col className="graphs" xs={4}>
-                    <h6>Finished vs Rework vs Scrap Products</h6> <PieChart />
-                  </Col> */}
+                <Row id="rowonegraph">
   
-                  <Col className="graphs" xs={4}>
+                  <Col className="graphs" xs={5}>
                     <h6>Number of Finished Products</h6>
                     <FinishedProduct />
                   </Col>
-                  <Col className="graphs" xs={4}>
+                  <Col className="graphs" xs={5}>
                     {" "}
                     <h6>Target vs Actual Products</h6>
                     <TargetAndActual />
                   </Col>
                 </Row>
-                <Row>
+                <Row id="rowtwograph">
                   <Col className="graphs" xs={4}>
                     {" "}
                     <h6>Average Amount of Scrap by Cell</h6>

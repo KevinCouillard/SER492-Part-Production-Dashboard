@@ -1,0 +1,28 @@
+.products{
+    width: 100%;
+    height: inherit;
+}
+.screen{
+    justify-content: flex-start;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.productName{
+    margin-top: 2%;
+}
+
+.productFamily{
+    margin-top: 2%;
+}
+
+.productCode{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+button{
+    margin-left: 1%;
+}
