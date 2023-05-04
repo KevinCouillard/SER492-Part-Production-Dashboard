@@ -29,11 +29,11 @@ const Filters = (props) => {
     p: 4,
   };
   const [product, setProduct] = useState("");
-  const [graphState, setGraphState] = useState("Tabular");
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const [graphState, setGraphState] = useState("Tabular");
   const handleGraphToggle = (newValue) => {
     if (graphState === "Tabular") {
       setGraphState("Graphical");

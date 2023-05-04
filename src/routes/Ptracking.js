@@ -5,7 +5,7 @@ import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { MDBInput } from 'mdb-react-ui-kit';
+import { MDBInput } from "mdb-react-ui-kit";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
@@ -16,11 +16,10 @@ import Card from "react-bootstrap/Card";
 import Axios from "axios";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./Ptracking.css";
-import Modal from 'react-bootstrap/Modal';
+import Modal from "react-bootstrap/Modal";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import Navbar from "../components/navbar/Navbar";
 import Sidebar from "../components/sidebar/Sidebar.js";
-
 
 const Ptracking = () => {
   const { Box } = require("@mui/system");
@@ -64,18 +63,13 @@ const Ptracking = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await Axios("http://localhost:4000/tracking");
-
+      const product = await Axios("http://localhost:4000/products");
+      setProductsList(product.data);
       setTrackingList(result.data);
     };
 
     fetchData();
   }, []);
-
-  // const fetchTracking = async (trackingId) => {
-  //   const tracking = await Axios("http://localhost:4000/tracking/" + trackingId);
-  //   setCurrentTracking(tracking);
-  //   console.log(currentTracking.operator);
-  // }
 
   const handleChangeTime = (newValue) => {
     setTime_tracked(newValue);
@@ -127,10 +121,16 @@ const Ptracking = () => {
 
   function MydModalWithGrid(props) {
     return (
-      <Modal {...props} backdrop="static" centered aria-labelledby="contained-modal-title-vcenter" id="editModal">
-        <Modal.Header closeButton >
+      <Modal
+        {...props}
+        backdrop="static"
+        centered
+        aria-labelledby="contained-modal-title-vcenter"
+        id="editModal"
+      >
+        <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            {"Date: "} 
+            {"Date: "}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DesktopDatePicker
                 label="Date Tracked"
@@ -146,12 +146,17 @@ const Ptracking = () => {
         <Modal.Body className="show-grid">
           <Container id="modalContainer">
             <Row>
-              <Col id="col1" xl={2} style={{ }}>
+              <Col id="col1" xl={2} style={{}}>
                 {"Area: "}
                 {/* {setArea(trackingList[cardIndex].area)} */}
-                <Select className="basic-single" id="adropdown" value={area} onChange={(event) => {
+                <Select
+                  className="basic-single"
+                  id="adropdown"
+                  value={area}
+                  onChange={(event) => {
                     setArea(event.target.value);
-                }}>
+                  }}
+                >
                   <MenuItem value={1}>1</MenuItem>
                   <MenuItem value={2}>2</MenuItem>
                   <MenuItem value={3}>3</MenuItem>
@@ -166,10 +171,15 @@ const Ptracking = () => {
                 {/* Area: {trackingList[cardIndex].area} */}
               </Col>
               <Col id="col2" xl={2}>
-                {"Shift: "} 
-                <Select className="basic-single" id="sdropdown" value={shift} onChange={(event) => {
+                {"Shift: "}
+                <Select
+                  className="basic-single"
+                  id="sdropdown"
+                  value={shift}
+                  onChange={(event) => {
                     setShift(event.target.value);
-                }}>
+                  }}
+                >
                   <MenuItem value={1}>1</MenuItem>
                   <MenuItem value={2}>2</MenuItem>
                   <MenuItem value={3}>3</MenuItem>
@@ -184,10 +194,15 @@ const Ptracking = () => {
                 {/* {trackingList[cardIndex].shift} */}
               </Col>
               <Col id="col3" xl={2}>
-                {"Operator: "} 
-                <MDBInput value={operator} id='typeText' type='text' onChange={(event) => {
+                {"Operator: "}
+                <MDBInput
+                  value={operator}
+                  id="typeText"
+                  type="text"
+                  onChange={(event) => {
                     setOperator(event.target.value);
-                }}/>
+                  }}
+                />
                 {/* Operator: {trackingList[cardIndex].operator} */}
               </Col>
               <Col id="timeCol" xl={2}>
@@ -203,34 +218,54 @@ const Ptracking = () => {
                 {/* Time: {trackingList[cardIndex].time_tracked} */}
               </Col>
             </Row>
-                
+
             <Row>
               <Col id="col4" xl={2}>
                 {"Target: "}
-                <MDBInput value={target} id='typeText' type='text' onChange={(event) => {
+                <MDBInput
+                  value={target}
+                  id="typeText"
+                  type="text"
+                  onChange={(event) => {
                     setTarget(event.target.value);
-                }}/>
+                  }}
+                />
                 {/* Target: {trackingList[cardIndex].target} */}
               </Col>
               <Col id="col5" xl={2}>
                 {"Cummulative Target: "}
-                <MDBInput value={cTarget} id='typeText' type='text' onChange={(event) => {
+                <MDBInput
+                  value={cTarget}
+                  id="typeText"
+                  type="text"
+                  onChange={(event) => {
                     setCTarget(event.target.value);
-                }}/>
+                  }}
+                />
                 {/* Cummulative Target: {trackingList[cardIndex].cTarget} */}
               </Col>
               <Col id="col6" xl={2}>
                 {"Cummulative Actual: "}
-                <MDBInput value={cActual} id='typeText' type='text' onChange={(event) => {
+                <MDBInput
+                  value={cActual}
+                  id="typeText"
+                  type="text"
+                  onChange={(event) => {
                     setCActual(event.target.value);
-                }}/>
+                  }}
+                />
                 {/* Cummulative Actual Pieces: {trackingList[cardIndex].cActual} */}
               </Col>
               <Col id="col7" xl={2}>
                 {"Good: "}
-                <MDBInput value={good} id='typeText' type='text' onChange={(event) => {
+                <MDBInput
+                  value={good}
+                  id="typeText"
+                  type="text"
+                  onChange={(event) => {
                     setGood(event.target.value);
-                }}/>
+                  }}
+                />
                 {/* Good Parts: {trackingList[cardIndex].good} */}
               </Col>
             </Row>
@@ -238,40 +273,65 @@ const Ptracking = () => {
             <Row>
               <Col id="col8" xl={2}>
                 {"Bad: "}
-                <MDBInput value={bad} id='typeText' type='text' onChange={(event) => {
+                <MDBInput
+                  value={bad}
+                  id="typeText"
+                  type="text"
+                  onChange={(event) => {
                     setBad(event.target.value);
-                }}/>
+                  }}
+                />
                 {/* Scrap: {trackingList[cardIndex].bad} */}
               </Col>
               <Col id="col9" xl={2}>
                 {"Bad Code: "}
-                <MDBInput value={badCode} id='typeText' type='text' onChange={(event) => {
+                <MDBInput
+                  value={badCode}
+                  id="typeText"
+                  type="text"
+                  onChange={(event) => {
                     setBadCode(event.target.value);
-                }}/>
+                  }}
+                />
                 {/* Scrap Reason Code: {trackingList[cardIndex].badCode} */}
               </Col>
               <Col id="col10" xl={2}>
                 {"Down Time: "}
-                <MDBInput value={downTime} id='typeText' type='text' onChange={(event) => {
+                <MDBInput
+                  value={downTime}
+                  id="typeText"
+                  type="text"
+                  onChange={(event) => {
                     setDownTime(event.target.value);
-                }}/>
+                  }}
+                />
                 {/* Down Time: {trackingList[cardIndex].downTime} */}
               </Col>
               <Col id="col11" xl={2}>
                 {"Down Time Code: "}
-                <MDBInput value={dTimeCode} id='typeText' type='text' onChange={(event) => {
+                <MDBInput
+                  value={dTimeCode}
+                  id="typeText"
+                  type="text"
+                  onChange={(event) => {
                     setDTimeCode(event.target.value);
-                }}/>
+                  }}
+                />
                 {/* Down Time Code: {trackingList[cardIndex].dTimeCode} */}
               </Col>
             </Row>
-  
+
             <Row>
               <Col id="col12">
                 {"Comment: "}
-                <MDBInput value={comment} id='typeText' type='text' onChange={(event) => {
+                <MDBInput
+                  value={comment}
+                  id="typeText"
+                  type="text"
+                  onChange={(event) => {
                     setComment(event.target.value);
-                }}/>
+                  }}
+                />
                 {/* Comment: {trackingList[cardIndex].comment} */}
               </Col>
             </Row>
@@ -281,34 +341,41 @@ const Ptracking = () => {
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={ () => {
-            console.log(trackingList[cardIndex].tracking_id);
-            console.log(trackingList[cardIndex].area);
-            console.log(area);
-            Axios.put(url + "/tracking/" + trackingList[cardIndex].tracking_id, {
-              operator: operator,
-              area: area,
-              shift: shift,
-              date_tracked: date_tracked,
-              time_tracked: time_tracked,
-              target: target,
-              cTarget: cTarget,
-              cActual: cActual,
-              good: good,
-              bad: bad,
-              badCode: badCode,
-              downTime: downTime,
-              dTimeCode: dTimeCode,
-              comment: comment,
-              headers: {
-                "content-type": "application/json",
-              },
-            })
-              .then(function (response) {
-                console.log(response);
-              })
-              .catch((err) => console.log(err));
-          }}>Save</Button>
+          <Button
+            onClick={() => {
+              console.log(trackingList[cardIndex].tracking_id);
+              console.log(trackingList[cardIndex].area);
+              console.log(area);
+              Axios.put(
+                url + "/tracking/" + trackingList[cardIndex].tracking_id,
+                {
+                  operator: operator,
+                  area: area,
+                  shift: shift,
+                  date_tracked: date_tracked,
+                  time_tracked: time_tracked,
+                  target: target,
+                  cTarget: cTarget,
+                  cActual: cActual,
+                  good: good,
+                  bad: bad,
+                  badCode: badCode,
+                  downTime: downTime,
+                  dTimeCode: dTimeCode,
+                  comment: comment,
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                }
+              )
+                .then(function (response) {
+                  console.log(response);
+                })
+                .catch((err) => console.log(err));
+            }}
+          >
+            Save
+          </Button>
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
@@ -316,30 +383,126 @@ const Ptracking = () => {
   }
 
   return (
-
     <Container fluid className="screenContainer">
-        <Row className="navContainer">
-          <Col className="navBar">
-            <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-          </Col>
-        </Row>
-        <Row className="mainContainer">
-          <Col md={2} id="sidebar" className="sideBar" style={{width: '174px'}}>
-            <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
-          </Col>
-          <Col md={8} className="screen">
-            <Container className="filterBar" fluid>
-              <Row id="filter">
-                <Col>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DesktopDatePicker
-                      label="Date"
-                      inputFormat="MM/DD/YYYY"
-                      className="dayInput"
-                      value={value}
-                      onChange={handleChangeDate}
-                      renderInput={(params) => <TextField {...params} />}
+      <Row className="navContainer">
+        <Col className="navBar">
+          <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+        </Col>
+      </Row>
+      <Row className="mainContainer">
+        <Col md={2} id="sidebar" className="sideBar" style={{ width: "174px" }}>
+          <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+        </Col>
+        <Col md={8} className="screen">
+          <Container className="filterBar" fluid>
+            <Row id="filter">
+              <Col>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DesktopDatePicker
+                    label="Date"
+                    inputFormat="MM/DD/YYYY"
+                    className="dayInput"
+                    value={value}
+                    onChange={handleChangeDate}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+              </Col>
+              <Col>
+                <label>Month: </label>
+                <Select value={selectionMonth} onChange={handleSelectMonth}>
+                  <MenuItem value="January">January</MenuItem>
+                  <MenuItem value="Febuary">Febuary</MenuItem>
+                  <MenuItem value="March">March</MenuItem>
+                  <MenuItem value="April">April</MenuItem>
+                  <MenuItem value="May">May</MenuItem>
+                  <MenuItem value="June">June</MenuItem>
+                  <MenuItem value="July">July</MenuItem>
+                  <MenuItem value="August">August</MenuItem>
+                  <MenuItem value="September">September</MenuItem>
+                  <MenuItem value="October">October</MenuItem>
+                  <MenuItem value="November">November</MenuItem>
+                  <MenuItem value="December">December</MenuItem>
+                </Select>
+              </Col>
+              <Col>
+                <label>Shift: </label>
+                <Select value={selectionShift} onChange={handleSelectShift}>
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={6}>6</MenuItem>
+                  <MenuItem value={7}>7</MenuItem>
+                  <MenuItem value={8}>8</MenuItem>
+                  <MenuItem value={9}>9</MenuItem>
+                  <MenuItem value={10}>10</MenuItem>
+                </Select>
+              </Col>
+              <Col>
+                <label>Operator: </label>
+                <Select
+                  value={selectionOperator}
+                  onChange={handleSelectOperator}
+                >
+                  <MenuItem value="Matt">Matt</MenuItem>
+                  <MenuItem value="Jeff">Jeff</MenuItem>
+                  <MenuItem value="James">James</MenuItem>
+                </Select>
+              </Col>
+            </Row>
+            <Row>
+              <Col id="cardsCol">
+                {trackingList.map((val, index) => (
+                  <Card id="trackingCard" key={index}>
+                    {/* Try using val.tracking_id in title then getting that (should fix the delay) */}
+                    <Card.Header
+                      key={val.tracking_id}
+                      title={index}
+                      value={val}
+                      onClick={editTracking}
+                    >
+                      Date: {val.date_tracked} &nbsp; &nbsp; &nbsp; &nbsp; Area:{" "}
+                      {val.area} &nbsp; &nbsp; &nbsp; &nbsp; Shift: {val.shift}{" "}
+                      &nbsp; &nbsp; &nbsp; &nbsp; Operator: {val.operator}{" "}
+                      &nbsp; &nbsp; &nbsp; &nbsp; Time: {val.time_tracked}
+                    </Card.Header>
+                    <Card.Body>
+                      <Card.Title></Card.Title>
+                      <Card.Text>
+                        Target: {val.target} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        Good Parts: {val.good} &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; Comment: {val.comment}
+                      </Card.Text>
+                      <br></br>
+                      <Card.Text>
+                        Cummulative Target: {val.cTarget} &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scrap:{" "}
+                        {val.bad} &nbsp; &nbsp; Reason Code: {val.badCode}
+                      </Card.Text>
+                      <br></br>
+                      <Card.Text>
+                        Cummulative Actual Pieces: {val.cActual} &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; Down Time: {val.downTime}{" "}
+                        &nbsp; &nbsp; Down Time Code: {val.dTimeCode}
+                      </Card.Text>
+                    </Card.Body>
+                    <MydModalWithGrid
+                      style={{ weight: "700px" }}
+                      title={index}
+                      value={val}
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
                     />
+<<<<<<< HEAD
                   </LocalizationProvider>
                 </Col>
                 <Col>
@@ -429,6 +592,115 @@ const Ptracking = () => {
           </Col>
         </Row>
       </Container>
+=======
+                  </Card>
+                ))}
+              </Col>
+            </Row>
+          </Container>
+        </Col>
+      </Row>
+    </Container>
+
+    // <Container className="filterBar" fluid>
+    //   <Row id="filter">
+    //     <Col>
+    //       <LocalizationProvider dateAdapter={AdapterDayjs}>
+    //         <DesktopDatePicker
+    //           label="Date"
+    //           inputFormat="MM/DD/YYYY"
+    //           className="dayInput"
+    //           value={value}
+    //           onChange={handleChangeDate}
+    //           renderInput={(params) => <TextField {...params} />}
+    //         />
+    //       </LocalizationProvider>
+    //     </Col>
+    //     <Col>
+    //       <label>Month: </label>
+    //       <Select value={selectionMonth} onChange={handleSelectMonth}>
+    //         <MenuItem value="January">January</MenuItem>
+    //         <MenuItem value="Febuary">Febuary</MenuItem>
+    //         <MenuItem value="March">March</MenuItem>
+    //         <MenuItem value="April">April</MenuItem>
+    //         <MenuItem value="May">May</MenuItem>
+    //         <MenuItem value="June">June</MenuItem>
+    //         <MenuItem value="July">July</MenuItem>
+    //         <MenuItem value="August">August</MenuItem>
+    //         <MenuItem value="September">September</MenuItem>
+    //         <MenuItem value="October">October</MenuItem>
+    //         <MenuItem value="November">November</MenuItem>
+    //         <MenuItem value="December">December</MenuItem>
+    //       </Select>
+    //     </Col>
+    //     <Col>
+    //       <label>Shift: </label>
+    //       <Select value={selectionShift} onChange={handleSelectShift}>
+    //         <MenuItem value={1}>1</MenuItem>
+    //         <MenuItem value={2}>2</MenuItem>
+    //         <MenuItem value={3}>3</MenuItem>
+    //         <MenuItem value={4}>4</MenuItem>
+    //         <MenuItem value={5}>5</MenuItem>
+    //         <MenuItem value={6}>6</MenuItem>
+    //         <MenuItem value={7}>7</MenuItem>
+    //         <MenuItem value={8}>8</MenuItem>
+    //         <MenuItem value={9}>9</MenuItem>
+    //         <MenuItem value={10}>10</MenuItem>
+    //       </Select>
+    //     </Col>
+    //     <Col>
+    //       <label>Operator: </label>
+    //       <Select value={selectionOperator} onChange={handleSelectOperator}>
+    //         <MenuItem value="Matt">Matt</MenuItem>
+    //         <MenuItem value="Jeff">Jeff</MenuItem>
+    //         <MenuItem value="James">James</MenuItem>
+    //       </Select>
+    //     </Col>
+    //   </Row>
+    //   <Row>
+    //     <Col id="cardsCol">
+    //       {trackingList.map((val, index) => (
+    //         <Card id="trackingCard" key={index}>
+    //           {/* Try using val.tracking_id in title then getting that (should fix the delay) */}
+    //           <Card.Header key={val.tracking_id} title={index} value={val} onClick={editTracking}>
+    //             Date: {val.date_tracked} &nbsp; &nbsp; &nbsp; &nbsp; Area:{" "}
+    //             {val.area} &nbsp; &nbsp; &nbsp; &nbsp; Shift: {val.shift} &nbsp;
+    //             &nbsp; &nbsp; &nbsp; Operator: {val.operator} &nbsp; &nbsp;
+    //             &nbsp; &nbsp; Time: {val.time_tracked}
+    //           </Card.Header>
+    //           <Card.Body>
+    //             <Card.Title></Card.Title>
+    //             <Card.Text>
+    //               Target: {val.target} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Good Parts:{" "}
+    //               {val.good} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; Comment: {val.comment}
+    //             </Card.Text>
+    //             <br></br>
+    //             <Card.Text>
+    //               Cummulative Target: {val.cTarget} &nbsp; &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scrap: {val.bad}{" "}
+    //               &nbsp; &nbsp; Reason Code: {val.badCode}
+    //             </Card.Text>
+    //             <br></br>
+    //             <Card.Text>
+    //               Cummulative Actual Pieces: {val.cActual} &nbsp; &nbsp; &nbsp;
+    //               &nbsp; &nbsp; &nbsp; Down Time: {val.downTime} &nbsp; &nbsp;
+    //               Down Time Code: {val.dTimeCode}
+    //             </Card.Text>
+    //           </Card.Body>
+    //           <MydModalWithGrid style={{weight: '700px'}} title={index} value={val} show={modalShow} onHide={() => setModalShow(false)} />
+    //         </Card>
+    //       ))}
+    //     </Col>
+    //   </Row>
+    // </Container>
+>>>>>>> dca2f527518e21928f873e8415cfac54a5e02d9d
   );
 };
 

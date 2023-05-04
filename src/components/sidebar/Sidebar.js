@@ -48,13 +48,13 @@ class Sidebar extends React.Component {
         >
           <SideNav.Toggle />
           <SideNav.Nav defaultSelected="Dashboard">
-            <img
+            {/* <img
               className="logo"
               width={100}
               height={100}
               src={require("../../ParkerLogo.png")}
               alt="Part Production Dashboard"
-            />
+            /> */}
             <LinkContainer to="/dashboard" activeClassName="active">
               <NavItem eventKey="Dashboard">
                 <NavIcon>
