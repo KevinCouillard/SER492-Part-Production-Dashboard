@@ -59,7 +59,7 @@ class Sidebar extends React.Component {
               <NavItem eventKey="Dashboard">
                 <NavIcon>
                   <i
-                    className="fa fa-fw fa-home"
+                    className="fa fa-fw fa-bar-chart"
                     style={{ fontSize: "1.75em" }}
                   />
                 </NavIcon>
@@ -70,7 +70,7 @@ class Sidebar extends React.Component {
               <NavItem eventKey="Add Product" href="/products">
                 <NavIcon>
                   <i
-                    className="fa fa-fw fa-line-chart"
+                    className="fa fa-fw fa-plus"
                     style={{ fontSize: "1.75em" }}
                   />
                 </NavIcon>
@@ -81,7 +81,7 @@ class Sidebar extends React.Component {
               <NavItem eventKey="Tracking" href="/tracking">
                 <NavIcon>
                   <i
-                    className="fa fa-fw fa-wrench"
+                    className="fa fa-fw fa-list"
                     style={{ fontSize: "1.75em" }}
                   />
                 </NavIcon>
@@ -92,7 +92,7 @@ class Sidebar extends React.Component {
               <NavItem eventKey="Previous Tracking">
                 <NavIcon>
                   <i
-                    className="fa fa-fw fa-archive"
+                    className="fa fa-fw fa-folder"
                     style={{ fontSize: "1.75em" }}
                   />
                 </NavIcon>
@@ -103,7 +103,7 @@ class Sidebar extends React.Component {
               <NavItem eventKey="Safety" href="/safety">
                 <NavIcon>
                   <i
-                    className="fa fa-fw fa-handshake-o"
+                    className="fa fa-fw fa-medkit"
                     style={{ fontSize: "1.75em" }}
                   />
                 </NavIcon>
@@ -114,7 +114,7 @@ class Sidebar extends React.Component {
               <NavItem eventKey="pSafety" href="/pSafety">
                 <NavIcon>
                   <i
-                    className="fa fa-fw fa-archive"
+                    className="fa fa-fw fa-folder"
                     style={{ fontSize: "1.75em" }}
                   />
                 </NavIcon>

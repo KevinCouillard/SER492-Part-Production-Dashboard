@@ -54,6 +54,7 @@ const GoodVsScrap = () => {
       title: {
         display: true,
         text: "Good and Scrap Product",
+        
       },
     },
     responsive: true,
@@ -72,13 +73,13 @@ const GoodVsScrap = () => {
       {
         label: "Good",
         data: [good[0], good[1], good[2], good[3], good[4]],
-        backgroundColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgb(247,130,79,0.5)",
         stack: "Stack 0",
       },
       {
         label: "Scrap",
         data: [bad[0], bad[1], bad[2], bad[3], bad[4]],
-        backgroundColor: "rgb(75, 192, 192)",
+        backgroundColor: "rgb(79, 138, 247,0.5)",
         stack: "Stack 1",
       },
     ],

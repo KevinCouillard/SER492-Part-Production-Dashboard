@@ -6,6 +6,7 @@ import Sidebar from "../components/sidebar/Sidebar.js";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import "./Products.css";
 
 const Products = () => {
   const url = "http://localhost:4000";
@@ -60,6 +61,8 @@ const Products = () => {
           </Col>
           <Col md={8} className="screen">
             <div className="products">
+            <h3>Add Product </h3>
+            <Col>
               <div className="productName">
                 <label> Product Name:</label>
                 <input
@@ -69,7 +72,8 @@ const Products = () => {
                   }}
                 />
               </div>
-
+              </Col>
+              <Col>
               <div className="productFamily">
                 <label> Product Family:</label>
                 <input
@@ -79,7 +83,8 @@ const Products = () => {
                   }}
                 />
               </div>
-
+              </Col>
+              <Col>
               <div className="productCode">
                 <label> Product Code:</label>
                 <input
@@ -89,7 +94,7 @@ const Products = () => {
                   }}
                 />
               </div>
-
+              </Col>
               <button onClick={getProducts}>Get Products</button>
               <button onClick={addProducts}>Add Products</button>
 

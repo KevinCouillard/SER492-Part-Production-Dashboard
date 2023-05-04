@@ -178,8 +178,14 @@ const TargetAndActual = () => {
     datasets: [
       {
         label: "Target",
-        data: [c1, c2, c3, c4, (c1 + c2 + c3 + c4) / 4],
-        backgroundColor: "rgb(255, 99, 132)",
+        data: [
+          c1,
+          c2,
+          c3,
+          c4,
+          cTarget.reduce((a, b) => a + b, 0) / cTarget.length,
+        ],
+        backgroundColor: "rgb(247,208,79,0.5)",
       },
       {
         label: "Actual",
@@ -190,7 +196,7 @@ const TargetAndActual = () => {
           c4Actual,
           (c1Actual + c2Actual + c3Actual + c4Actual) / 4,
         ],
-        backgroundColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgb(158, 79, 247,0.5)",
       },
     ],
   };

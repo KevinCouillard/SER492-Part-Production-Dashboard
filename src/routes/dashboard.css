@@ -24,6 +24,14 @@ h6 {
   margin-top: 5px;
 }
 
+#rowonegraph{
+  margin-left: 7%;
+  margin-top: 2%;
+}
+
+#rowtwograph{
+  margin-top: 2%;
+}
 /* #filterRow {
     justify-content: center;
     align-items: center; 
