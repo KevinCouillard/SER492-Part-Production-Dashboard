@@ -247,11 +247,9 @@ return (
               autoComplete="off"
             ></Box> */}
 	
-	<div>
+	<div className="tracking">
+	<h3>Day By Hour Tracking </h3>
 	<form className="ui form">
-
-    
-  <h3>Day By Hour Tracking </h3>
 
   <Row>
   <div className="form-group">
@@ -302,6 +300,7 @@ return (
 		</div>
 		)}
     </Row>
+	<div className="sectionone">
   <label style={{margin : 10}}>Area: </label>
     <Select className="partNum" id="dropdown" value={area}  placeholder="Area 1" onChange={(event) => {
         setArea(event.target.value);
@@ -332,10 +331,7 @@ return (
       <MenuItem value="1:00-2:00 P.M.">3:00-4:00 P.M.</MenuItem>
       <MenuItem value="12:00-1:00 P.M.">4:00-5:00 P.M.</MenuItem>
     </Select>
-      
-    
-    
-
+	</div>
 {/*     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <TimePicker
         label="Time Tracked"
@@ -361,7 +357,7 @@ return (
 			{errors.time_tracked}
 		</div>
 		)} */}
-    <Row>
+    <Row className="rowone">
 		<div className="form-group">
 		<label>Target</label>
 		<input
@@ -392,6 +388,8 @@ return (
 			{errors.cTarget}
 		</div>
 		)}
+		</Row>
+		<Row className="rowtwo">
 		<div className="form-group">
 		<label>Cummulative Actual</label>
 		<input
@@ -424,9 +422,8 @@ return (
 		)}
     </Row>
     
-    
-    {scrapListHtml}
     <div className="scrapForm">
+	{scrapListHtml}
     <div className="plusBtn">
         <button class="btn btn-light" onClick={newScrap}><FontAwesomeIcon icon={faPlus} className="plusIcon" />Add Reason Code</button>
       </div>

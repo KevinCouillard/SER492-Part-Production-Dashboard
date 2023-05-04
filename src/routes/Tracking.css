@@ -7,6 +7,10 @@ h3{
     margin: 10px;
 }
 
+.tracking{
+    width: max-content;
+    height: inherit;
+}
 .screen{
     justify-content: flex-start;
     display: inline-flex;
@@ -22,7 +26,6 @@ h3{
 .partNum{
     display: inline-flex;
     justify-content: center;
-    margin-top: 25px;
     margin-left: 10px;
     height: 50px;
     width: 180px;
@@ -32,6 +35,7 @@ h3{
 .scrapForm {
     display: inline-block;
     margin-left: 10px;
+    margin-top: 3%;
 }
 
 .plusIcon {
@@ -46,12 +50,26 @@ h3{
 .form-group{
     width: 200px;
     margin: 10px;
+    display: inline-block;
 }
 
 .alert{
     width: 200px;
 }
+
 .comment-section{
-    width:300px;
+    width: 500px;
     margin: 10px;
+}
+
+.sectionone{
+    margin-top: 2%;
+}
+
+.rowone{
+    margin-top: 1%;
+}
+
+.rowtwo{
+    margin-top: 1%;
 }
