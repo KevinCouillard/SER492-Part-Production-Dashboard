@@ -30,6 +30,8 @@ const Dashboard = () => {
   const [isManager, setIsManager] = useState(false);
   const [userList, setUserList] = useState([]);
 
+  //const [user, setUser] = useState();
+
   const location = useLocation();
 
   const str = location.pathname;
@@ -45,11 +47,14 @@ const Dashboard = () => {
       //setUserList(result.data.users);
       const user = result.data.users.find((user) => user.email == laststr);
       console.log(user);
+      //setUser(user);
       setIsManager(user.isManager);
     };
 
     fetchData();
   }, []);
+
+  
 
   // const user = userList.find(user => user.email == laststr);
   // console.log(user);

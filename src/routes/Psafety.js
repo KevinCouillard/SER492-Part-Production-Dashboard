@@ -144,8 +144,8 @@ const Psafety = () => {
               <Col id="col15" xl={2}>
                 {"Process: "}
                 <MDBInput value={process} id='typeText' type='text' onChange={(event) => {
-                  setNewProcess(event.target.value)
-                  // setProcess(event.target.value);
+                  // setNewProcess(event.target.value)
+                  setProcess(event.target.value);
                 }}/>
                 {/* Process: {safetyList[safetyCardIndex].process} */}
               </Col>

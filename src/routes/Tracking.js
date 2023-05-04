@@ -190,6 +190,7 @@ useEffect(() => {
   loadScrapList(scrapList)
 }, [scrapList]);
 
+
 const loadScrapList = (scrapList) => {
   
   setscrapListHtml(
@@ -218,9 +219,9 @@ const loadScrapList = (scrapList) => {
     ))
   );
 }
-const newScrap = () => { 
-  console.log(scrapList)
-  setScrapList([...scrapList, { scrap: "" }]);
+const newScrap = (e) => { 
+	e.preventDefault();
+  	setScrapList([...scrapList, { scrap: "" }]);
 };
 
 return (
