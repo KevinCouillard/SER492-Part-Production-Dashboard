@@ -164,8 +164,9 @@ const Tracking = () => {
     setSelection(e.target.value);
   };
 
-  const newScrap = () => {
+  const newScrap = (e) => {
     console.log(scrapList);
+    e.preventDefault();
     setScrapList([...scrapList, { scrap: "" }]);
   };
 

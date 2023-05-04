@@ -29,6 +29,7 @@ const Ptracking = () => {
   const [date_tracked, setDate_tracked] = useState("");
   const [value, setValue] = React.useState(dayjs());
   const [trackingList, setTrackingList] = useState([]);
+  const [productsList, setProductsList] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [cardIndex, setCardIndex] = useState(0);
   const [cardValue, setCardValue] = useState();
