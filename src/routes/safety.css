@@ -5,6 +5,7 @@
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle;
+    padding: 5%;
 }
 .screen{
     justify-content: flex-start;
