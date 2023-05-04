@@ -14,7 +14,7 @@ import Filters from "../charts/Filters";
 import Row from "react-bootstrap/Row";
 import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import Modal from "@mui/material/Modal";
@@ -41,7 +41,6 @@ const TargetAndActual = () => {
     transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
-
     boxShadow: 24,
     p: 4,
   };
@@ -57,7 +56,15 @@ const TargetAndActual = () => {
     endDate: endDate,
     key: "selection",
   };
+  const [graphState, setGraphState] = useState("Tabular");
 
+  const handleGraphToggle = (newValue) => {
+    if (graphState === "Tabular") {
+      setGraphState("Graphical");
+    } else if (graphState === "Graphical") {
+      setGraphState("Tabular");
+    }
+  };
   const handleSelect = (date) => {
     let filtered = allTrackingList.filter((tracking) => {
       let trackingDate = new Date(tracking["date_tracked"]);
@@ -77,18 +84,14 @@ const TargetAndActual = () => {
   const [trackingList, setTrackingList] = useState([]);
   const [allTrackingList, setAllTrackingList] = useState([]);
   const [products, setProducts] = useState([]);
-  const [tableList, setTableList] = useState([]);
   const area = trackingList.map((x) => x.area);
   const shift = trackingList.map((x) => x.shift);
   const target = trackingList.map((x) => x.target);
   const downTime = trackingList.map((x) => x.downTime);
-  const cTarget = trackingList.map((x) => x.cTarget);
-  const cActual = trackingList.map((x) => x.cActual);
 
   const area1 = (value) =>
     (product === "All" && value.area === 1) ||
     (value.part_num === product && value.area === 1);
-
   const c1 = trackingList
     .filter(area1)
     .map((x) => x.cTarget)
@@ -97,7 +100,7 @@ const TargetAndActual = () => {
     .filter(area1)
     .map((x) => x.cActual)
     .reduce((a, b) => a + b, 0);
-  console.log(product);
+
   const area2 = (value) =>
     (product === "All" && value.area === 2) ||
     (value.part_num === product && value.area === 2);
@@ -109,6 +112,7 @@ const TargetAndActual = () => {
     .filter(area2)
     .map((x) => x.cActual)
     .reduce((a, b) => a + b, 0);
+
   const area3 = (value) =>
     (product === "All" && value.area === 3) ||
     (value.part_num === product && value.area === 3);
@@ -174,13 +178,7 @@ const TargetAndActual = () => {
     datasets: [
       {
         label: "Target",
-        data: [
-          c1,
-          c2,
-          c3,
-          c4,
-          cTarget.reduce((a, b) => a + b, 0) / cTarget.length,
-        ],
+        data: [c1, c2, c3, c4, (c1 + c2 + c3 + c4) / 4],
         backgroundColor: "rgb(255, 99, 132)",
       },
       {
@@ -190,62 +188,57 @@ const TargetAndActual = () => {
           c2Actual,
           c3Actual,
           c4Actual,
-          cActual.reduce((a, b) => a + b, 0) / cTarget.length,
+          (c1Actual + c2Actual + c3Actual + c4Actual) / 4,
         ],
         backgroundColor: "rgb(53, 162, 235)",
       },
     ],
   };
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "id", headerName: "ID", width: 100 },
     {
-      field: "firstName",
-      headerName: "First name",
-      width: 150,
+      field: "Target",
+      headerName: "Target",
+      width: 120,
       editable: true,
     },
     {
-      field: "lastName",
-      headerName: "Last name",
-      width: 150,
+      field: "Actual",
+      headerName: "Actual",
+      width: 100,
       editable: true,
     },
     {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      width: 110,
+      field: "Date",
+      headerName: "Date",
+      width: 100,
       editable: true,
     },
   ];
-  const rows = [
-    { id: area[0], lastName: target[0], firstName: shift[0], age: downTime[0] },
-    { id: area[1], lastName: target[1], firstName: shift[1], age: downTime[1] },
-  ];
+
+  const rows = trackingList.map((track) => ({
+    id: `${track.tracking_id}`,
+    Target: `${track.cTarget}`,
+    Actual: `${track.cActual}`,
+    Date: `${track.date_tracked}`,
+  }));
   return (
     <div>
-      {graphToggle === "Graphical" ? (
+      {graphState === "Graphical" ? (
         <Box sx={{ height: 230, width: "100%" }}>
           <DataGrid
             rows={rows}
             columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 2,
-                },
-              },
-            }}
+            initialState={{}}
+            hideFooter
             pageSizeOptions={[5]}
-            checkboxSelection
-            disableRowSelectionOnClick
           />
         </Box>
       ) : (
         <Bar data={data} options={options} />
       )}
       <Row id="filterRow">
-        <Col className="filterCols" xs={4}>
+        <Col className="filterCols" xs={3}>
           <FormControl sx={{ m: 1, minWidth: 100 }}>
             <InputLabel id="demo-simple-select-label">Product</InputLabel>
             <Select
@@ -255,22 +248,20 @@ const TargetAndActual = () => {
               value={product}
               label="Product"
               autoWidth
-              placeholder="Product 1"
+              defaultValue={"All"}
               onChange={(event) => {
                 setProduct(event.target.value);
               }}
             >
               <MenuItem value="All">All</MenuItem>
               {products.map((product) => (
-                <MenuItem value={product.product_id}>
-                  {product.product_id}
-                </MenuItem>
+                <MenuItem value={product.code}>{product.code}</MenuItem>
               ))}
             </Select>
           </FormControl>
         </Col>
 
-        <Col xs={3}>
+        <Col xs={2}>
           <button
             type="button"
             id="toggleBtn"
@@ -282,6 +273,7 @@ const TargetAndActual = () => {
           >
             Date Range
           </button>
+
           <Modal
             open={open}
             onClose={handleClose}
@@ -298,6 +290,20 @@ const TargetAndActual = () => {
             </Box>
           </Modal>
         </Col>
+        <Col sm={3}>
+          <button
+            type="button"
+            id="toggleBtn"
+            class="btn btn-secondary"
+            value={graphState}
+            data-toggle="button"
+            aria-pressed="false"
+            autocomplete="off"
+            onClick={handleGraphToggle}
+          >
+            {graphState}
+          </button>
+        </Col>
         <Col xs={3}>
           <ExportExcel
             excelData={[
@@ -310,7 +316,6 @@ const TargetAndActual = () => {
           />
         </Col>
       </Row>
-      {/* <Filters toggle={handleToggleClick} /> */}
     </div>
   );
 };

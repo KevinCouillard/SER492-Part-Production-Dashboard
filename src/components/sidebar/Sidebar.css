@@ -98,12 +98,13 @@
 }
 
 .test {
-  width: 174px;
+  width: 70px;
   min-width: 174px;
-  max-width: 240px;
+  max-width: 200px;
+  height: 100%;
 }
 
-.logo {
+/* .logo {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -114,4 +115,4 @@
   max-width: 10vw;
   min-height: 10vh;
   min-width: 5vw;
-}
+} */
