@@ -64,9 +64,10 @@ const Ptracking = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await Axios("http://localhost:4000/tracking");
-      const product = await Axios("http://localhost:4000/products");
+      const product = await Axios("http://localhost:4000/product");
       setProductsList(product.data);
       setTrackingList(result.data);
+      console.log(trackingList.length)
     };
 
     fetchData();
