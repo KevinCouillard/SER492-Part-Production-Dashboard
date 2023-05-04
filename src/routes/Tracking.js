@@ -411,41 +411,6 @@ const Tracking = () => {
               </div>
             </Paper>
 
-<<<<<<< HEAD
-
-const loadScrapList = (scrapList) => {
-  
-  setscrapListHtml(
-    
-    scrapList.map((index) => (
-      <div key={index}>
-      <TextField
-        id="outlined-basic"
-        label="Scrap"
-        variant="outlined"
-        onChange={(event) => {
-          setBad(event.target.value);
-        }}
-        value={bad}
-      />
-      <TextField
-        id="outlined-basic"
-        label="Reason Code"
-        variant="outlined"
-        onChange={(event) => {
-          setBadCode(event.target.value);
-        }}
-        value={badCode}
-      />
-      </div>
-    ))
-  );
-}
-const newScrap = (e) => { 
-	e.preventDefault();
-  	setScrapList([...scrapList, { scrap: "" }]);
-};
-=======
             {trackingList.map((val, key) => {
               return (
                 <div className="tracking-display">
@@ -474,7 +439,6 @@ const newScrap = (e) => {
         </Col>
       </Row>
     </Container>
->>>>>>> dca2f527518e21928f873e8415cfac54a5e02d9d
 
     // <Box
     //   className="screen"
