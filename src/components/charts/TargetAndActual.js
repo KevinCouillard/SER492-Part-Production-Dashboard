@@ -84,10 +84,6 @@ const TargetAndActual = () => {
   const [trackingList, setTrackingList] = useState([]);
   const [allTrackingList, setAllTrackingList] = useState([]);
   const [products, setProducts] = useState([]);
-  const area = trackingList.map((x) => x.area);
-  const shift = trackingList.map((x) => x.shift);
-  const target = trackingList.map((x) => x.target);
-  const downTime = trackingList.map((x) => x.downTime);
 
   const area1 = (value) =>
     (product === "All" && value.area === 1) ||
@@ -157,7 +153,7 @@ const TargetAndActual = () => {
     plugins: {
       title: {
         display: true,
-        text: `C-Ring Forming - Average Scrap Rate By Shift from ${startDate.toDateString()} to ${endDate.toDateString()} `,
+        text: `Target Vs Actual Products from ${startDate.toDateString()} to ${endDate.toDateString()} `,
       },
     },
     responsive: true,
@@ -211,7 +207,7 @@ const TargetAndActual = () => {
     {
       field: "Date",
       headerName: "Date",
-      width: 100,
+      width: 110,
       editable: true,
     },
   ];
@@ -312,7 +308,7 @@ const TargetAndActual = () => {
               data.labels,
               data.datasets[1].data,
             ]}
-            fileName={`Average Scrap Rate By Shift from ${startDate.toDateString()} to ${endDate.toDateString()}`}
+            fileName={`Target vs Actual from ${startDate.toDateString()} to ${endDate.toDateString()}`}
           />
         </Col>
       </Row>
