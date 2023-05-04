@@ -42,6 +42,8 @@ const CreateAccount = () => {
     //     })
     // };
 
+    const bool = 0;
+
     function handleSubmit(e) {
         if (!e.target.checkValidity()) {
             e.target.reportValidity();
@@ -49,21 +51,55 @@ const CreateAccount = () => {
             e.preventDefault();
             return;
         }
-        Axios.post(url + "/createAccount", {
-            email : email,
-            password : password,
-            isManager : isManager,
-            headers: {
-                "content-type": "application/json",
-            },
-          })
-            .then(function (response) {
-              console.log(response);
-              //navigate('/' + email + '/dashboard');
-              navigate('/login');
-            })
-            .catch((err) => console.log(err));
-        //navigate('/login');
+
+        if (cPassword != password || cPassword === "") {
+            console.log(e);
+        } else {
+            Axios.post(url + "/createAccount", {
+                email : email,
+                password : password,
+                isManager : isManager,
+                headers: {
+                    "content-type": "application/json",
+                },
+              })
+                .then(function (response) {
+                  console.log(response);
+                  //navigate('/' + email + '/dashboard');
+                  //navigate('/login');
+                  //bool++;
+                //   console.log("bool" + bool);
+                //   e.preventDefault();
+                })
+                .catch((err) => console.log(err));
+                if (email != "" && password != "" && cPassword != "") {
+                    //navigate('/' + email + '/dashboard');
+                    navigate('/login');
+                }
+        }
+        // Axios.post(url + "/createAccount", {
+        //     email : email,
+        //     password : password,
+        //     isManager : isManager,
+        //     headers: {
+        //         "content-type": "application/json",
+        //     },
+        //   })
+        //     .then(function (response) {
+        //       console.log(response);
+        //       //navigate('/' + email + '/dashboard');
+        //       //navigate('/login');
+        //       //bool++;
+        //     //   console.log("bool" + bool);
+        //     //   e.preventDefault();
+        //     })
+        //     .catch((err) => console.log(err));
+        //     if (email != "" && password != "" && cPassword != "") {
+        //         //navigate('/' + email + '/dashboard');
+        //         navigate('/login');
+        //     }
+            //navigate('/login');
+            
 
         //e.preventDefault();
         // setAccount(email, password, isManager);

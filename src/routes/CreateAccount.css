@@ -38,13 +38,16 @@
   }
 
   #formContainer {
-    background: rgb(252,116,43);
-    background: linear-gradient(90deg, rgba(252,116,43,1) 0%, rgba(247,191,5,1) 29%, rgba(128,0,255,1) 100%);
+    /* background: rgb(252,116,43);
+    background: linear-gradient(90deg, rgba(252,116,43,1) 0%, rgba(247,191,5,1) 29%, rgba(128,0,255,1) 100%); */
+    background-image: url('../parkerBackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   #formCard {
-    background-color: transparent;
-    border-color: white;
+    background-color: cornsilk;
+    border-color: black;
     border-radius: 20px;
     border-width: 2px;
   }
